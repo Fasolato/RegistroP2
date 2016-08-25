@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <plesso>
+        <nome>plesso1</nome>
+        <sede>Padova</sede>
+        <via>Garibaldi 28</via>
+        <telefono>049-736405</telefono>
+        <pers_ata>4</pers_ata>
+        <metri_quadri>500</metri_quadri>
+    </plesso>
+    <plesso>
+        <nome>plesso2</nome>
+        <sede>Padova</sede>
+        <via>A. Volta 12</via>
+        <telefono>049-8253110</telefono>
+        <pers_ata>7</pers_ata>
+        <metri_quadri>650</metri_quadri>
+    </plesso>
+</database>
