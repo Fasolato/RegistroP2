@@ -27,7 +27,6 @@ HEADERS  += mainwindow.h \
     docente.h \
     lista.h \
     listaPlessi.h \
-    listaVecchia.h \
     orarioSettimanale.h \
     personale.h \
     plesso.h \

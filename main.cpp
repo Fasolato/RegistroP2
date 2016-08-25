@@ -10,9 +10,6 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    ListaPlessi lp;
-    ListaPlessi* plp=&lp;
-    lista<personale> li(plp);
     /*plesso *p1= new plesso("plesso1", "Padova", "Garibaldi 28", "049-736405", 4, 500);
     plesso *p2= new plesso("plesso2", "Padova", "A. Volta 12", "049-8253110", 7, 650);
     lp.aggiungiMembro(p2);

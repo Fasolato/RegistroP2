@@ -59,7 +59,7 @@ public:
 };
 
 template <class T>
-QString lista<T>::filename1="/Users/iFranz/Desktop/ProvaErrori/DB.xml";
+QString lista<T>::filename1="/Volumes/KINGS 32 GB/Registro_GitHub/RegistroP2/DB.xml";
 
 // METODI DI LISTA <T>
 
@@ -319,17 +319,14 @@ void lista<T>::Load(ListaPlessi* lp){
             if(xmlReader.isEndElement() && xmlReader.name()=="personale"){//leggo </personale> //costruisco user
                     plesso* pl= lp->ricercaPlesso(scuola_afferenza);
                     if(tipo=="ata"){
-                        std::cout<<"arrivatiata"<<std::endl;
                         ata* a= new ata(nome, cognome, lun, mar, mer, gio, ven, sab, nome_utente, password, pl, paga_mq);
                         first= new nodo(a, first);
                     }
                     else if(tipo=="docente"){
-                        std::cout<<"arrivatidocente"<<std::endl;
                         docente* d= new docente(nome, cognome, lun, mar, mer, gio, ven, sab, nome_utente, password, pl, paga_oraria);
                         first= new nodo(d, first);
                     }
                     else{ //tipo=="preside"
-                        std::cout<<"arrivatipreside"<<std::endl;
                         preside* p= new preside(nome, cognome, lun, mar, mer, gio, ven, sab, nome_utente, password, pl, paga_oraria, paga_straordinari, ore_straordinari, numero_telefono);
                         first= new nodo(p, first);
                     }
