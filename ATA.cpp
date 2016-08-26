@@ -21,8 +21,8 @@ void ata::writeSpecifiche(QXmlStreamWriter& xmlWriter) const{
 }
 
 void ata::openRightWindow(){
-    //AtaWindow w(this->getNomeutente());
-    //w.show();
+    AtaWindow w(this->getNomeutente());
+    w.show();
 }
 
 double ata::getPagaM() const {return paga_mq;}

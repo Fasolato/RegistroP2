@@ -23,8 +23,8 @@ void preside::writeSpecifiche(QXmlStreamWriter& xmlWriter) const{
 }
 
 void preside::openRightWindow(){
-    //PresideWindow w(this->getNomeutente());
-    //w.show();
+    PresideWindow w(this->getNomeutente());
+    w.show();
 }
 
 double preside::getPagaS() const {return paga_straordinari;}

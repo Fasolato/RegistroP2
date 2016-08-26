@@ -2,7 +2,7 @@
 #define DOCENTEH
 
 #include"personale.h"
-//#include"Viste/DocWindow.h"
+#include"DocWindow.h"
 
 using namespace std;
 

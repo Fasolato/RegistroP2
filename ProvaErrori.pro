@@ -20,7 +20,10 @@ SOURCES += main.cpp\
     orarioSettimanale.cpp \
     personale.cpp \
     plesso.cpp \
-    preside.cpp
+    preside.cpp \
+    AtaWindow.cpp \
+    DocWindow.cpp \
+    PresideWindow.cpp
 
 HEADERS  += mainwindow.h \
     ATA.h \
@@ -30,7 +33,10 @@ HEADERS  += mainwindow.h \
     orarioSettimanale.h \
     personale.h \
     plesso.h \
-    preside.h
+    preside.h \
+    AtaWindow.h \
+    DocWindow.h \
+    PresideWindow.h
 
 DISTFILES += \
     DB.xml \

@@ -23,8 +23,8 @@ void docente::writeSpecifiche(QXmlStreamWriter& xmlWriter) const{
 }
 
 void docente::openRightWindow(){
-    //DocWindow w(this->getNomeutente());
-    //w.show();
+    DocWindow w(this->getNomeutente());
+    w.show();
 }
 
 double docente::getPagaO() const {return paga_oraria;}

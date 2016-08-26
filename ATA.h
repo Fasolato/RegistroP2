@@ -2,7 +2,7 @@
 #define ATAH
 
 #include"personale.h"
-//#include"Viste/AtaWindow.h"
+#include"AtaWindow.h"
 
 using namespace std;
 
