@@ -2,6 +2,7 @@
 
 AtaWindow::AtaWindow(QString user, QWidget *parent) : QWidget(parent)
 {
+        setWindowTitle("AtaWindow");
         label=new QLabel("Inserisci i tuoi Dati: ",this);
         label->setStyleSheet("color: black; font: 18pt;");
         button=new QPushButton("Login",this);

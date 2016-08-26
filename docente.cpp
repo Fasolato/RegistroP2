@@ -1,6 +1,7 @@
 #ifndef DOCENTE
 #define DOCENTE
 
+#include<iostream>
 #include"docente.h"
 
 
@@ -23,6 +24,7 @@ void docente::writeSpecifiche(QXmlStreamWriter& xmlWriter) const{
 }
 
 void docente::openRightWindow(){
+    std::cout<<"arrivati2"<<std::endl;
     DocWindow w(this->getNomeutente());
     w.show();
 }

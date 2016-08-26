@@ -2,6 +2,7 @@
 
 PresideWindow::PresideWindow(QString user, QWidget *parent) : QWidget(parent)
 {
+        setWindowTitle("PresideWindow");
         label=new QLabel("Inserisci i tuoi Dati: ",this);
         label->setStyleSheet("color: black; font: 18pt;");
         button=new QPushButton("Login",this);

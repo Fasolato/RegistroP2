@@ -2,6 +2,7 @@
 
 MainWindow::MainWindow(QWidget *parent) : QFrame(parent)
 {
+        setWindowTitle("MainWindow");
         setFrameStyle(QFrame::Panel | QFrame::Raised);
         setFrameShadow(QFrame::Plain);
         setFixedSize(320,160);
@@ -45,9 +46,10 @@ MainWindow::MainWindow(QWidget *parent) : QFrame(parent)
             lista<personale> li(plp);
 
             personale *current_user=li.trova(tUser->text(), tPass->text());
-            if(current_user)
+            if(current_user){
+                std::cout<<"arrivati"<<std::endl;
                 current_user->openRightWindow();
-
+            }
             setLogin();
         }
         else{
