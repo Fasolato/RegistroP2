@@ -41,8 +41,6 @@ MainWindow::MainWindow(QWidget *parent) : QFrame(parent)
     void MainWindow::getLogin(){
         if(!tUser->text().isEmpty() && !tUser->text().isNull() && !tPass->text().isEmpty() && !tPass->text().isNull()){
 
-            ListaPlessi lp;
-            lista<personale> li(&lp);
 
             personale *current_user=li.trova(tUser->text(), tPass->text());
             if(current_user){

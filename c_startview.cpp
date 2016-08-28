@@ -20,42 +20,46 @@ C_StartView::C_StartView(lista<personale>* pli, StartView* pview, QObject *paren
 }
 
 void C_StartView::createC_AtaView(){
-    c_ata=new C_AtaView(this,linQedinClient,view->getClientView());
+    c_ata=new C_AtaView(this,pers_ata,view->getAtaView());
 }
 
 void C_StartView::createC_DocenteView(){
-    c_docente=new C_DocenteView(this,linQedinAdmin,view->getAdminView());
+    c_docente=new C_DocenteView(this,pers_docente,view->getDocenteView());
 }
 
 void C_StartView::createC_PresideView(){
-    c_preside=new C_PresideView(this,linQedinAdmin,view->getAdminView());
+    c_preside=new C_PresideView(this,pers_preside,view->getPresideView());
 }
 
-void C_StartView::createAdminModel(){
-    linQedinAdmin=new Admin(database);
-    view->setAdminModel(linQedinAdmin);
+void C_StartView::createAtaModel(personale* pers){
+
+        pers_ata=dynamic_cast<ata*>(pers);
+        view->setAtaModel(pers_ata);
 }
 
-void C_StartView::createClientModel(const QString &user){
-    if(database->matchUtente(user)){
-        linQedinClient=new Client(user,database);
-        view->setClientModel(linQedinClient);
-        }
-    else
-        view->noMatchUser();
+void C_StartView::createDocenteModel(personale* pers){
+
+        pers_docente=dynamic_cast<docente*>(pers);
+        view->setDocenteModel(pers_docente);
+}
+
+void C_StartView::createPresideModel(personale* pers){
+
+        pers_ata=dynamic_cast<preside*>(pers);
+        view->setPresideModel(pers_preside);
 }
 
 
 void C_StartView::deleteControllers(){
-    delete c_admin;
-    delete c_client;
-    c_client=0;
-    c_admin=0;
+    delete c_ata;
+    delete c_docente;
+    delete c_preside;
+    c_ata=0;
+    c_docente=0;
+    c_preside=0;
 }
 
 void C_StartView::deleteModel(){
-    delete linQedinAdmin;
-    delete linQedinClient;
     linQedinAdmin=0;
     linQedinClient=0;
     view->setAdminModel(0);

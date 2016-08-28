@@ -4,10 +4,6 @@
 #include <QObject>
 
 #include<startView.h>
-#include<lista.h>
-#include<ATA.h>
-#include<docente.h>
-#include<preside.h>
 #include<c_ataView.h>
 #include<c_docenteView.h>
 #include<c_presideView.h>
@@ -21,17 +17,19 @@ public:
     explicit C_StartView(lista<personale>* pli, StartView* pview =0, QObject *parent =0);
 
 signals:
-    void createC_ClientView();
 
 public slots:
-    void createC_ClientView();
-    void createC_AdminView();
+    void createC_AtaView();
+    void createC_DocenteView();
+    void createC_PresideView();
+
+    /*
     void createClientModel(const QString &user);
     void createAdminModel();
 
     void deleteControllers();
     void deleteModel();
-
+    */
 private:
     ata* pers_ata;
     docente* pers_docente;

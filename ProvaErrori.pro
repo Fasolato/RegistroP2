@@ -13,7 +13,6 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
     ATA.cpp \
     docente.cpp \
     listaPlessi.cpp \
@@ -24,9 +23,10 @@ SOURCES += main.cpp\
     AtaWindow.cpp \
     DocWindow.cpp \
     PresideWindow.cpp \
-    c_startview.cpp
+    c_startview.cpp \
+    startview.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     ATA.h \
     docente.h \
     lista.h \
@@ -38,7 +38,8 @@ HEADERS  += mainwindow.h \
     AtaWindow.h \
     DocWindow.h \
     PresideWindow.h \
-    c_startview.h
+    c_startview.h \
+    startview.h
 
 DISTFILES += \
     DB.xml \
