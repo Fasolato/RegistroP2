@@ -23,10 +23,8 @@ void docente::writeSpecifiche(QXmlStreamWriter& xmlWriter) const{
     xmlWriter.writeTextElement("paga_oraria", QString::number(paga_oraria));
 }
 
-void docente::openRightWindow(){
-    std::cout<<"arrivati2"<<std::endl;
-    DocWindow w(this->getNomeutente());
-    w.show();
+QString docente::getTipologia(){
+    return "docente";
 }
 
 double docente::getPagaO() const {return paga_oraria;}

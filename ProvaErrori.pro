@@ -23,7 +23,8 @@ SOURCES += main.cpp\
     preside.cpp \
     AtaWindow.cpp \
     DocWindow.cpp \
-    PresideWindow.cpp
+    PresideWindow.cpp \
+    c_startview.cpp
 
 HEADERS  += mainwindow.h \
     ATA.h \
@@ -36,7 +37,8 @@ HEADERS  += mainwindow.h \
     preside.h \
     AtaWindow.h \
     DocWindow.h \
-    PresideWindow.h
+    PresideWindow.h \
+    c_startview.h
 
 DISTFILES += \
     DB.xml \

@@ -42,8 +42,7 @@ MainWindow::MainWindow(QWidget *parent) : QFrame(parent)
         if(!tUser->text().isEmpty() && !tUser->text().isNull() && !tPass->text().isEmpty() && !tPass->text().isNull()){
 
             ListaPlessi lp;
-            ListaPlessi* plp=&lp;
-            lista<personale> li(plp);
+            lista<personale> li(&lp);
 
             personale *current_user=li.trova(tUser->text(), tPass->text());
             if(current_user){

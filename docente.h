@@ -15,7 +15,7 @@ class docente: public personale
 		virtual double stipendio() const;
         virtual void writeTipo(QXmlStreamWriter& xmlWriter) const;
         virtual void writeSpecifiche(QXmlStreamWriter& xmlWriter) const;
-        virtual void openRightWindow();
+        virtual QString getTipologia();
         docente(QString n, QString c, int lun, int mar, int mer, int gio, int ven, int sab, QString n_u, QString p, plesso *s, double paga);
         double getPagaO() const;
         void setPagaO(double po);

@@ -16,7 +16,7 @@ class preside: public docente
 		virtual double stipendio() const;
         virtual void writeTipo(QXmlStreamWriter& xmlWriter) const;
         virtual void writeSpecifiche(QXmlStreamWriter& xmlWriter) const;
-        virtual void openRightWindow();
+        virtual QString getTipologia();
         preside(QString n, QString c, int lun, int mar, int mer, int gio, int ven, int sab, QString n_u, QString p, plesso* s, double paga, double ps, int os, QString num);
         double getPagaS() const;
         int getOreS() const;
