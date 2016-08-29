@@ -1,11 +1,13 @@
-MainWindow::MainWindow(QWidget *parent) : QFrame(parent)
+#include"loginView.h"
+
+LoginView::LoginView(QWidget *parent) : QFrame(parent)
 {
-        setWindowTitle("MainWindow");
+        setWindowTitle("Login");
         setFrameStyle(QFrame::Panel | QFrame::Raised);
         setFrameShadow(QFrame::Plain);
         setFixedSize(320,160);
 
-        setStyleSheet("MainWindow{ background-color: grey; border: 1px solid #FFF;}");
+        setStyleSheet("LoginWindow{ background-color: grey; border: 1px solid #FFF;}");
 
         label=new QLabel("Inserisci i tuoi Dati: ",this);
         label->setStyleSheet("color: black; font: 18pt;");

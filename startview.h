@@ -1,22 +1,10 @@
 #ifndef STARTVIEW_H
 #define STARTVIEW_H
 
+#include<QMainWindow>
 #include<iostream>
 
-#include<QWidget>
-#include<QFrame>
-#include<QPushButton>
-#include<QLabel>
-#include<QLineEdit>
-#include<QVBoxLayout>
-#include<QToolTip>
-#include<QMessageBox>
-#include<QApplication>
-#include<QIcon>
-#include<QDesktopWidget>
-
-#include<lista.h>
-
+#include"loginView.h"
 
 class StartView : public QMainWindow
 {
