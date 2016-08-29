@@ -5,9 +5,8 @@ StartView::StartView(QGroupBox *parent)
 {
     createLogin(); //schermata iniziale
 
-    setWindowIcon(QIcon("../LinQedin/icon.png"));
-    setWhatsThis("LinQedin");
-    setWindowTitle("LinQedin");
+    setWhatsThis("StartView");
+    setWindowTitle("StartView");
     showMaximized();
 }
 
@@ -46,6 +45,7 @@ void StartView::createPreside(personale* p){
 
 void StartView::createLogin(){
     login_view=new LoginView(this);
+    connect(login_view,SIGNAL(setPersonale(personale*)),this,SLOT(setPersonale(personale*)));
     connect(login_view,SIGNAL(openAtaView()),this,SLOT(createAta(pers)));
     connect(login_view,SIGNAL(openDocenteView()),this,SLOT(createDocente(pers)));
     connect(login_view,SIGNAL(openPresideView()),this,SLOT(createPreside(pers)));
@@ -65,15 +65,19 @@ void StartView::backInTime(){
     emit deleteModel(); //distrugge i model
 }
 
-void StartView::setAtaModel(const ata * p_ata){
+void StartView::setPersonale(personale* p){
+    pers=p;
+}
+
+void StartView::setAtaModel(ata * p_ata){
     ata_model=p_ata;
 }
 
-void StartView::setDocenteModel(const docente * p_docente){
+void StartView::setDocenteModel(docente * p_docente){
     docente_model=p_docente;
 }
 
-void StartView::setPresideModel(const preside * p_preside){
+void StartView::setPresideModel(preside * p_preside){
     preside_model=p_preside;
 }
 

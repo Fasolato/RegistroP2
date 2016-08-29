@@ -20,12 +20,12 @@ SOURCES += main.cpp\
     personale.cpp \
     plesso.cpp \
     preside.cpp \
-    AtaWindow.cpp \
-    DocWindow.cpp \
-    PresideWindow.cpp \
     c_startview.cpp \
     startview.cpp \
-    loginView.cpp
+    loginView.cpp \
+    AtaView.cpp \
+    DocenteView.cpp \
+    PresideView.cpp
 
 HEADERS  += \
     ATA.h \
@@ -36,12 +36,12 @@ HEADERS  += \
     personale.h \
     plesso.h \
     preside.h \
-    AtaWindow.h \
-    DocWindow.h \
-    PresideWindow.h \
     c_startview.h \
     startview.h \
-    loginView.h
+    loginView.h \
+    AtaView.h \
+    DocenteView.h \
+    PresideView.h
 
 DISTFILES += \
     DB.xml \

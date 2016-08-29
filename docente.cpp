@@ -23,8 +23,8 @@ void docente::writeSpecifiche(QXmlStreamWriter& xmlWriter) const{
     xmlWriter.writeTextElement("paga_oraria", QString::number(paga_oraria));
 }
 
-QString docente::getTipologia(){
-    return "docente";
+void docente::openRightView(){
+    emit openDocenteView();
 }
 
 double docente::getPagaO() const {return paga_oraria;}

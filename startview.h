@@ -6,6 +6,10 @@
 
 #include"loginView.h"
 
+#include"AtaView.h"
+#include"DocenteView.h"
+#include"PresideView.h"
+
 class StartView : public QMainWindow
 {
     Q_OBJECT
@@ -33,11 +37,14 @@ signals:
     void deleteModel();
 
 private slots:
-    void createAta(personale*);
-    void createDocente(personale*);
-    void createPreside(personale *);
+    void createAta(personale* p);
+    void createDocente(personale* p);
+    void createPreside(personale* p);
 
     void backInTime();
+
+public slots:
+    void setPersonale(personale*);
 
 private:
     void centerWidget();
@@ -50,9 +57,9 @@ private:
 
     personale* pers;
 
-    const ata* ata_model; //puntatori read-only
-    const docente* docente_model;
-    const preside* preside_model;
+    ata* ata_model;
+    docente* docente_model;
+    preside* preside_model;
 };
 
 #endif // STARTVIEW_H

@@ -24,6 +24,7 @@ public:
     explicit LoginView(QWidget *parent = 0);
 
 signals:
+    void setPersonale(personale*);
 
 public slots:
     void setLogin();

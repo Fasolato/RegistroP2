@@ -38,14 +38,15 @@ LoginView::LoginView(QWidget *parent) : QFrame(parent)
         setLayout(layout);
     }
 
-    void MainWindow::getLogin(){
+    void LoginView::getLogin(){
         if(!tUser->text().isEmpty() && !tUser->text().isNull() && !tPass->text().isEmpty() && !tPass->text().isNull()){
 
-
+            ListaPlessi lp;
+            lista<personale> li(&lp);
             personale *current_user=li.trova(tUser->text(), tPass->text());
             if(current_user){
-                std::cout<<"arrivati"<<std::endl;
-                current_user->openRightWindow();
+                emit setPersonale(current_user);
+                current_user->openRightView();
             }
             setLogin();
         }
@@ -57,7 +58,7 @@ LoginView::LoginView(QWidget *parent) : QFrame(parent)
         }
     }
 
-    void MainWindow::selectText(){
+    void LoginView::selectText(){
         tUser->setStyleSheet("color: #808080;");
         tPass->setStyleSheet("color: #808080;");
         if(!tUser->text().isEmpty() && !tUser->text().isNull() && !tPass->text().isEmpty() && !tPass->text().isNull())

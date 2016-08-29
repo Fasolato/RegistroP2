@@ -1,16 +1,16 @@
 //#include "Viste/mainwindow.h"
 #include "startview.h"
 #include "c_startview.h"
-#include "lista.h"
 #include <QApplication>
 
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    lista<personale> list;
+    ListaPlessi lp;
+    lista<personale> li(&lp);
     StartView view;
-    C_StartView controller(&list,&view);
+    C_StartView controller(&li,&view);
 
     return a.exec();
 }

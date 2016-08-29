@@ -2,7 +2,7 @@
 #define PRESIDEH
 
 #include"docente.h"
-#include"PresideWindow.h"
+#include"PresideView.h"
 
 using namespace std;
 
@@ -12,11 +12,15 @@ class preside: public docente
 		double paga_straordinari;
 		int ore_straordinari;
         QString numero_telefono;
+
+signals:
+        void openPresideView();
+
 	public:
 		virtual double stipendio() const;
         virtual void writeTipo(QXmlStreamWriter& xmlWriter) const;
         virtual void writeSpecifiche(QXmlStreamWriter& xmlWriter) const;
-        virtual QString getTipologia();
+        virtual void openRightView();
         preside(QString n, QString c, int lun, int mar, int mer, int gio, int ven, int sab, QString n_u, QString p, plesso* s, double paga, double ps, int os, QString num);
         double getPagaS() const;
         int getOreS() const;

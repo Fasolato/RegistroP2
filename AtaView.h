@@ -1,5 +1,5 @@
-#ifndef DOCWINDOW_H
-#define DOCWINDOW_H
+#ifndef ATAVIEW_H
+#define ATAVIEW_H
 
 #include<QWidget>
 #include<QFrame>
@@ -10,22 +10,20 @@
 #include<QToolTip>
 #include<QMessageBox>
 
+#include"ATA.h"
 
-class DocWindow : public QWidget
+class AtaView : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit DocWindow(QString user, QWidget *parent = 0);
+    explicit AtaView(ata* user_ata, QWidget *parent = 0);
 
 signals:
 
 public slots:
 
 private:
-    QLabel* label;
-    QPushButton* button;
-    QVBoxLayout* layout;
 };
 
-#endif // DOCWINDOW_H
+#endif // ATAVIEW_H
