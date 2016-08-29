@@ -15,8 +15,9 @@ C_StartView::C_StartView(lista<personale>* pli, StartView* pview, QObject *paren
     connect(view,SIGNAL(deleteControllers()),this,SLOT(deleteControllers()));
     connect(view,SIGNAL(deleteModel()),this,SLOT(deleteModel()));
 
-    connect(view,SIGNAL(createClientModel(QString)),this,SLOT(createClientModel(QString)));
-    connect(view,SIGNAL(createAdminModel()),this,SLOT(createAdminModel()));
+    connect(view,SIGNAL(createAtaModel(personale*)),this,SLOT(createAtaModel(personale*)));
+    connect(view,SIGNAL(createDocenteModel(personale*)),this,SLOT(createDocenteModel(personale*)));
+    connect(view,SIGNAL(createPresideModel(personale*)),this,SLOT(createPresideModel(personale*)));
 }
 
 void C_StartView::createC_AtaView(){
@@ -45,7 +46,7 @@ void C_StartView::createDocenteModel(personale* pers){
 
 void C_StartView::createPresideModel(personale* pers){
 
-        pers_ata=dynamic_cast<preside*>(pers);
+        pers_preside=dynamic_cast<preside*>(pers);
         view->setPresideModel(pers_preside);
 }
 
@@ -60,8 +61,10 @@ void C_StartView::deleteControllers(){
 }
 
 void C_StartView::deleteModel(){
-    linQedinAdmin=0;
-    linQedinClient=0;
-    view->setAdminModel(0);
-    view->setClientModel(0);
+    pers_ata=0;
+    pers_docente=0;
+    pers_preside=0;
+    view->setAtaModel(0);
+    view->setDocenteModel(0);
+    view->setPresideModel(0);
 }

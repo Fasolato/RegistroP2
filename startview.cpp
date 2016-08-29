@@ -1,76 +1,111 @@
 #include "startview.h"
 
-MainWindow::MainWindow(QWidget *parent) : QFrame(parent)
+StartView::StartView(QGroupBox *parent)
+    : QMainWindow(parent), login_view(0), ata_view(0), docente_view(0), preside_view(0), ata_model(0), docente_model(0), preside_model(0)
 {
-        setWindowTitle("MainWindow");
-        setFrameStyle(QFrame::Panel | QFrame::Raised);
-        setFrameShadow(QFrame::Plain);
-        setFixedSize(320,160);
+    createLogin(); //schermata iniziale
 
-        setStyleSheet("MainWindow{ background-color: grey; border: 1px solid #FFF;}");
+    setWindowIcon(QIcon("../LinQedin/icon.png"));
+    setWhatsThis("LinQedin");
+    setWindowTitle("LinQedin");
+    showMaximized();
+}
 
-        label=new QLabel("Inserisci i tuoi Dati: ",this);
-        label->setStyleSheet("color: black; font: 18pt;");
-        tUser=new QLineEdit(this);
-        tUser->setPlaceholderText("inserisci qui lo username");
-        tUser->setFixedSize(180,30);
-        tPass=new QLineEdit(this);
-        tPass->setPlaceholderText("inserisci qui la password");
-        tPass->setFixedSize(180,30);
-        button=new QPushButton("Login",this);
-        button->setDisabled(true);
+void StartView::createAta(personale* p){
+    emit createAtaModel(p); //setta il model
+    if(ata_model){ //se il model è stato creato il login ha avuto successo
+        ata_view=new AtaView(this, ata_model); //creo view ata
+        connect(ata_view,SIGNAL(disconnectUserView()),this,SLOT(backInTime()));
 
-        setLogin();
-
-        connect(button,SIGNAL(clicked()),this,SLOT(getLogin()));
-        connect(tUser,SIGNAL(returnPressed()),this,SLOT(getLogin()));
-        connect(tPass,SIGNAL(returnPressed()),this,SLOT(getLogin()));
-
-        layout=new QVBoxLayout(this);
-        layout->addWidget(label);
-        layout->addWidget(tUser,0,Qt::AlignCenter);
-        layout->addWidget(tPass,0,Qt::AlignCenter);
-        layout->addWidget(button,0,Qt::AlignRight);
-
-        button->setToolTip(tr("Esegui il login"));
-        button->setToolTipDuration(3000);
-
-        setLayout(layout);
+        emit createC_AtaView(); //creo controller ata
+        setCentralWidget(ata_view);
     }
+}
 
-    void MainWindow::getLogin(){
-        if(!tUser->text().isEmpty() && !tUser->text().isNull() && !tPass->text().isEmpty() && !tPass->text().isNull()){
+void StartView::createDocente(personale* p){
+    emit createDocenteModel(p); //setta il model
+    if(docente_model){ //se il model è stato creato il login ha avuto successo
+        docente_view=new DocenteView(this, docente_model); //creo view docente
+        connect(docente_view,SIGNAL(disconnectUserView()),this,SLOT(backInTime()));
 
-
-            personale *current_user=li.trova(tUser->text(), tPass->text());
-            if(current_user){
-                std::cout<<"arrivati"<<std::endl;
-                current_user->openRightWindow();
-            }
-            setLogin();
-        }
-        else{
-            QMessageBox warning;
-            warning.setIcon(QMessageBox::Information);
-            warning.setText("UserName non valido");
-            warning.exec();
-        }
+        emit createC_DocenteView(); //creo controller docente
+        setCentralWidget(docente_view);
     }
+}
 
-    void MainWindow::selectText(){
-        tUser->setStyleSheet("color: #808080;");
-        tPass->setStyleSheet("color: #808080;");
-        if(!tUser->text().isEmpty() && !tUser->text().isNull() && !tPass->text().isEmpty() && !tPass->text().isNull())
-            button->setEnabled(true);
-        disconnect(tUser,SIGNAL(cursorPositionChanged(int,int)),this,SLOT(selectText()));
-    }
+void StartView::createPreside(personale* p){
+    emit createPresideModel(p); //setta il model
+    if(preside_model){ //se il model è stato creato il login ha avuto successo
+        preside_view=new PresideView(this, preside_model); //creo view preside
+        connect(preside_view,SIGNAL(disconnectUserView()),this,SLOT(backInTime()));
 
-    void MainWindow::setLogin(){
-        button->setDisabled(true);
-        tUser->clear();
-        tUser->setStyleSheet("color: #808080;");
-        connect(tUser,SIGNAL(cursorPositionChanged(int,int)),this,SLOT(selectText()));
-        tPass->clear();
-        tPass->setStyleSheet("color: #808080;");
-        connect(tPass,SIGNAL(cursorPositionChanged(int,int)),this,SLOT(selectText()));
+        emit createC_PresideView(); //creo controller preside
+        setCentralWidget(preside_view);
     }
+}
+
+void StartView::createLogin(){
+    login_view=new LoginView(this);
+    connect(login_view,SIGNAL(openAtaView()),this,SLOT(createAta(pers)));
+    connect(login_view,SIGNAL(openDocenteView()),this,SLOT(createDocente(pers)));
+    connect(login_view,SIGNAL(openPresideView()),this,SLOT(createPreside(pers)));
+    setCentralWidget(login_view);
+}
+
+void StartView::backInTime(){
+    createLogin();
+    emit deleteControllers(); //distrugge i controller delle view
+    delete ata_view;
+    delete docente_view;
+    delete preside_view;
+    ata_view=0;
+    docente_view=0;
+    preside_view=0;
+
+    emit deleteModel(); //distrugge i model
+}
+
+void StartView::setAtaModel(const ata * p_ata){
+    ata_model=p_ata;
+}
+
+void StartView::setDocenteModel(const docente * p_docente){
+    docente_model=p_docente;
+}
+
+void StartView::setPresideModel(const preside * p_preside){
+    preside_model=p_preside;
+}
+
+void StartView::noMatchUser(){
+    QMessageBox warning;
+    warning.setIcon(QMessageBox::Information);
+    warning.setText("UserName non valido");
+    warning.exec();
+}
+
+AtaView* StartView::getAtaView(){
+    return ata_view;
+}
+
+DocenteView* StartView::getDocenteView(){
+    return docente_view;
+}
+
+PresideView* StartView::getPresideView(){
+    return preside_view;
+}
+
+void StartView::centerWidget(){
+    int width = frameGeometry().width();
+    int height = frameGeometry().height();
+
+    QDesktopWidget wid;
+
+    int screenWidth = wid.screen()->width();
+    int screenHeight = wid.screen()->height();
+
+    setGeometry((screenWidth/2)-(width/2),(screenHeight/2)-(height/2),width,height);
+}
+
+

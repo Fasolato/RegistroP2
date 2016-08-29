@@ -8,7 +8,7 @@
 #include<c_docenteView.h>
 #include<c_presideView.h>
 
-//class StartView;
+class StartView;
 
 class C_StartView : public QObject
 {
@@ -23,13 +23,14 @@ public slots:
     void createC_DocenteView();
     void createC_PresideView();
 
-    /*
-    void createClientModel(const QString &user);
-    void createAdminModel();
+
+    void createAtaModel(personale* pers);
+    void createDocenteModel(personale* pers);
+    void createPresideModel(personale* pers);
 
     void deleteControllers();
     void deleteModel();
-    */
+
 private:
     ata* pers_ata;
     docente* pers_docente;

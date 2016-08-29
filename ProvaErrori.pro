@@ -24,7 +24,8 @@ SOURCES += main.cpp\
     DocWindow.cpp \
     PresideWindow.cpp \
     c_startview.cpp \
-    startview.cpp
+    startview.cpp \
+    clientlogin.cpp
 
 HEADERS  += \
     ATA.h \
@@ -39,7 +40,8 @@ HEADERS  += \
     DocWindow.h \
     PresideWindow.h \
     c_startview.h \
-    startview.h
+    startview.h \
+    clientLogin.h
 
 DISTFILES += \
     DB.xml \

@@ -17,28 +17,6 @@
 
 #include<lista.h>
 
-class MainWindow : public QFrame
-{
-    Q_OBJECT
-
-public:
-    explicit MainWindow(QWidget *parent = 0);
-
-signals:
-
-public slots:
-    void setLogin();
-    void getLogin();
-    void selectText();
-
-private:
-    QLabel* label;
-    QLineEdit* tUser;
-    QLineEdit* tPass;
-    QPushButton* button;
-    QVBoxLayout* layout;
-};
-
 
 class StartView : public QMainWindow
 {
@@ -47,37 +25,46 @@ class StartView : public QMainWindow
 public:
     explicit StartView(QGroupBox *parent = 0);
 
-    ClientView* getClientView();
-    AdminView* getAdminView();
+    AtaView* getAtatView();
+    DocenteView* getDocenteView();
+    PresideView* getPresideView();
 
-    void setAdminModel(const Admin* model_);
-    void setClientModel(const Client* model_);
+    void setAtaModel(const ata* p_ata);
+    void setDocenteModel(const docente* p_docente);
+    void setPresideModel(const preside* p_preside);
+
     void noMatchUser();
 
 signals:
-    void createC_ClientView();
-    void createC_AdminView();
+    void createC_AtaView();
+    void createC_DocenteView();
+    void createC_PresideView();
+
     void deleteControllers();
 
-    void createClientModel(const QString&);
-    void createAdminModel();
     void deleteModel();
 
 private slots:
-    void createAdmin();
-    void createClient(const QString& user);
+    void createAta(personale*);
+    void createDocente(personale*);
+    void createPreside(personale *);
+
     void backInTime();
 
 private:
     void centerWidget();
-    void createMain();
+    void createLogin();
 
-    MainView* main_view;
-    ClientView* client_view;
-    AdminView* admin_view;
+    LoginView* login_view;
+    AtaView* ata_view;
+    DocenteView* docente_view;
+    PresideView* preside_view;
 
-    const Client* client_model; //puntatori read-only
-    const Admin* admin_model;
+    personale* pers;
+
+    const ata* ata_model; //puntatori read-only
+    const docente* docente_model;
+    const preside* preside_model;
 };
 
 #endif // STARTVIEW_H
