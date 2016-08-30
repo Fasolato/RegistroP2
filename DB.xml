@@ -1,6 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
     <personale>
+        <username>LCerri02</username>
+        <tipologia>ata</tipologia>
+        <profilo>
+            <info_generali>
+                <nome>Luca</nome>
+                <cognome>Cerri</cognome>
+                <orario>
+                    <lun>4</lun>
+                    <mar>4</mar>
+                    <mer>4</mer>
+                    <gio>4</gio>
+                    <ven>0</ven>
+                    <sab>4</sab>
+                </orario>
+                <password>87654321</password>
+                <plesso>plesso2</plesso>
+            </info_generali>
+            <info_specifiche>
+                <paga_mq>0.03</paga_mq>
+            </info_specifiche>
+        </profilo>
+    </personale>
+    <personale>
+        <username>CTrovò04</username>
+        <tipologia>preside</tipologia>
+        <profilo>
+            <info_generali>
+                <nome>Claudia</nome>
+                <cognome>Trovò</cognome>
+                <orario>
+                    <lun>3</lun>
+                    <mar>2</mar>
+                    <mer>5</mer>
+                    <gio>0</gio>
+                    <ven>2</ven>
+                    <sab>4</sab>
+                </orario>
+                <password>12345678</password>
+                <plesso>plesso1</plesso>
+            </info_generali>
+            <info_specifiche>
+                <paga_oraria>22</paga_oraria>
+                <paga_straordinari>40</paga_straordinari>
+                <ore_straordinari>4</ore_straordinari>
+                <numero_telefono>3462810538</numero_telefono>
+            </info_specifiche>
+        </profilo>
+    </personale>
+    <personale>
         <username>PMerli01</username>
         <tipologia>docente</tipologia>
         <profilo>

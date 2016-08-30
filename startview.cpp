@@ -5,6 +5,7 @@ StartView::StartView(QGroupBox *parent)
 {
     createLogin(); //schermata iniziale
 
+    setStyleSheet("StartWindow{ background-color: red; border: 1px solid #FFF;}");
     setWhatsThis("StartView");
     setWindowTitle("StartView");
     showMaximized();

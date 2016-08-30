@@ -23,6 +23,8 @@ class LoginView : public QFrame
 public:
     explicit LoginView(QWidget *parent = 0);
 
+    void centerWidget();
+
 signals:
     void setPersonale(personale*);
     void createAta(personale*);
