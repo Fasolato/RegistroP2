@@ -46,9 +46,9 @@ void StartView::createPreside(personale* p){
 void StartView::createLogin(){
     login_view=new LoginView(this);
     connect(login_view,SIGNAL(setPersonale(personale*)),this,SLOT(setPersonale(personale*)));
-    connect(login_view,SIGNAL(openAtaView()),this,SLOT(createAta(pers)));
-    connect(login_view,SIGNAL(openDocenteView()),this,SLOT(createDocente(pers)));
-    connect(login_view,SIGNAL(openPresideView()),this,SLOT(createPreside(pers)));
+    connect(login_view,SIGNAL(createAta(personale*)),this,SLOT(createAta(personale*)));
+    connect(login_view,SIGNAL(createDocente(personale*)),this,SLOT(createDocente(personale*)));
+    connect(login_view,SIGNAL(createPreside(personale*)),this,SLOT(createPreside(personale*)));
     setCentralWidget(login_view);
 }
 

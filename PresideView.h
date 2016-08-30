@@ -9,6 +9,7 @@
 #include<QVBoxLayout>
 #include<QToolTip>
 #include<QMessageBox>
+#include<QApplication>
 
 #include"preside.h"
 
@@ -18,12 +19,17 @@ class PresideView : public QWidget
 
 public:
     explicit PresideView(preside* user_preside, QWidget *parent = 0);
+    ~PresideView();
 
 signals:
+    void disconnectUserView();
 
 public slots:
 
 private:
+    QLabel* label;
+    QPushButton* exit;
+    QVBoxLayout* layout;
 };
 
 #endif // PRESIDEVIEW_H

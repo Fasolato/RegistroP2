@@ -9,6 +9,7 @@
 #include<QVBoxLayout>
 #include<QToolTip>
 #include<QMessageBox>
+#include<QApplication>
 
 #include"docente.h"
 
@@ -18,12 +19,17 @@ class DocenteView : public QWidget
 
 public:
     explicit DocenteView(docente* user_docente, QWidget *parent = 0);
+    ~DocenteView();
 
 signals:
+    void disconnectUserView();
 
 public slots:
 
 private:
+    QLabel* label;
+    QPushButton* exit;
+    QVBoxLayout* layout;
 };
 
 #endif // DOCENTEVIEW_H

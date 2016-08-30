@@ -2,7 +2,7 @@
 
 LoginView::LoginView(QWidget *parent) : QFrame(parent)
 {
-        setWindowTitle("Login");
+
         setFrameStyle(QFrame::Panel | QFrame::Raised);
         setFrameShadow(QFrame::Plain);
         setFixedSize(320,160);
@@ -17,6 +17,7 @@ LoginView::LoginView(QWidget *parent) : QFrame(parent)
         tPass=new QLineEdit(this);
         tPass->setPlaceholderText("inserisci qui la password");
         tPass->setFixedSize(180,30);
+        tPass->setEchoMode(QLineEdit::Password);
         button=new QPushButton("Login",this);
         button->setDisabled(true);
 
@@ -46,16 +47,22 @@ LoginView::LoginView(QWidget *parent) : QFrame(parent)
             personale *current_user=li.trova(tUser->text(), tPass->text());
             if(current_user){
                 emit setPersonale(current_user);
-                current_user->openRightView();
+                if(current_user->openRightView()=="ata")
+                    emit createAta(current_user);
+                else if(current_user->openRightView()=="docente")
+                    emit createDocente(current_user);
+                else
+                    emit createPreside(current_user);
             }
-            setLogin();
-        }
+
         else{
             QMessageBox warning;
             warning.setIcon(QMessageBox::Information);
             warning.setText("UserName non valido");
             warning.exec();
         }
+        setLogin();
+      }
     }
 
     void LoginView::selectText(){

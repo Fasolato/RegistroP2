@@ -1,29 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
     <personale>
-        <username>MSoave01</username>
-        <tipologia>docente</tipologia>
-        <profilo>
-            <info_generali>
-                <nome>Giovanni</nome>
-                <cognome>Soave</cognome>
-                <orario>
-                    <lun>3</lun>
-                    <mar>5</mar>
-                    <mer>2</mer>
-                    <gio>0</gio>
-                    <ven>3</ven>
-                    <sab>4</sab>
-                </orario>
-                <password>peppapig</password>
-                <plesso>plesso2</plesso>
-            </info_generali>
-            <info_specifiche>
-                <paga_oraria>20.5</paga_oraria>
-            </info_specifiche>
-        </profilo>
-    </personale>
-    <personale>
         <username>PMerli01</username>
         <tipologia>docente</tipologia>
         <profilo>
@@ -43,6 +20,29 @@
             </info_generali>
             <info_specifiche>
                 <paga_oraria>17.3</paga_oraria>
+            </info_specifiche>
+        </profilo>
+    </personale>
+    <personale>
+        <username>MSoave01</username>
+        <tipologia>docente</tipologia>
+        <profilo>
+            <info_generali>
+                <nome>Giovanni</nome>
+                <cognome>Soave</cognome>
+                <orario>
+                    <lun>3</lun>
+                    <mar>5</mar>
+                    <mer>2</mer>
+                    <gio>0</gio>
+                    <ven>3</ven>
+                    <sab>4</sab>
+                </orario>
+                <password>peppapig</password>
+                <plesso>plesso2</plesso>
+            </info_generali>
+            <info_specifiche>
+                <paga_oraria>20.5</paga_oraria>
             </info_specifiche>
         </profilo>
     </personale>

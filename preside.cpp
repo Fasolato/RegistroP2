@@ -22,8 +22,8 @@ void preside::writeSpecifiche(QXmlStreamWriter& xmlWriter) const{
     xmlWriter.writeTextElement("numero_telefono", numero_telefono);
 }
 
-void preside::openRightView(){
-    emit openPresideView();
+QString preside::openRightView(){
+    return "preside";
 }
 
 double preside::getPagaS() const {return paga_straordinari;}

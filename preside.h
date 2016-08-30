@@ -12,14 +12,11 @@ class preside: public docente
 		int ore_straordinari;
         QString numero_telefono;
 
-signals:
-        void openPresideView();
-
 	public:
 		virtual double stipendio() const;
         virtual void writeTipo(QXmlStreamWriter& xmlWriter) const;
         virtual void writeSpecifiche(QXmlStreamWriter& xmlWriter) const;
-        virtual void openRightView();
+        virtual QString openRightView();
         preside(QString n, QString c, int lun, int mar, int mer, int gio, int ven, int sab, QString n_u, QString p, plesso* s, double paga, double ps, int os, QString num);
         double getPagaS() const;
         int getOreS() const;

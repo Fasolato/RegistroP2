@@ -25,6 +25,9 @@ public:
 
 signals:
     void setPersonale(personale*);
+    void createAta(personale*);
+    void createDocente(personale*);
+    void createPreside(personale*);
 
 public slots:
     void setLogin();
