@@ -2,7 +2,6 @@
 #define PRESIDEH
 
 #include"docente.h"
-#include"PresideView.h"
 
 using namespace std;
 

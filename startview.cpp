@@ -13,7 +13,7 @@ StartView::StartView(QGroupBox *parent)
 void StartView::createAta(personale* p){
     emit createAtaModel(p); //setta il model
     if(ata_model){ //se il model è stato creato il login ha avuto successo
-        ata_view=new AtaView(this, ata_model); //creo view ata
+        ata_view=new AtaView(ata_model, this); //creo view ata
         connect(ata_view,SIGNAL(disconnectUserView()),this,SLOT(backInTime()));
 
         emit createC_AtaView(); //creo controller ata
@@ -24,7 +24,7 @@ void StartView::createAta(personale* p){
 void StartView::createDocente(personale* p){
     emit createDocenteModel(p); //setta il model
     if(docente_model){ //se il model è stato creato il login ha avuto successo
-        docente_view=new DocenteView(this, docente_model); //creo view docente
+        docente_view=new DocenteView(docente_model, this); //creo view docente
         connect(docente_view,SIGNAL(disconnectUserView()),this,SLOT(backInTime()));
 
         emit createC_DocenteView(); //creo controller docente
@@ -35,7 +35,7 @@ void StartView::createDocente(personale* p){
 void StartView::createPreside(personale* p){
     emit createPresideModel(p); //setta il model
     if(preside_model){ //se il model è stato creato il login ha avuto successo
-        preside_view=new PresideView(this, preside_model); //creo view preside
+        preside_view=new PresideView(preside_model, this); //creo view preside
         connect(preside_view,SIGNAL(disconnectUserView()),this,SLOT(backInTime()));
 
         emit createC_PresideView(); //creo controller preside

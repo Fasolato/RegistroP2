@@ -4,9 +4,9 @@
 #include <QObject>
 
 #include<startView.h>
-//#include<c_ataView.h>
-//#include<c_docenteView.h>
-//#include<c_presideView.h>
+#include<c_AtaView.h>
+#include<c_DocenteView.h>
+#include<c_PresideView.h>
 
 class StartView;
 

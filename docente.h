@@ -2,7 +2,6 @@
 #define DOCENTEH
 
 #include"personale.h"
-#include"DocenteView.h"
 
 using namespace std;
 

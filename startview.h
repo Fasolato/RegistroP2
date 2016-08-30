@@ -17,17 +17,20 @@ class StartView : public QMainWindow
 public:
     explicit StartView(QGroupBox *parent = 0);
 
-    AtaView* getAtatView();
+    AtaView* getAtaView();
     DocenteView* getDocenteView();
     PresideView* getPresideView();
 
-    void setAtaModel(const ata* p_ata);
-    void setDocenteModel(const docente* p_docente);
-    void setPresideModel(const preside* p_preside);
+    void setAtaModel(ata* p_ata);
+    void setDocenteModel(docente* p_docente);
+    void setPresideModel(preside* p_preside);
 
     void noMatchUser();
 
 signals:
+    void createAtaModel(personale*);
+    void createDocenteModel(personale*);
+    void createPresideModel(personale*);
     void createC_AtaView();
     void createC_DocenteView();
     void createC_PresideView();

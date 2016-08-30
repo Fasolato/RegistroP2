@@ -66,7 +66,7 @@ LoginView::LoginView(QWidget *parent) : QFrame(parent)
         disconnect(tUser,SIGNAL(cursorPositionChanged(int,int)),this,SLOT(selectText()));
     }
 
-    void MainWindow::setLogin(){
+    void LoginView::setLogin(){
         button->setDisabled(true);
         tUser->clear();
         tUser->setStyleSheet("color: #808080;");
