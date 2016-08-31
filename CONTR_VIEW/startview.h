@@ -15,7 +15,7 @@ class StartView : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit StartView(QGroupBox *parent = 0);
+    explicit StartView(lista<personale>* li, QGroupBox *parent = 0);
 
     AtaView* getAtaView();
     DocenteView* getDocenteView();
@@ -58,6 +58,7 @@ private:
     DocenteView* docente_view;
     PresideView* preside_view;
 
+    lista<personale>* pli;
     personale* pers;
 
     ata* ata_model;

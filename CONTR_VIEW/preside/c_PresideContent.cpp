@@ -1,0 +1,159 @@
+#include"c_PresideContent.h"
+
+C_PresideContent::C_PresideContent(preside* pres, lista<personale>* li, QObject *parent, PresideContent* view_) :
+    QObject(parent), model(pres), list(li), view(view_)
+{
+    connect(view,SIGNAL(insertPlessoClicked(QString, QString, QString, QString, int, double)),this,SLOT(insertPlesso(QString, QString, QString, QString, int, double)));
+    connect(view,SIGNAL(insertAtaClicked(QString, QString, int, int, int, int, int, int, QString, QString, QString, double)),this,SLOT(insertAta(QString, QString, int, int, int, int, int, int, QString, QString, QString, double)));
+    connect(view,SIGNAL(insertDocenteClicked(QString, QString, int, int, int, int, int, int, QString, QString, QString, double)),this,SLOT(insertDocente(QString, QString, int, int, int, int, int, int, QString, QString, QString, double)));
+    connect(view,SIGNAL(insertPresideClicked(QString, QString, int, int, int, int, int, int, QString, QString, QString, double, double, int, QString)),this,SLOT(insertPreside(QString, QString, int, int, int, int, int, int, QString, QString, QString, double, double, int, QString)));
+    connect(view,SIGNAL(removeUserClicked(QString)),this,SLOT(removeUser(QString)));
+}
+
+void C_PresideContent::insertPlesso(const QString& nome, const QString &sede, const QString &via, const QString &telefono, int p_ata, double m_q){
+    ListaPlessi lp;
+    if(!lp.ricercaPlesso(nome)){
+        plesso pl(nome, sede, via, telefono, p_ata, m_q);
+        lp.aggiungiMembro(&pl);
+        lp.Close();
+        view->buildTable();
+        std::cout<<"Inserisco: "<<nome.toStdString()<<" "<<std::endl;
+    }
+    else{
+        QMessageBox warning;
+        warning.setIcon(QMessageBox::Critical);
+        warning.setWindowTitle("Inserimento Plesso");
+        warning.setText("Impossibile inserire il nuovo plesso");
+        warning.setInformativeText("Il plesso è già stato inserito.");
+        warning.setStandardButtons(QMessageBox::Ok);
+        warning.setDefaultButton(QMessageBox::Ok);
+        warning.exec();
+    }
+}
+
+void C_PresideContent::insertAta(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_mq){
+    ListaPlessi lp;
+    if(list->trova(n_u)){
+        plesso* pl=lp.ricercaPlesso(scuola);
+        if(pl){
+            ata utente(nome, cognome, lun, mar, mer, gio, ven, sab, n_u, pass, pl, p_mq);
+            list->aggiungiMembro(&utente);
+            list->Close();
+            view->buildTable();
+            std::cout<<"Inserisco: "<<n_u.toStdString()<<" "<<std::endl;
+        }
+        else{
+
+            QMessageBox warning;
+            warning.setIcon(QMessageBox::Critical);
+            warning.setWindowTitle("Inserimento Ata");
+            warning.setText("Impossibile inserire il nuovo utente");
+            warning.setInformativeText("Il plesso di afferenza selezionato non esiste.");
+            warning.setStandardButtons(QMessageBox::Ok);
+            warning.setDefaultButton(QMessageBox::Ok);
+            warning.exec();
+        }
+    }
+    else{
+
+        QMessageBox warning;
+        warning.setIcon(QMessageBox::Critical);
+        warning.setWindowTitle("Inserimento Ata");
+        warning.setText("Impossibile inserire il nuovo utente");
+        warning.setInformativeText("L'username è già in uso.");
+        warning.setStandardButtons(QMessageBox::Ok);
+        warning.setDefaultButton(QMessageBox::Ok);
+        warning.exec();
+    }
+}
+
+void C_PresideContent::insertDocente(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_ora){
+    ListaPlessi lp;
+    if(list->trova(n_u)){
+        plesso* pl=lp.ricercaPlesso(scuola);
+        if(pl){
+            docente utente(nome, cognome, lun, mar, mer, gio, ven, sab, n_u, pass, pl, p_ora);
+            list->aggiungiMembro(&utente);
+            list->Close();
+            view->buildTable();
+            std::cout<<"Inserisco: "<<n_u.toStdString()<<" "<<std::endl;
+        }
+        else{
+
+            QMessageBox warning;
+            warning.setIcon(QMessageBox::Critical);
+            warning.setWindowTitle("Inserimento Docente");
+            warning.setText("Impossibile inserire il nuovo utente");
+            warning.setInformativeText("Il plesso di afferenza selezionato non esiste.");
+            warning.setStandardButtons(QMessageBox::Ok);
+            warning.setDefaultButton(QMessageBox::Ok);
+            warning.exec();
+        }
+    }
+    else{
+
+        QMessageBox warning;
+        warning.setIcon(QMessageBox::Critical);
+        warning.setWindowTitle("Inserimento Docente");
+        warning.setText("Impossibile inserire il nuovo utente");
+        warning.setInformativeText("L'username è già in uso.");
+        warning.setStandardButtons(QMessageBox::Ok);
+        warning.setDefaultButton(QMessageBox::Ok);
+        warning.exec();
+    }
+}
+
+void C_PresideContent::insertPreside(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_ora, double p_stra, int ore_s, const QString& num){
+    ListaPlessi lp;
+    if(list->trova(n_u)){
+        plesso* pl=lp.ricercaPlesso(scuola);
+        if(pl){
+            preside utente(nome, cognome, lun, mar, mer, gio, ven, sab, n_u, pass, pl, p_ora, p_stra, ore_s, num);
+            list->aggiungiMembro(&utente);
+            list->Close();
+            view->buildTable();
+            std::cout<<"Inserisco: "<<n_u.toStdString()<<" "<<std::endl;
+        }
+        else{
+
+            QMessageBox warning;
+            warning.setIcon(QMessageBox::Critical);
+            warning.setWindowTitle("Inserimento Preside");
+            warning.setText("Impossibile inserire il nuovo utente");
+            warning.setInformativeText("Il plesso di afferenza selezionato non esiste.");
+            warning.setStandardButtons(QMessageBox::Ok);
+            warning.setDefaultButton(QMessageBox::Ok);
+            warning.exec();
+        }
+    }
+    else{
+
+        QMessageBox warning;
+        warning.setIcon(QMessageBox::Critical);
+        warning.setWindowTitle("Inserimento Preside");
+        warning.setText("Impossibile inserire il nuovo utente");
+        warning.setInformativeText("L'username è già in uso.");
+        warning.setStandardButtons(QMessageBox::Ok);
+        warning.setDefaultButton(QMessageBox::Ok);
+        warning.exec();
+    }
+}
+
+void C_PresideContent::removeUser(const QString &user){
+    personale* p=list->trova(user);
+    if(p){
+        list->togliMembro(p);
+        list->Close();
+        view->buildTable();
+    }
+    else{
+        QMessageBox warning;
+        warning.setIcon(QMessageBox::Critical);
+        warning.setWindowTitle("Rimuovi utente");
+        warning.setText("Impossibile eliminare l'utente");
+        warning.setInformativeText("L'utente selezionato non esite.");
+        warning.setStandardButtons(QMessageBox::Ok);
+        warning.setDefaultButton(QMessageBox::Ok);
+        warning.exec();
+    }
+}

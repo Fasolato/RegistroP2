@@ -29,7 +29,7 @@ void C_StartView::createC_DocenteView(){
 }
 
 void C_StartView::createC_PresideView(){
-    c_preside=new C_PresideView(this,pers_preside,view->getPresideView());
+    c_preside=new C_PresideView(li, pers_preside, this, view->getPresideView());
 }
 
 void C_StartView::createAtaModel(personale* pers){

@@ -1,7 +1,7 @@
 #include "startview.h"
 
-StartView::StartView(QGroupBox *parent)
-    : QMainWindow(parent), login_view(0), ata_view(0), docente_view(0), preside_view(0), ata_model(0), docente_model(0), preside_model(0)
+StartView::StartView(lista<personale> *li, QGroupBox *parent)
+    : QMainWindow(parent), pli(li), login_view(0), ata_view(0), docente_view(0), preside_view(0), ata_model(0), docente_model(0), preside_model(0)
 {
     createLogin(); //schermata iniziale
 
@@ -36,7 +36,7 @@ void StartView::createDocente(personale* p){
 void StartView::createPreside(personale* p){
     emit createPresideModel(p); //setta il model
     if(preside_model){ //se il model è stato creato il login ha avuto successo
-        preside_view=new PresideView(preside_model, this); //creo view preside
+        preside_view=new PresideView(pli, preside_model, this); //creo view preside
         connect(preside_view,SIGNAL(disconnectUserView()),this,SLOT(backInTime()));
 
         emit createC_PresideView(); //creo controller preside
@@ -45,7 +45,7 @@ void StartView::createPreside(personale* p){
 }
 
 void StartView::createLogin(){
-    login_view=new LoginView(this);
+    login_view=new LoginView(pli, this);
     connect(login_view,SIGNAL(setPersonale(personale*)),this,SLOT(setPersonale(personale*)));
     connect(login_view,SIGNAL(createAta(personale*)),this,SLOT(createAta(personale*)));
     connect(login_view,SIGNAL(createDocente(personale*)),this,SLOT(createDocente(personale*)));

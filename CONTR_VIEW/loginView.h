@@ -21,7 +21,7 @@ class LoginView : public QFrame
     Q_OBJECT
 
 public:
-    explicit LoginView(QWidget *parent = 0);
+    explicit LoginView(lista<personale>* li,QWidget *parent = 0);
 
     void centerWidget();
 
@@ -37,6 +37,8 @@ public slots:
     void selectText();
 
 private:
+    lista<personale>* pli;
+
     QLabel* label;
     QLineEdit* tUser;
     QLineEdit* tPass;

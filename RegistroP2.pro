@@ -28,7 +28,12 @@ SOURCES += main.cpp \
     MODEL/orarioSettimanale.cpp \
     MODEL/personale.cpp \
     MODEL/plesso.cpp \
-    MODEL/preside.cpp
+    MODEL/preside.cpp \
+    CONTR_VIEW/preside/c_PresideContent.cpp \
+    CONTR_VIEW/preside/PresideContent.cpp \
+    CONTR_VIEW/preside/inserisci_ata/insertAta.cpp \
+    CONTR_VIEW/preside/inserisci_docente/insertDocente.cpp \
+    CONTR_VIEW/preside/inserisci_preside/insertPreside.cpp
 
 HEADERS  += \
     CONTR_VIEW/ata/AtaView.h \
@@ -47,7 +52,12 @@ HEADERS  += \
     MODEL/orarioSettimanale.h \
     MODEL/personale.h \
     MODEL/plesso.h \
-    MODEL/preside.h
+    MODEL/preside.h \
+    CONTR_VIEW/preside/c_PresideContent.h \
+    CONTR_VIEW/preside/PresideContent.h \
+    CONTR_VIEW/preside/inserisci_ata/insertAta.h \
+    CONTR_VIEW/preside/inserisci_docente/insertDocente.h \
+    CONTR_VIEW/preside/inserisci_preside/insertPreside.h
 
 DISTFILES += \
     DATABASE/DB.xml \

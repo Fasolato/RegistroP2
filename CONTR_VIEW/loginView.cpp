@@ -1,6 +1,6 @@
 #include"loginView.h"
 
-LoginView::LoginView(QWidget *parent) : QFrame(parent)
+LoginView::LoginView(lista<personale>* li, QWidget *parent) : QFrame(parent), pli(li)
 {
 
         setFrameStyle(QFrame::Panel | QFrame::Raised);
@@ -51,10 +51,7 @@ LoginView::LoginView(QWidget *parent) : QFrame(parent)
 
     void LoginView::getLogin(){
         if(!tUser->text().isEmpty() && !tUser->text().isNull() && !tPass->text().isEmpty() && !tPass->text().isNull()){
-
-            ListaPlessi lp;
-            lista<personale> li(&lp);
-            personale *current_user=li.trova(tUser->text(), tPass->text());
+            personale *current_user=pli->trova(tUser->text());
             if(current_user){
                 emit setPersonale(current_user);
                 if(current_user->openRightView()=="ata")

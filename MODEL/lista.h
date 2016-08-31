@@ -1,6 +1,8 @@
 #ifndef LISTAH
 #define LISTAH
 
+#include<iostream>
+
 #include"ATA.h"
 #include"preside.h"
 #include"listaPlessi.h"
@@ -35,6 +37,7 @@ public:
         bool operator!=(iteratore) const;
         iteratore& operator++(); // operator++ prefisso
         iteratore operator++(int); // operator++ postfisso
+        T* operator->() const;
     };
 
     iteratore begin() const;
@@ -55,7 +58,7 @@ public:
     void aggiungiMembro(T*);
     void togliMembro(T*);
     T* ricercaMembro(T* p) const;
-    T* trova(QString username, QString password) const;
+    T* trova(QString username) const;
 };
 
 template <class T>
@@ -136,9 +139,9 @@ T* lista<T>::ricercaMembro(T* p) const{
 }
 
 template <class T>
-T* lista<T>::trova(QString username, QString password) const{
+T* lista<T>::trova(QString username) const{
     nodo* a= first;
-    while(a && !((a->dipendente->getNomeutente()==username) && (a->dipendente->getPassword()==password))){
+    while(a && !((a->dipendente->getNomeutente()==username))){
         a= a->next;
     }
     if(a)
@@ -419,6 +422,10 @@ T& lista<T>::operator[](lista<T>::iteratore it) const {
     return *((it.punt)->dipendente);
 }
 
+template <class T>
+T* lista<T>::iteratore::operator->() const{
+    return punt->dipendente;
+}
 
 
 #endif // LISTAH

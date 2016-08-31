@@ -56,8 +56,6 @@ public:
         void aggiungiMembro(plesso*);
         void togliMembro(plesso*);
         plesso* ricercaPlesso(QString p);
-        //PROVA
-        void stampaPlesso() const;
 };
 
 #endif // LISTAPLESSI_H
