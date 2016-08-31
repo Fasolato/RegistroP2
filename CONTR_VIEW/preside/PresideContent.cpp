@@ -3,8 +3,12 @@
 PresideContent::PresideContent(lista<personale>* li, QWidget *parent, preside* model_) :
     QWidget(parent), pli(li), model(model_)
 {
-    std::cout<<"arrivati"<<std::endl;
     selected_user="";
+
+    insPlessoView=0;
+    insAtaView=0;
+    insDocenteView=0;
+    insPresideView=0;
 
     table=new QTableWidget(this);
     table->setColumnCount(4);
@@ -26,13 +30,31 @@ PresideContent::PresideContent(lista<personale>* li, QWidget *parent, preside* m
     selected_user_label->setStyleSheet("font-weight: bold; border: 1px solid grey");
     selected_user_label->setAlignment(Qt::AlignCenter);
     selected_user_label->setMinimumHeight(30);
-    remove_user=new QPushButton("Rimuovi utente",this);
+
+    i_plesso= new QPushButton("Inserisci Plesso",this);
+    i_plesso->setMaximumWidth(350);
+    i_ata= new QPushButton("Inserisci Membro del Personale ATA ",this);
+    i_ata->setMaximumWidth(350);
+    i_docente= new QPushButton("Inserisci Docente",this);
+    i_docente->setMaximumWidth(350);
+    i_preside= new QPushButton("Inserisci Preside",this);
+    i_preside->setMaximumWidth(350);
+    remove_user=new QPushButton("Rimuovi Utente",this);
     remove_user->setMaximumWidth(350);
-    show_info=new QPushButton("Dettagli utente",this);
+    show_info=new QPushButton("Dettagli Utente",this);
     show_info->setMaximumWidth(350);
 
     connect(remove_user,SIGNAL(clicked()),this,SLOT(removeUser()));
-    //connect(insert_User,SIGNAL(insertUserClicked(QString,QString,QString,int)),this,SIGNAL(insertUserClicked(QString,QString,QString,int)));
+
+    connect(i_plesso,SIGNAL(clicked()),this,SLOT(buildPlessoView()));
+    connect(i_ata,SIGNAL(clicked()),this,SLOT(buildAtaView()));
+    connect(i_docente,SIGNAL(clicked()),this,SLOT(buildDocenteView()));
+    connect(i_preside,SIGNAL(clicked()),this,SLOT(buildPresideView()));
+
+    connect(insPlessoView,SIGNAL(inserisciPlesso(QString,QString,QString,QString,int,double)),this,SIGNAL(inserisciPlesso(QString,QString,QString,QString,int,double)));
+    connect(insAtaView,SIGNAL(inserisciAta(QString,QString,int,int,int,int,int,int,QString,QString,QString,double)),this,SIGNAL(inserisciAta(QString,QString,int,int,int,int,int,int,QString,QString,QString,double)));
+    connect(insDocenteView,SIGNAL(inserisciDocente(QString,QString,int,int,int,int,int,int,QString,QString,QString,double)),this,SIGNAL(inserisciDocente(QString,QString,int,int,int,int,int,int,QString,QString,QString,double)));
+    connect(insPresideView,SIGNAL(inserisciPreside(QString,QString,int,int,int,int,int,int,QString,QString,QString,double,double,int,QString)),this,SIGNAL(inserisciPreside(QString,QString,int,int,int,int,int,int,QString,QString,QString,double,int,QString)));
     connect(show_info,SIGNAL(clicked()),this,SLOT(showInfoSelection()));
 
     //table connect
@@ -50,11 +72,26 @@ PresideContent::PresideContent(lista<personale>* li, QWidget *parent, preside* m
     layout_Buttons->addWidget(selected_user_label);
     layout_Buttons->addSpacing(5);
     layout_Buttons->addWidget(show_info);
+    layout_Buttons->addSpacing(5);
     layout_Buttons->addWidget(remove_user);
+    layout_Buttons->addSpacing(5);
+    layout_Buttons->addWidget(insPlessoView);
+    layout_Buttons->addSpacing(5);
+    layout_Buttons->addWidget(insAtaView);
+    layout_Buttons->addSpacing(5);
+    layout_Buttons->addWidget(insDocenteView);
+    layout_Buttons->addSpacing(5);
+    layout_Buttons->addWidget(insPresideView);
+    layout_Buttons->addSpacing(5);
+    layout_Buttons->addWidget(i_plesso);
+    layout_Buttons->addSpacing(5);
+    layout_Buttons->addWidget(i_ata);
+    layout_Buttons->addSpacing(5);
+    layout_Buttons->addWidget(i_docente);
+    layout_Buttons->addSpacing(5);
+    layout_Buttons->addWidget(i_preside);
     layout_Buttons->addSpacing(15);
-    /*layout_Buttons->addWidget(insert_User);
-    layout_Buttons->addStretch(1);
-    */
+
     layout=new QHBoxLayout(this);
     layout->addLayout(layout_Table);
     layout->addSpacing(10);
@@ -90,6 +127,22 @@ void PresideContent::removeUser(){
         emit removeUserClicked(selected_user);
     }
     buildTable();
+}
+
+void PresideContent::buildPlessoView(){
+    insPlessoView= new insertPlesso(this);
+}
+
+void PresideContent::buildAtaView(){
+    insAtaView= new insertAta(this);
+}
+
+void PresideContent::buildDocenteView(){
+    insDocenteView= new insertDocente(this);
+}
+
+void PresideContent::buildPresideView(){
+    insPresideView= new insertPreside(this);
 }
 
 void PresideContent::setSelectedUser(int r){
@@ -134,6 +187,17 @@ void PresideContent::buildTable(){
 //FIGLI
 
 PresideContent::~PresideContent(){
+
+    delete i_plesso;
+    delete i_ata;
+    delete i_docente;
+    delete i_preside;
+
+    delete insPlessoView;
+    delete insAtaView;
+    delete insDocenteView;
+    delete insPresideView;
+
     delete table;
     delete selected_text_label;
     delete selected_user_label;

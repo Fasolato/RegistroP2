@@ -19,6 +19,11 @@
 
 #include"../../MODEL/lista.h"
 
+#include"inserisci_plesso/insertPlesso.h"
+#include"inserisci_ata/insertAta.h"
+#include"inserisci_docente/insertDocente.h"
+#include"inserisci_preside/insertPreside.h"
+
 class PresideContent : public QWidget
 {
    Q_OBJECT
@@ -29,13 +34,18 @@ public:
    void buildTable();
 
 signals:
-   void insertPlesso(const QString& nome, const QString &sede, const QString &via, const QString &telefono, int p_ata, double m_q);
-   void insertAta(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_mq);
-   void insertDocente(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_ora);
-   void insertPreside(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_ora, int ore_s, const QString& num);
+   void inserisciPlesso(const QString& nome, const QString &sede, const QString &via, const QString &telefono, int p_ata, double m_q);
+   void inserisciAta(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_mq);
+   void inserisciDocente(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_ora);
+   void inserisciPreside(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_ora, int ore_s, const QString& num);
    void removeUserClicked(const QString& user);
 
 private slots:
+   void buildPlessoView();
+   void buildAtaView();
+   void buildDocenteView();
+   void buildPresideView();
+
    void enableButtons();
 
    void removeUser();
@@ -58,7 +68,16 @@ private:
    QPushButton* remove_user;
 
    QPushButton* show_info;
-   //insertView* insert_User;
+
+   QPushButton* i_plesso;
+   QPushButton* i_ata;
+   QPushButton* i_docente;
+   QPushButton* i_preside;
+
+   insertPlesso* insPlessoView;
+   insertAta* insAtaView;
+   insertDocente* insDocenteView;
+   insertPreside* insPresideView;
 
    QVBoxLayout* layout_Buttons;
    QVBoxLayout* layout_Table;

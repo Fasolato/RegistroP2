@@ -33,7 +33,8 @@ SOURCES += main.cpp \
     CONTR_VIEW/preside/PresideContent.cpp \
     CONTR_VIEW/preside/inserisci_ata/insertAta.cpp \
     CONTR_VIEW/preside/inserisci_docente/insertDocente.cpp \
-    CONTR_VIEW/preside/inserisci_preside/insertPreside.cpp
+    CONTR_VIEW/preside/inserisci_preside/insertPreside.cpp \
+    CONTR_VIEW/preside/inserisci_plesso/insertPlesso.cpp
 
 HEADERS  += \
     CONTR_VIEW/ata/AtaView.h \
@@ -57,7 +58,8 @@ HEADERS  += \
     CONTR_VIEW/preside/PresideContent.h \
     CONTR_VIEW/preside/inserisci_ata/insertAta.h \
     CONTR_VIEW/preside/inserisci_docente/insertDocente.h \
-    CONTR_VIEW/preside/inserisci_preside/insertPreside.h
+    CONTR_VIEW/preside/inserisci_preside/insertPreside.h \
+    CONTR_VIEW/preside/inserisci_plesso/insertPlesso.h
 
 DISTFILES += \
     DATABASE/DB.xml \

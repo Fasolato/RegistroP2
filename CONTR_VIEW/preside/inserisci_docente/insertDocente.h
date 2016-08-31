@@ -1,5 +1,5 @@
-#ifndef ADMININSERT_H
-#define ADMININSERT_H
+#ifndef INSERTDOCENTE_H
+#define INSERTDOCENTE_H
 
 #include <QWidget>
 #include<QGroupBox>
@@ -13,38 +13,53 @@
 #include<QMessageBox>
 #include<QComboBox>
 
-class AdminInsert : public QFrame
+class insertDocente : public QFrame
 {
     Q_OBJECT
 public:
-    explicit AdminInsert(QWidget *parent = 0);
-    ~AdminInsert();
+    explicit insertDocente(QWidget *parent = 0);
+    ~insertDocente();
 
 signals:
-    void insertUserClicked(const QString&,const QString&,const QString&, int); //connect con AdminContent
+
+    void inserisciDocente(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_oraria);
 
 private slots:
     void insertUser();
-    void changeSelectedType(const QString &type);
 
 private:
     void clearTextEdit();
 
-    int selected_type;
-
     QLabel* title;
-    QLabel* user;
+    QLabel* nome;
+    QLineEdit* text_Nome;
+    QLabel* cognome;
+    QLineEdit* text_Cognome;
+    QLabel* Orario;
+    QLabel* lunedì;
+    QLineEdit* text_Lun;
+    QLabel* martedì;
+    QLineEdit* text_Mar;
+    QLabel* mercoledì;
+    QLineEdit* text_Mer;
+    QLabel* giovedì;
+    QLineEdit* text_Gio;
+    QLabel* venerdì;
+    QLineEdit* text_Ven;
+    QLabel* sabato;
+    QLineEdit* text_Sab;
+    QLabel* username;
     QLineEdit* text_User;
-    QLabel* firstname;
-    QLineEdit* text_Firstname;
-    QLabel* lastname;
-    QLineEdit* text_Lastname;
-    QLabel* type;
-    QComboBox* text_type;
+    QLabel* password;
+    QLineEdit* text_Pass;
+    QLabel* scuola;
+    QLineEdit* text_Scuola;
+    QLabel* p_oraria;
+    QLineEdit* text_P_oraria;
 
     QPushButton* insert;
 
     QGridLayout* layout;
 };
 
-#endif // ADMININSERT_H
+#endif // INSERTDOCENTE_H
