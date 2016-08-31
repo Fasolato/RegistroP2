@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     PresideView.cpp \
     c_AtaView.cpp \
     c_DocenteView.cpp \
-    c_PresideView.cpp
+    c_PresideView.cpp \
+
 
 HEADERS  += \
     ATA.h \
@@ -47,7 +48,8 @@ HEADERS  += \
     PresideView.h \
     c_AtaView.h \
     c_DocenteView.h \
-    c_PresideView.h
+    c_PresideView.h \
+
 
 DISTFILES += \
     DB.xml \

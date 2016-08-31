@@ -3,7 +3,7 @@
 
 #include <QObject>
 
-#include<startView.h>
+#include<startview.h>
 #include<c_AtaView.h>
 #include<c_DocenteView.h>
 #include<c_PresideView.h>

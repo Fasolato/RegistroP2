@@ -1,4 +1,3 @@
-//#include "Viste/mainwindow.h"
 #include "startview.h"
 #include "c_startview.h"
 #include <QApplication>
