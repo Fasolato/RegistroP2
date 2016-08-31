@@ -1,7 +1,7 @@
-#include<c_startview.h>
+#include"c_startview.h"
 
 C_StartView::C_StartView(lista<personale>* pli, StartView* pview, QObject *parent) :
-    li(pli), view(pview), QObject(parent)
+    QObject(parent), li(pli), view(pview)
 {
     view->show();
 

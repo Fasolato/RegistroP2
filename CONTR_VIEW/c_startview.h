@@ -3,10 +3,10 @@
 
 #include <QObject>
 
-#include<startview.h>
-#include<c_AtaView.h>
-#include<c_DocenteView.h>
-#include<c_PresideView.h>
+#include"startview.h"
+#include"ata/c_AtaView.h"
+#include"docente/c_DocenteView.h"
+#include"preside/c_PresideView.h"
 
 class StartView;
 

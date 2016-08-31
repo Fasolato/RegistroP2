@@ -11,7 +11,7 @@
 #include<QMessageBox>
 #include<QApplication>
 
-#include"docente.h"
+#include"../../MODEL/docente.h"
 
 class DocenteView : public QWidget
 {

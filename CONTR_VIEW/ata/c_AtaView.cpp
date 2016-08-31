@@ -1,4 +1,4 @@
-#include<c_AtaView.h>
+#include"c_AtaView.h"
 
 C_AtaView::C_AtaView(QObject *parent, ata* user , AtaView* a_view) :
     QObject(parent), model(user), view(a_view)

@@ -6,9 +6,9 @@
 
 #include"loginView.h"
 
-#include"AtaView.h"
-#include"DocenteView.h"
-#include"PresideView.h"
+#include"ata/AtaView.h"
+#include"docente/DocenteView.h"
+#include"preside/PresideView.h"
 
 class StartView : public QMainWindow
 {

@@ -11,7 +11,7 @@
 #include<QMessageBox>
 #include<QApplication>
 
-#include"ATA.h"
+#include"../../MODEL/ATA.h"
 
 class AtaView : public QWidget
 {

@@ -7,7 +7,7 @@
 #include<QXmlStreamWriter>
 #include<QXmlStreamReader>
 
-#include<plesso.h>
+#include"plesso.h"
 
 
 class ListaPlessi{

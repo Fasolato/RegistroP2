@@ -14,7 +14,7 @@
 #include<QIcon>
 #include<QDesktopWidget>
 
-#include<lista.h>
+#include"../MODEL/lista.h"
 
 class LoginView : public QFrame
 {

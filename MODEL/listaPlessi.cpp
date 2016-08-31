@@ -1,15 +1,8 @@
-#include<listaPlessi.h>
+#include"listaPlessi.h"
 
-QString ListaPlessi::filename2="/Volumes/KINGS 32 GB/Registro_GitHub/RegistroP2/plessoDB.xml";
+QString ListaPlessi::filename2="/Volumes/KINGS 32 GB/Registro_GitHub/RegistroP2/DATABASE/plessoDB.xml";
 
 // METODI DI LISTAPLESSI
-
-//PROVA
-void ListaPlessi::stampaPlesso() const{
-    std::cout<<std::endl<<first->scuola->getNome().toStdString()<<std::endl;
-    std::cout<<first->scuola->getSede().toStdString();
-    std::cout<<" "<<first->scuola->getTelefono().toStdString()<<std::endl<<std::endl;
-}
 
 ListaPlessi::ListaPlessi(): first(0) {
     Load();

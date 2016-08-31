@@ -1,5 +1,5 @@
-#include "startview.h"
-#include "c_startview.h"
+#include "CONTR_VIEW/startview.h"
+#include "CONTR_VIEW/c_startview.h"
 #include <QApplication>
 
 
@@ -13,4 +13,3 @@ int main(int argc, char *argv[])
 
     return a.exec();
 }
-

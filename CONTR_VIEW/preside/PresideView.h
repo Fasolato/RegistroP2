@@ -11,7 +11,7 @@
 #include<QMessageBox>
 #include<QApplication>
 
-#include"preside.h"
+#include"../../MODEL/preside.h"
 
 class PresideView : public QWidget
 {

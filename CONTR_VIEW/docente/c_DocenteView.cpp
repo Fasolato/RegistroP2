@@ -1,4 +1,4 @@
-#include<c_DocenteView.h>
+#include"c_DocenteView.h"
 
 C_DocenteView::C_DocenteView(QObject *parent, docente* user , DocenteView* d_view) :
     QObject(parent), model(user), view(d_view)

@@ -1,4 +1,4 @@
-#include<c_PresideView.h>
+#include"c_PresideView.h"
 
 C_PresideView::C_PresideView(QObject *parent, preside* user , PresideView* p_view) :
     QObject(parent), model(user), view(p_view)
