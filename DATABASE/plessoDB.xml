@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
     <plesso>
+        <nome>fdavfva</nome>
+        <sede>vasfvds</sede>
+        <via>vfdsavafsv</via>
+        <telefono>vfasvfds</telefono>
+        <pers_ata>1</pers_ata>
+        <metri_quadri>1</metri_quadri>
+    </plesso>
+    <plesso>
         <nome>plesso1</nome>
         <sede>Padova</sede>
         <via>Garibaldi 28</via>
@@ -15,5 +23,13 @@
         <telefono>049-8253110</telefono>
         <pers_ata>7</pers_ata>
         <metri_quadri>650</metri_quadri>
+    </plesso>
+    <plesso>
+        <nome>plesso3</nome>
+        <sede>Roma</sede>
+        <via>Bonaparte 58</via>
+        <telefono>03745294637</telefono>
+        <pers_ata>24</pers_ata>
+        <metri_quadri>1500</metri_quadri>
     </plesso>
 </database>

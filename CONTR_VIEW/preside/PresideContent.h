@@ -42,6 +42,10 @@ signals:
    void removeUserClicked(const QString& user);
 
 private slots:
+   void showInfoSelection();
+
+   void buildPlessoTable();
+
    void buildPlessoView();
    void buildAtaView();
    void buildDocenteView();
@@ -64,12 +68,16 @@ private:
    preside* model;
 
    QTableWidget* table;
+
+   QTableWidget* tablePlessi;
+
    QString selected_user;
    QLabel* selected_text_label;
    QLabel* selected_user_label;
    QPushButton* remove_user;
 
    QPushButton* show_info;
+   QPushButton* show_plessi;
 
    QPushButton* i_plesso;
    QPushButton* i_ata;

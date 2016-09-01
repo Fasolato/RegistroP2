@@ -47,29 +47,6 @@
         </profilo>
     </personale>
     <personale>
-        <username>LCerri02</username>
-        <tipologia>ata</tipologia>
-        <profilo>
-            <info_generali>
-                <nome>Luca</nome>
-                <cognome>Cerri</cognome>
-                <orario>
-                    <lun>4</lun>
-                    <mar>4</mar>
-                    <mer>4</mer>
-                    <gio>4</gio>
-                    <ven>0</ven>
-                    <sab>4</sab>
-                </orario>
-                <password>87654321</password>
-                <plesso>plesso2</plesso>
-            </info_generali>
-            <info_specifiche>
-                <paga_mq>0.03</paga_mq>
-            </info_specifiche>
-        </profilo>
-    </personale>
-    <personale>
         <username>a</username>
         <tipologia>preside</tipologia>
         <profilo>
@@ -92,6 +69,29 @@
                 <paga_straordinari>40</paga_straordinari>
                 <ore_straordinari>4</ore_straordinari>
                 <numero_telefono>3462810538</numero_telefono>
+            </info_specifiche>
+        </profilo>
+    </personale>
+    <personale>
+        <username>LCerri02</username>
+        <tipologia>ata</tipologia>
+        <profilo>
+            <info_generali>
+                <nome>Luca</nome>
+                <cognome>Cerri</cognome>
+                <orario>
+                    <lun>4</lun>
+                    <mar>4</mar>
+                    <mer>4</mer>
+                    <gio>4</gio>
+                    <ven>0</ven>
+                    <sab>4</sab>
+                </orario>
+                <password>87654321</password>
+                <plesso>plesso2</plesso>
+            </info_generali>
+            <info_specifiche>
+                <paga_mq>0.03</paga_mq>
             </info_specifiche>
         </profilo>
     </personale>

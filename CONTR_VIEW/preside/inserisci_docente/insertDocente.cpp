@@ -3,7 +3,7 @@
 insertDocente::insertDocente(QWidget *parent) : QFrame(parent)
 {
     setFrameStyle(QFrame::Panel | QFrame::Raised);
-    QSize sizeLine(200,28);
+    QSize sizeLine(150,18);
     showMaximized();
 
     title=new QLabel("Inserisci Nuovo Utente",this);
@@ -56,7 +56,7 @@ insertDocente::insertDocente(QWidget *parent) : QFrame(parent)
 
     connect(insert,SIGNAL(clicked()),this,SLOT(insertUser()));
 
-    layout=new QGridLayout(this);
+    layout=new QGridLayout();
 
         layout->addWidget(title,0,0,1,2);
         layout->setRowMinimumHeight(1,10);
@@ -78,19 +78,19 @@ insertDocente::insertDocente(QWidget *parent) : QFrame(parent)
         layout->addWidget(text_Ven,9,1);
         layout->addWidget(sabato,10,0);
         layout->addWidget(text_Sab,10,1);
-        layout->addWidget(username,11,0);
-        layout->addWidget(text_User,11,1);
-        layout->addWidget(password,12,0);
-        layout->addWidget(text_Pass,12,1);
-        layout->addWidget(scuola,13,0);
-        layout->addWidget(text_Scuola,13,1);
-        layout->addWidget(p_oraria,14,0);
-        layout->addWidget(text_P_oraria,14,1);
+        layout->addWidget(username,2,2);
+        layout->addWidget(text_User,2,3);
+        layout->addWidget(password,3,2);
+        layout->addWidget(text_Pass,3,3);
+        layout->addWidget(scuola,4,2);
+        layout->addWidget(text_Scuola,4,3);
+        layout->addWidget(p_oraria,5,2);
+        layout->addWidget(text_P_oraria,5,3);
         layout->setRowMinimumHeight(6,10);
-        layout->addWidget(insert,15,1);
+        layout->addWidget(insert,10,3);
 
     setLayout(layout);
-    setMaximumWidth(350);
+    setMaximumWidth(800);
 }
 
 void insertDocente::insertUser(){

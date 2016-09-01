@@ -3,7 +3,7 @@
 insertPlesso::insertPlesso(QWidget *parent) : QFrame(parent)
 {
     setFrameStyle(QFrame::Panel | QFrame::Raised);
-    QSize sizeLine(200,28);
+    QSize sizeLine(150,18);
 
     title=new QLabel("Inserisci Nuovo Plesso",this);
     title->setFont(QFont("Helvetica [Cronyx]", 14, QFont::Bold));
@@ -51,7 +51,7 @@ insertPlesso::insertPlesso(QWidget *parent) : QFrame(parent)
         layout->addWidget(m_q,7,0);
         layout->addWidget(text_M_q,7,1);
         layout->setRowMinimumHeight(6,10);
-        layout->addWidget(insert,14,1);
+        layout->addWidget(insert,10,1);
 
     setLayout(layout);
     setMaximumWidth(350);

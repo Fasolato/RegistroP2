@@ -10,7 +10,6 @@ PresideContent::PresideContent(lista<personale>* li, QWidget *parent, preside* m
     insDocenteView=0;
     insPresideView=0;
 
-    //win=0;
 
     table=new QTableWidget(this);
     table->setColumnCount(4);
@@ -34,6 +33,9 @@ PresideContent::PresideContent(lista<personale>* li, QWidget *parent, preside* m
     selected_user_label->setMaximumHeight(30);
     selected_user_label->setMinimumHeight(30);
 
+    show_plessi= new QPushButton("Visualizza Plessi",this);
+    show_plessi->setMaximumWidth(350);
+
     i_plesso= new QPushButton("Inserisci Plesso",this);
     i_plesso->setMaximumWidth(350);
     i_ata= new QPushButton("Inserisci Membro del Personale ATA ",this);
@@ -49,17 +51,19 @@ PresideContent::PresideContent(lista<personale>* li, QWidget *parent, preside* m
 
     connect(remove_user,SIGNAL(clicked()),this,SLOT(removeUser()));
 
+    connect(show_plessi,SIGNAL(clicked()),this,SLOT(buildPlessoTable()));
+
     connect(i_plesso,SIGNAL(clicked()),this,SLOT(buildPlessoView()));
     connect(i_ata,SIGNAL(clicked()),this,SLOT(buildAtaView()));
     connect(i_docente,SIGNAL(clicked()),this,SLOT(buildDocenteView()));
     connect(i_preside,SIGNAL(clicked()),this,SLOT(buildPresideView()));
 
-    //connect(show_info,SIGNAL(clicked()),this,SLOT(showInfoSelection()));
+    connect(show_info,SIGNAL(clicked()),this,SLOT(showInfoSelection()));
 
     //table connect
     connect(table,SIGNAL(cellClicked(int,int)),this,SLOT(setSelectedUser(int)));
     connect(table,SIGNAL(cellClicked(int,int)),this,SLOT(enableButtons()));
-    //connect(table,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(showInfoSelection()));
+    connect(table,SIGNAL(doubleClicked(QModelIndex)),this,SLOT(showInfoSelection()));
 
     layout_Table=new QVBoxLayout();
     layout_Table->addWidget(table);
@@ -73,6 +77,8 @@ PresideContent::PresideContent(lista<personale>* li, QWidget *parent, preside* m
     layout_Buttons->addWidget(show_info);
     layout_Buttons->addSpacing(5);
     layout_Buttons->addWidget(remove_user);
+    layout_Buttons->addSpacing(5);
+    layout_Buttons->addWidget(show_plessi);
     layout_Buttons->addSpacing(5);
     layout_Buttons->addWidget(i_plesso);
     layout_Buttons->addSpacing(5);
@@ -120,39 +126,90 @@ void PresideContent::removeUser(){
     buildTable();
 }
 
+void PresideContent::buildPlessoTable(){
+    removeInsWidget();
+    tablePlessi=new QTableWidget(this);
+    tablePlessi->setColumnCount(6);
+    tablePlessi->setRowCount(0);
+    QStringList headerPlessi;
+    headerPlessi<<"Nome"<<"Sede"<<"Via"<<"Telefono"<<"Personale Ata"<<"Metri Quadri";
+    tablePlessi->setHorizontalHeaderLabels(headerPlessi);
+    tablePlessi->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    tablePlessi->setSelectionMode(QAbstractItemView::SingleSelection);
+    tablePlessi->setSelectionBehavior(QAbstractItemView::SelectRows);
+    for(int i=0; i<table->columnCount(); i++)
+        tablePlessi->horizontalHeader()->setSectionResizeMode(i,QHeaderView::Stretch);
+    tablePlessi->setMinimumWidth(419);
+    ListaPlessi* lp=new ListaPlessi();
+    if(!(lp->Vuota())){
+        int row=0;
+        for(ListaPlessi::iteratorePlessi it=lp->begin(); it!=lp->end(); ++it){
+            tablePlessi->setRowCount(row+1);
+            QTableWidgetItem *nome = new QTableWidgetItem(it->getNome());
+            QTableWidgetItem *sede = new QTableWidgetItem(it->getSede());
+            QTableWidgetItem *via = new QTableWidgetItem(it->getVia());
+            QTableWidgetItem *tel = new QTableWidgetItem(it->getTelefono());
+            QTableWidgetItem *pers = new QTableWidgetItem(QString::number(it->getAta()));
+            QTableWidgetItem *mq = new QTableWidgetItem(QString::number(it->getMq()));
+            tablePlessi->setItem(row,0,nome);
+            tablePlessi->setItem(row,1,sede);
+            tablePlessi->setItem(row,2,via);
+            tablePlessi->setItem(row,3,tel);
+            tablePlessi->setItem(row,4,pers);
+            tablePlessi->setItem(row,5,mq);
+            row++;
+        }
+    }
+    else{
+        std::cout<<"tabella vuota"<<std::endl;
+    }
+    layout_Table->addWidget(tablePlessi);
+}
+
 void PresideContent::buildPlessoView(){
+    removeInsWidget();
     insPlessoView= new insertPlesso(this);
     connect(insPlessoView,SIGNAL(inserisciPlesso(QString,QString,QString,QString,int,double)),this,SIGNAL(inserisciPlesso(QString,QString,QString,QString,int,double)));
-    removeInsWidget();
     layout_Table->addWidget(insPlessoView);
 }
 
 void PresideContent::buildAtaView(){
+    removeInsWidget();
     insAtaView= new insertAta(this);
     connect(insAtaView,SIGNAL(inserisciAta(QString,QString,int,int,int,int,int,int,QString,QString,QString,double)),this,SIGNAL(inserisciAta(QString,QString,int,int,int,int,int,int,QString,QString,QString,double)));
-    removeInsWidget();
     layout_Table->addWidget(insAtaView);
 }
 
 void PresideContent::buildDocenteView(){
+    removeInsWidget();
     insDocenteView= new insertDocente(this);
     connect(insDocenteView,SIGNAL(inserisciDocente(QString,QString,int,int,int,int,int,int,QString,QString,QString,double)),this,SIGNAL(inserisciDocente(QString,QString,int,int,int,int,int,int,QString,QString,QString,double)));
-    removeInsWidget();
     layout_Table->addWidget(insDocenteView);
 }
 
 void PresideContent::buildPresideView(){
+    removeInsWidget();
     insPresideView= new insertPreside(this);
     connect(insPresideView,SIGNAL(inserisciPreside(QString,QString,int,int,int,int,int,int,QString,QString,QString,double,double,int,QString)),this,SIGNAL(inserisciPreside(QString,QString,int,int,int,int,int,int,QString,QString,QString,double, double,int,QString)));
-    removeInsWidget();
     layout_Table->addWidget(insPresideView);
 }
 
 void PresideContent::removeInsWidget(){
+    delete insPlessoView;
+    delete insAtaView;
+    delete insDocenteView;
+    delete insPresideView;
+    delete tablePlessi;
+    insPlessoView=0;
+    insAtaView=0;
+    insDocenteView=0;
+    insPresideView=0;
+    tablePlessi=0;
     layout_Table->removeWidget(insPlessoView);
     layout_Table->removeWidget(insAtaView);
     layout_Table->removeWidget(insDocenteView);
     layout_Table->removeWidget(insPresideView);
+    layout_Table->removeWidget(tablePlessi);
 }
 
 void PresideContent::setSelectedUser(int r){
@@ -194,10 +251,78 @@ void PresideContent::buildTable(){
     }
 }
 
+void PresideContent::showInfoSelection(){
+    QMessageBox info;
+    info.setWindowTitle("Informazioni Riguardo l'utente");
+    info.setText("Hai selezionato l'utente: <b>"+selected_user+"</b>");
+    personale* utente=pli->trova(selected_user);
+    if(utente->openRightView()=="ata"){
+        QVector<QString> i= utente->ottieniInfo();
+        QString informazioni=
+                "Nome: "+i[0]+"\n\n"
+                "Cognome: "+i[1]+"\n\n"
+                "Orario Settimanale\n\n"
+                "Lunedì: "+i[2]+"\n\n"
+                "Martedì: "+i[3]+"\n\n"
+                "Mercoledì: "+i[4]+"\n\n"
+                "Giovedì: "+i[5]+"\n\n"
+                "Venerdì: "+i[6]+"\n\n"
+                "Sabato: "+i[7]+"\n\n"
+                "Username: "+i[8]+"\n\n"
+                "Password: "+i[9]+"\n\n"
+                "Plesso di afferenza: "+i[10]+"\n\n"
+                "Paga al m/q: "+i[11]+"\n\n";
+        info.setDetailedText(informazioni);
+    }
+    else if(utente->openRightView()=="docente"){
+        QVector<QString> i= utente->ottieniInfo();
+        QString informazioni=
+                "Nome: "+i[0]+"\n\n"
+                "Cognome: "+i[1]+"\n\n"
+                "Orario Settimanale\n\n"
+                "Lunedì: "+i[2]+"\n\n"
+                "Martedì: "+i[3]+"\n\n"
+                "Mercoledì: "+i[4]+"\n\n"
+                "Giovedì: "+i[5]+"\n\n"
+                "Venerdì: "+i[6]+"\n\n"
+                "Sabato: "+i[7]+"\n\n"
+                "Username: "+i[8]+"\n\n"
+                "Password: "+i[9]+"\n\n"
+                "Plesso di afferenza: "+i[10]+"\n\n"
+                "Paga all'ora: "+i[11]+"\n\n";
+        info.setDetailedText(informazioni);
+    }
+    else{//preside
+        QVector<QString> i= utente->ottieniInfo();
+        QString informazioni=
+                "Nome: "+i[0]+"\n\n"
+                "Cognome: "+i[1]+"\n\n"
+                "Orario Settimanale\n\n"
+                "Lunedì: "+i[2]+"\n\n"
+                "Martedì: "+i[3]+"\n\n"
+                "Mercoledì: "+i[4]+"\n\n"
+                "Giovedì: "+i[5]+"\n\n"
+                "Venerdì: "+i[6]+"\n\n"
+                "Sabato: "+i[7]+"\n\n"
+                "Username: "+i[8]+"\n\n"
+                "Password: "+i[9]+"\n\n"
+                "Plesso di afferenza: "+i[10]+"\n\n"
+                "Paga all'ora: "+i[11]+"\n\n"
+                "Paga all'ora di straordinari: "+i[12]+"\n\n"
+                "Ore di straordinari: "+i[13]+"\n\n"
+                "Numero di Telefono: "+i[14]+"\n\n";
+        info.setDetailedText(informazioni);
+    }
+    info.setStandardButtons(QMessageBox::Cancel);
+    info.setDefaultButton(QMessageBox::Cancel);
+    info.exec();
+}
+
 //FIGLI
 
 PresideContent::~PresideContent(){
 
+    removeInsWidget();
     model=0;
 
     delete i_plesso;
@@ -216,9 +341,11 @@ PresideContent::~PresideContent(){
     delete remove_user;
 
     delete show_info;
+    delete show_plessi;
 
     delete layout_Buttons;
     delete layout_Table;
 
     delete layout;
 }
+

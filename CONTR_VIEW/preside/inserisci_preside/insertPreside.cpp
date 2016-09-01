@@ -3,7 +3,7 @@
 insertPreside::insertPreside(QWidget *parent) : QFrame(parent)
 {
     setFrameStyle(QFrame::Panel | QFrame::Raised);
-    QSize sizeLine(200,28);
+    QSize sizeLine(150,18);
     showMaximized();
 
     title=new QLabel("Inserisci Nuovo Utente",this);
@@ -87,25 +87,25 @@ insertPreside::insertPreside(QWidget *parent) : QFrame(parent)
         layout->addWidget(text_Ven,9,1);
         layout->addWidget(sabato,10,0);
         layout->addWidget(text_Sab,10,1);
-        layout->addWidget(username,11,0);
-        layout->addWidget(text_User,11,1);
-        layout->addWidget(password,12,0);
-        layout->addWidget(text_Pass,12,1);
-        layout->addWidget(scuola,13,0);
-        layout->addWidget(text_Scuola,13,1);
-        layout->addWidget(p_oraria,14,0);
-        layout->addWidget(text_P_Ora,14,1);
-        layout->addWidget(p_straordinari,15,0);
-        layout->addWidget(text_P_Stra,15,1);
-        layout->addWidget(ore_stra,16,0);
-        layout->addWidget(text_O_Stra,16,1);
-        layout->addWidget(telefono,17,0);
-        layout->addWidget(text_Tel,17,1);
+        layout->addWidget(username,2,2);
+        layout->addWidget(text_User,2,3);
+        layout->addWidget(password,3,2);
+        layout->addWidget(text_Pass,3,3);
+        layout->addWidget(scuola,4,2);
+        layout->addWidget(text_Scuola,4,3);
+        layout->addWidget(p_oraria,5,2);
+        layout->addWidget(text_P_Ora,5,3);
+        layout->addWidget(p_straordinari,6,2);
+        layout->addWidget(text_P_Stra,6,3);
+        layout->addWidget(ore_stra,7,2);
+        layout->addWidget(text_O_Stra,7,3);
+        layout->addWidget(telefono,8,2);
+        layout->addWidget(text_Tel,8,3);
         layout->setRowMinimumHeight(6,10);
-        layout->addWidget(insert,18,1);
+        layout->addWidget(insert,10,3);
 
     setLayout(layout);
-    setMaximumWidth(350);
+    setMaximumWidth(800);
 }
 
 void insertPreside::insertUser(){

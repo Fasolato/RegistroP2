@@ -27,4 +27,21 @@ QString ata::openRightView(){
 double ata::getPagaM() const {return paga_mq;}
 void ata::setPagaM(double pm) {paga_mq=pm;}
 
+QVector<QString> ata::ottieniInfo(){
+    QVector<QString> info;
+    info.append(getNome());
+    info.append(getCognome());
+    info.append(QString::number(getOre()[0]));
+    info.append(QString::number(getOre()[1]));
+    info.append(QString::number(getOre()[2]));
+    info.append(QString::number(getOre()[3]));
+    info.append(QString::number(getOre()[4]));
+    info.append(QString::number(getOre()[5]));
+    info.append(getNomeutente());
+    info.append(getPassword());
+    info.append(getScuola().getNome());
+    info.append(QString::number(getPagaM()));
+    return info;
+}
+
 #endif // ATA

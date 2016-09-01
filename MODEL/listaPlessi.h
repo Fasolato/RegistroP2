@@ -36,6 +36,7 @@ public:
             bool operator!=(iteratorePlessi) const;
             iteratorePlessi& operator++(); // operator++ prefisso
             iteratorePlessi operator++(int); // operator++ postfisso
+            plesso* operator->() const;
         };
 
         iteratorePlessi begin() const;

@@ -118,6 +118,11 @@ ListaPlessi::iteratorePlessi ListaPlessi::iteratorePlessi::operator++(int) {
     return x;
 }
 
+plesso* ListaPlessi::iteratorePlessi::operator->() const{
+    return punt->scuola;
+}
+
+
 void ListaPlessi::Close(){
 
      QFile file2(filename2);
