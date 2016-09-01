@@ -4,6 +4,7 @@ insertPreside::insertPreside(QWidget *parent) : QFrame(parent)
 {
     setFrameStyle(QFrame::Panel | QFrame::Raised);
     QSize sizeLine(200,28);
+    showMaximized();
 
     title=new QLabel("Inserisci Nuovo Utente",this);
     title->setFont(QFont("Helvetica [Cronyx]", 14, QFont::Bold));
@@ -72,36 +73,36 @@ insertPreside::insertPreside(QWidget *parent) : QFrame(parent)
         layout->addWidget(text_Nome,2,1);
         layout->addWidget(cognome,3,0);
         layout->addWidget(text_Cognome,3,1);
-        layout->addWidget(Orario,0,0,1,2);
+        layout->addWidget(Orario,4,0,1,2);
         layout->setRowMinimumHeight(1,10);
-        layout->addWidget(lunedì,4,0);
-        layout->addWidget(text_Lun,4,1);
-        layout->addWidget(martedì,5,0);
-        layout->addWidget(text_Mar,5,1);
-        layout->addWidget(mercoledì,6,0);
-        layout->addWidget(text_Mer,6,1);
-        layout->addWidget(giovedì,7,0);
-        layout->addWidget(text_Gio,7,1);
-        layout->addWidget(venerdì,8,0);
-        layout->addWidget(text_Ven,8,1);
-        layout->addWidget(sabato,9,0);
-        layout->addWidget(text_Sab,9,1);
-        layout->addWidget(username,10,0);
-        layout->addWidget(text_User,10,1);
-        layout->addWidget(password,11,0);
-        layout->addWidget(text_Pass,11,1);
-        layout->addWidget(scuola,12,0);
-        layout->addWidget(text_Scuola,12,1);
-        layout->addWidget(p_oraria,13,0);
-        layout->addWidget(text_P_Ora,13,1);
-        layout->addWidget(p_straordinari,14,0);
-        layout->addWidget(text_P_Stra,14,1);
-        layout->addWidget(ore_stra,15,0);
-        layout->addWidget(text_O_Stra,15,1);
-        layout->addWidget(telefono,16,0);
-        layout->addWidget(text_Tel,16,1);
+        layout->addWidget(lunedì,5,0);
+        layout->addWidget(text_Lun,5,1);
+        layout->addWidget(martedì,6,0);
+        layout->addWidget(text_Mar,6,1);
+        layout->addWidget(mercoledì,7,0);
+        layout->addWidget(text_Mer,7,1);
+        layout->addWidget(giovedì,8,0);
+        layout->addWidget(text_Gio,8,1);
+        layout->addWidget(venerdì,9,0);
+        layout->addWidget(text_Ven,9,1);
+        layout->addWidget(sabato,10,0);
+        layout->addWidget(text_Sab,10,1);
+        layout->addWidget(username,11,0);
+        layout->addWidget(text_User,11,1);
+        layout->addWidget(password,12,0);
+        layout->addWidget(text_Pass,12,1);
+        layout->addWidget(scuola,13,0);
+        layout->addWidget(text_Scuola,13,1);
+        layout->addWidget(p_oraria,14,0);
+        layout->addWidget(text_P_Ora,14,1);
+        layout->addWidget(p_straordinari,15,0);
+        layout->addWidget(text_P_Stra,15,1);
+        layout->addWidget(ore_stra,16,0);
+        layout->addWidget(text_O_Stra,16,1);
+        layout->addWidget(telefono,17,0);
+        layout->addWidget(text_Tel,17,1);
         layout->setRowMinimumHeight(6,10);
-        layout->addWidget(insert,14,1);
+        layout->addWidget(insert,18,1);
 
     setLayout(layout);
     setMaximumWidth(350);
@@ -202,4 +203,41 @@ insertPreside::~insertPreside(){
     delete insert;
 
     delete layout;
+
+    title=0;
+    Orario=0;
+    nome=0;
+    text_Nome=0;
+    cognome=0;
+    text_Cognome=0;
+    lunedì=0;
+    text_Lun=0;
+    martedì=0;
+    text_Mar=0;
+    mercoledì=0;
+    text_Mer=0;
+    giovedì=0;
+    text_Gio=0;
+    venerdì=0;
+    text_Ven=0;
+    sabato=0;
+    text_Sab=0;
+    username=0;
+    text_User=0;
+    password=0;
+    text_Pass=0;
+    scuola=0;
+    text_Scuola=0;
+    p_oraria=0;
+    text_P_Ora=0;
+    p_straordinari=0;
+    text_P_Stra=0;
+    ore_stra=0;
+    text_O_Stra=0;
+    telefono=0;
+    text_Tel=0;
+
+    insert=0;
+
+    layout=0;
 }

@@ -29,6 +29,9 @@ signals:
 
 public slots:
 
+private slots:
+    void quit();
+
 private:
     QLabel* label;
     QPushButton* exit;

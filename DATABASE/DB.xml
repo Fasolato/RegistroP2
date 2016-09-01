@@ -1,6 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
     <personale>
+        <username>MSoave01</username>
+        <tipologia>docente</tipologia>
+        <profilo>
+            <info_generali>
+                <nome>Giovanni</nome>
+                <cognome>Soave</cognome>
+                <orario>
+                    <lun>3</lun>
+                    <mar>5</mar>
+                    <mer>2</mer>
+                    <gio>0</gio>
+                    <ven>3</ven>
+                    <sab>4</sab>
+                </orario>
+                <password>peppapig</password>
+                <plesso>plesso2</plesso>
+            </info_generali>
+            <info_specifiche>
+                <paga_oraria>20.5</paga_oraria>
+            </info_specifiche>
+        </profilo>
+    </personale>
+    <personale>
+        <username>PMerli01</username>
+        <tipologia>docente</tipologia>
+        <profilo>
+            <info_generali>
+                <nome>Paola</nome>
+                <cognome>Merli</cognome>
+                <orario>
+                    <lun>0</lun>
+                    <mar>4</mar>
+                    <mer>3</mer>
+                    <gio>3</gio>
+                    <ven>5</ven>
+                    <sab>4</sab>
+                </orario>
+                <password>ciao123</password>
+                <plesso>plesso1</plesso>
+            </info_generali>
+            <info_specifiche>
+                <paga_oraria>17.3</paga_oraria>
+            </info_specifiche>
+        </profilo>
+    </personale>
+    <personale>
         <username>LCerri02</username>
         <tipologia>ata</tipologia>
         <profilo>
@@ -46,52 +92,6 @@
                 <paga_straordinari>40</paga_straordinari>
                 <ore_straordinari>4</ore_straordinari>
                 <numero_telefono>3462810538</numero_telefono>
-            </info_specifiche>
-        </profilo>
-    </personale>
-    <personale>
-        <username>PMerli01</username>
-        <tipologia>docente</tipologia>
-        <profilo>
-            <info_generali>
-                <nome>Paola</nome>
-                <cognome>Merli</cognome>
-                <orario>
-                    <lun>0</lun>
-                    <mar>4</mar>
-                    <mer>3</mer>
-                    <gio>3</gio>
-                    <ven>5</ven>
-                    <sab>4</sab>
-                </orario>
-                <password>ciao123</password>
-                <plesso>plesso1</plesso>
-            </info_generali>
-            <info_specifiche>
-                <paga_oraria>17.3</paga_oraria>
-            </info_specifiche>
-        </profilo>
-    </personale>
-    <personale>
-        <username>MSoave01</username>
-        <tipologia>docente</tipologia>
-        <profilo>
-            <info_generali>
-                <nome>Giovanni</nome>
-                <cognome>Soave</cognome>
-                <orario>
-                    <lun>3</lun>
-                    <mar>5</mar>
-                    <mer>2</mer>
-                    <gio>0</gio>
-                    <ven>3</ven>
-                    <sab>4</sab>
-                </orario>
-                <password>peppapig</password>
-                <plesso>plesso2</plesso>
-            </info_generali>
-            <info_specifiche>
-                <paga_oraria>20.5</paga_oraria>
             </info_specifiche>
         </profilo>
     </personale>

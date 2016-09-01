@@ -1,12 +1,12 @@
 #include"c_PresideContent.h"
 
 C_PresideContent::C_PresideContent(preside* pres, lista<personale>* li, QObject *parent, PresideContent* view_) :
-    QObject(parent), model(pres), list(li), view(view_)
+    QObject(parent), model(pres), view(view_), list(li)
 {
-    connect(view,SIGNAL(inserisciPlessoClicked(QString, QString, QString, QString, int, double)),this,SLOT(inserisciPlesso(QString, QString, QString, QString, int, double)));
-    connect(view,SIGNAL(inserisciAtaClicked(QString, QString, int, int, int, int, int, int, QString, QString, QString, double)),this,SLOT(inserisciAta(QString, QString, int, int, int, int, int, int, QString, QString, QString, double)));
-    connect(view,SIGNAL(inserisciDocenteClicked(QString, QString, int, int, int, int, int, int, QString, QString, QString, double)),this,SLOT(inserisciDocente(QString, QString, int, int, int, int, int, int, QString, QString, QString, double)));
-    connect(view,SIGNAL(inserisciPresideClicked(QString, QString, int, int, int, int, int, int, QString, QString, QString, double, double, int, QString)),this,SLOT(inserisciPreside(QString, QString, int, int, int, int, int, int, QString, QString, QString, double, double, int, QString)));
+    connect(view,SIGNAL(inserisciPlesso(QString, QString, QString, QString, int, double)),this,SLOT(inserisciPlesso(QString, QString, QString, QString, int, double)));
+    connect(view,SIGNAL(inserisciAta(QString, QString, int, int, int, int, int, int, QString, QString, QString, double)),this,SLOT(inserisciAta(QString, QString, int, int, int, int, int, int, QString, QString, QString, double)));
+    connect(view,SIGNAL(inserisciDocente(QString, QString, int, int, int, int, int, int, QString, QString, QString, double)),this,SLOT(inserisciDocente(QString, QString, int, int, int, int, int, int, QString, QString, QString, double)));
+    connect(view,SIGNAL(inserisciPreside(QString, QString, int, int, int, int, int, int, QString, QString, QString, double, double, int, QString)),this,SLOT(inserisciPreside(QString, QString, int, int, int, int, int, int, QString, QString, QString, double, double, int, QString)));
     connect(view,SIGNAL(removeUserClicked(QString)),this,SLOT(removeUser(QString)));
 }
 
@@ -33,7 +33,7 @@ void C_PresideContent::inserisciPlesso(const QString& nome, const QString &sede,
 
 void C_PresideContent::inserisciAta(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_mq){
     ListaPlessi lp;
-    if(list->trova(n_u)){
+    if(!(list->trova(n_u))){
         plesso* pl=lp.ricercaPlesso(scuola);
         if(pl){
             ata utente(nome, cognome, lun, mar, mer, gio, ven, sab, n_u, pass, pl, p_mq);
@@ -69,7 +69,7 @@ void C_PresideContent::inserisciAta(const QString& nome, const QString& cognome,
 
 void C_PresideContent::inserisciDocente(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_ora){
     ListaPlessi lp;
-    if(list->trova(n_u)){
+    if(!(list->trova(n_u))){
         plesso* pl=lp.ricercaPlesso(scuola);
         if(pl){
             docente utente(nome, cognome, lun, mar, mer, gio, ven, sab, n_u, pass, pl, p_ora);
@@ -105,7 +105,7 @@ void C_PresideContent::inserisciDocente(const QString& nome, const QString& cogn
 
 void C_PresideContent::inserisciPreside(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_ora, double p_stra, int ore_s, const QString& num){
     ListaPlessi lp;
-    if(list->trova(n_u)){
+    if(!(list->trova(n_u))){
         plesso* pl=lp.ricercaPlesso(scuola);
         if(pl){
             preside utente(nome, cognome, lun, mar, mer, gio, ven, sab, n_u, pass, pl, p_ora, p_stra, ore_s, num);
@@ -156,4 +156,10 @@ void C_PresideContent::removeUser(const QString &user){
         warning.setDefaultButton(QMessageBox::Ok);
         warning.exec();
     }
+}
+
+    C_PresideContent::~C_PresideContent(){
+        std::cout<<"arrivati~c_presidecontent"<<std::endl;
+    model=0;
+    view=0;
 }

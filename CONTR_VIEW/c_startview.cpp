@@ -55,6 +55,7 @@ void C_StartView::deleteControllers(){
     delete c_ata;
     delete c_docente;
     delete c_preside;
+    std::cout<<"arrivatideletecontrollers"<<std::endl;
     c_ata=0;
     c_docente=0;
     c_preside=0;
@@ -67,4 +68,5 @@ void C_StartView::deleteModel(){
     view->setAtaModel(0);
     view->setDocenteModel(0);
     view->setPresideModel(0);
+    std::cout<<"arrivatideletemodel"<<std::endl;
 }

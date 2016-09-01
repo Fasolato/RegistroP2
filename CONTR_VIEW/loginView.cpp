@@ -51,6 +51,9 @@ LoginView::LoginView(lista<personale>* li, QWidget *parent) : QFrame(parent), pl
 
     void LoginView::getLogin(){
         if(!tUser->text().isEmpty() && !tUser->text().isNull() && !tPass->text().isEmpty() && !tPass->text().isNull()){
+
+            lista<personale>::iteratore it=pli->begin();
+            std::cout<<(it->getNomeutente()).toStdString()<<std::endl;
             personale *current_user=pli->trova(tUser->text());
             if(current_user){
                 emit setPersonale(current_user);
@@ -58,8 +61,9 @@ LoginView::LoginView(lista<personale>* li, QWidget *parent) : QFrame(parent), pl
                     emit createAta(current_user);
                 else if(current_user->openRightView()=="docente")
                     emit createDocente(current_user);
-                else
+                else{
                     emit createPreside(current_user);
+                }
             }
 
         else{
@@ -91,7 +95,6 @@ LoginView::LoginView(lista<personale>* li, QWidget *parent) : QFrame(parent), pl
     }
 
     void LoginView::centerWidget(){
-        std::cout<<"arrivati"<<std::endl;
         //position center;
             int WIDTH = 250;
             int HEIGHT = 250;

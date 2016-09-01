@@ -7,6 +7,7 @@ C_PresideView::C_PresideView(lista<personale>* lis, preside* user, QObject *pare
 }
 
 C_PresideView::~C_PresideView(){
-
+    view=0;
     delete c_presidecontent;
+    std::cout<<"arrivati~c_presideView"<<std::endl;
 }

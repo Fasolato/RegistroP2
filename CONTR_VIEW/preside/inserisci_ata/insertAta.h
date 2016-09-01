@@ -12,6 +12,7 @@
 #include<QLineEdit>
 #include<QMessageBox>
 #include<QComboBox>
+#include<QScrollArea>
 
 class insertAta : public QFrame
 {

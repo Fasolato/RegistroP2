@@ -12,6 +12,7 @@ class C_PresideContent : public QObject
     Q_OBJECT
 public:
     explicit C_PresideContent(preside* pres, lista<personale>* li, QObject *parent = 0, PresideContent* view_=0);
+    ~C_PresideContent();
 signals:
 
 public slots:

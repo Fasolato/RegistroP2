@@ -53,12 +53,12 @@ private:
     void centerWidget();
     void createLogin();
 
+    lista<personale>* pli;
     LoginView* login_view;
     AtaView* ata_view;
     DocenteView* docente_view;
     PresideView* preside_view;
 
-    lista<personale>* pli;
     personale* pers;
 
     ata* ata_model;

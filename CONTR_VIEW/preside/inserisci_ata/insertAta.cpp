@@ -3,7 +3,8 @@
 insertAta::insertAta(QWidget *parent) : QFrame(parent)
 {
     setFrameStyle(QFrame::Panel | QFrame::Raised);
-    QSize sizeLine(200,28);
+    QSize sizeLine(150,18);
+    showMaximized();
 
     title=new QLabel("Inserisci Nuovo Utente",this);
     title->setFont(QFont("Helvetica [Cronyx]", 14, QFont::Bold));
@@ -55,7 +56,7 @@ insertAta::insertAta(QWidget *parent) : QFrame(parent)
 
     connect(insert,SIGNAL(clicked()),this,SLOT(insertUser()));
 
-    layout=new QGridLayout(this);
+    layout=new QGridLayout();
 
         layout->addWidget(title,0,0,1,2);
         layout->setRowMinimumHeight(1,10);
@@ -63,33 +64,33 @@ insertAta::insertAta(QWidget *parent) : QFrame(parent)
         layout->addWidget(text_Nome,2,1);
         layout->addWidget(cognome,3,0);
         layout->addWidget(text_Cognome,3,1);
-        layout->addWidget(Orario,0,0,1,2);
+        layout->addWidget(Orario,4,0,1,2);
         layout->setRowMinimumHeight(1,10);
-        layout->addWidget(lunedì,4,0);
-        layout->addWidget(text_Lun,4,1);
-        layout->addWidget(martedì,5,0);
-        layout->addWidget(text_Mar,5,1);
-        layout->addWidget(mercoledì,6,0);
-        layout->addWidget(text_Mer,6,1);
-        layout->addWidget(giovedì,7,0);
-        layout->addWidget(text_Gio,7,1);
-        layout->addWidget(venerdì,8,0);
-        layout->addWidget(text_Ven,8,1);
-        layout->addWidget(sabato,9,0);
-        layout->addWidget(text_Sab,9,1);
-        layout->addWidget(username,10,0);
-        layout->addWidget(text_User,10,1);
-        layout->addWidget(password,11,0);
-        layout->addWidget(text_Pass,11,1);
-        layout->addWidget(scuola,12,0);
-        layout->addWidget(text_Scuola,12,1);
-        layout->addWidget(p_mq,13,0);
-        layout->addWidget(text_P_mq,13,1);
-        layout->setRowMinimumHeight(6,10);
-        layout->addWidget(insert,14,1);
+        layout->addWidget(lunedì,5,0);
+        layout->addWidget(text_Lun,5,1);
+        layout->addWidget(martedì,6,0);
+        layout->addWidget(text_Mar,6,1);
+        layout->addWidget(mercoledì,7,0);
+        layout->addWidget(text_Mer,7,1);
+        layout->addWidget(giovedì,8,0);
+        layout->addWidget(text_Gio,8,1);
+        layout->addWidget(venerdì,9,0);
+        layout->addWidget(text_Ven,9,1);
+        layout->addWidget(sabato,10,0);
+        layout->addWidget(text_Sab,10,1);
+        layout->addWidget(username,2,2);
+        layout->addWidget(text_User,2,3);
+        layout->addWidget(password,3,2);
+        layout->addWidget(text_Pass,3,3);
+        layout->addWidget(scuola,4,2);
+        layout->addWidget(text_Scuola,4,3);
+        layout->addWidget(p_mq,5,2);
+        layout->addWidget(text_P_mq,5,3);
+        layout->setRowMinimumHeight(6,3);
+        layout->addWidget(insert,10,3);
 
     setLayout(layout);
-    setMaximumWidth(350);
+    setMaximumWidth(800);
 }
 
 void insertAta::insertUser(){

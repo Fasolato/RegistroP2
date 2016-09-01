@@ -203,6 +203,7 @@ void lista<T>::Close(){
      xmlWriter.writeEndDocument();
 
      file1.close();
+     std::cout<<"arrivaticlose"<<std::endl;
 
      std::cout<<std::endl<<"database written"<<std::endl;
 }
