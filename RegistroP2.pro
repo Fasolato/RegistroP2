@@ -14,8 +14,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     CONTR_VIEW/ata/AtaView.cpp \
-    CONTR_VIEW/ata/c_AtaView.cpp \
-    CONTR_VIEW/docente/c_DocenteView.cpp \
     CONTR_VIEW/docente/DocenteView.cpp \
     CONTR_VIEW/preside/c_PresideView.cpp \
     CONTR_VIEW/preside/PresideView.cpp \
@@ -38,8 +36,6 @@ SOURCES += main.cpp \
 
 HEADERS  += \
     CONTR_VIEW/ata/AtaView.h \
-    CONTR_VIEW/ata/c_AtaView.h \
-    CONTR_VIEW/docente/c_DocenteView.h \
     CONTR_VIEW/docente/DocenteView.h \
     CONTR_VIEW/preside/c_PresideView.h \
     CONTR_VIEW/preside/PresideView.h \

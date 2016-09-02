@@ -3,10 +3,11 @@
 PresideView::PresideView(lista<personale>* li, preside* user_preside, QWidget *parent) : QWidget(parent), pli(li)
 {
     content= new PresideContent(pli, this, user_preside);
-    label=new QLabel(user_preside->getCognome(),this);
+    label=new QLabel("Benvenuto "+user_preside->getNomeutente(),this);
     exit=new QPushButton("Esci",this);
 
-    connect(exit,SIGNAL(clicked()),this,SLOT(quit()));
+    showMaximized();
+    connect(exit,SIGNAL(clicked()),this,SIGNAL(quit()));
 
     layout=new QVBoxLayout(this);
     layout->addWidget(label);
@@ -14,10 +15,6 @@ PresideView::PresideView(lista<personale>* li, preside* user_preside, QWidget *p
     layout->addWidget(exit);
 
     setLayout(layout);
-}
-
-void PresideView::quit(){
-    delete this;
 }
 
 PresideView::~PresideView(){
@@ -29,11 +26,11 @@ PresideView::~PresideView(){
     label=0;
     exit=0;
     layout=0;
+    //delete content;
     content=0;
     std::cout<<"arrivati~presideView"<<std::endl;
 
     emit disconnectUserView();
-    delete content;
 }
 
 PresideContent* PresideView::getPresideContent(){

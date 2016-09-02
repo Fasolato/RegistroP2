@@ -17,6 +17,7 @@ public:
 signals:
 
 public slots:
+    void quit();
 
 private:
     preside* model;

@@ -1,6 +1,8 @@
 #ifndef INSERTPLESSO_H
 #define INSERTPLESSO_H
 
+#include<iostream>
+
 #include <QWidget>
 #include<QGroupBox>
 #include<QPushButton>

@@ -4,11 +4,12 @@ StartView::StartView(lista<personale> *li, QGroupBox *parent)
     : QMainWindow(parent), pli(li), login_view(0), ata_view(0), docente_view(0), preside_view(0), ata_model(0), docente_model(0), preside_model(0)
 {
     createLogin(); //schermata iniziale
+    setFixedHeight(600);
+    setFixedWidth(900);
 
     setStyleSheet("StartWindow{ background-color: red; border: 1px solid #FFF;}");
     setWhatsThis("StartView");
-    setWindowTitle("StartView");
-    showMaximized();
+    setWindowTitle("Project Registro");
 
 }
 
@@ -17,8 +18,6 @@ void StartView::createAta(personale* p){
     if(ata_model){ //se il model è stato creato il login ha avuto successo
         ata_view=new AtaView(ata_model, this); //creo view ata
         connect(ata_view,SIGNAL(disconnectUserView()),this,SLOT(backInTime()));
-
-        emit createC_AtaView(); //creo controller ata
         setCentralWidget(ata_view);
     }
 }
@@ -28,14 +27,11 @@ void StartView::createDocente(personale* p){
     if(docente_model){ //se il model è stato creato il login ha avuto successo
         docente_view=new DocenteView(docente_model, this); //creo view docente
         connect(docente_view,SIGNAL(disconnectUserView()),this,SLOT(backInTime()));
-
-        emit createC_DocenteView(); //creo controller docente
         setCentralWidget(docente_view);
     }
 }
 
 void StartView::createPreside(personale* p){
-    std::cout<<"arrivatiCreazione"<<std::endl;
     emit createPresideModel(p); //setta il model
     if(preside_model){ //se il model è stato creato il login ha avuto successo
         preside_view=new PresideView(pli, preside_model, this); //creo view preside
@@ -49,6 +45,7 @@ void StartView::createPreside(personale* p){
 void StartView::createLogin(){
     lista<personale>*p2=pli;
     login_view=new LoginView(p2, this);
+    std::cout<<"arrivaticreatelogin"<<std::endl;
     connect(login_view,SIGNAL(setPersonale(personale*)),this,SLOT(setPersonale(personale*)));
     connect(login_view,SIGNAL(createAta(personale*)),this,SLOT(createAta(personale*)));
     connect(login_view,SIGNAL(createDocente(personale*)),this,SLOT(createDocente(personale*)));
@@ -58,12 +55,13 @@ void StartView::createLogin(){
 
 void StartView::backInTime(){
     emit deleteControllers(); //distrugge i controller delle view
-    std::cout<<"arrivatiback"<<std::endl;
+    emit deleteModel(); //distrugge i model
     ata_view=0;
     docente_view=0;
     preside_view=0;
-
-    emit deleteModel(); //distrugge i model
+    //delete login_view;
+    login_view=0;
+    std::cout<<"arrivatiback"<<std::endl;
     createLogin();
 }
 

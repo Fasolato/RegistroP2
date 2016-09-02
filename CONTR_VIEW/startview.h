@@ -31,8 +31,6 @@ signals:
     void createAtaModel(personale*);
     void createDocenteModel(personale*);
     void createPresideModel(personale*);
-    void createC_AtaView();
-    void createC_DocenteView();
     void createC_PresideView();
 
     void deleteControllers();

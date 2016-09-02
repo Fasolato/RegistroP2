@@ -170,6 +170,7 @@ void PresideContent::buildPlessoView(){
     removeInsWidget();
     insPlessoView= new insertPlesso(this);
     connect(insPlessoView,SIGNAL(inserisciPlesso(QString,QString,QString,QString,int,double)),this,SIGNAL(inserisciPlesso(QString,QString,QString,QString,int,double)));
+    std::cout<<"arrivatibuildPlesso"<<std::endl;
     layout_Table->addWidget(insPlessoView);
 }
 
@@ -271,7 +272,8 @@ void PresideContent::showInfoSelection(){
                 "Username: "+i[8]+"\n\n"
                 "Password: "+i[9]+"\n\n"
                 "Plesso di afferenza: "+i[10]+"\n\n"
-                "Paga al m/q: "+i[11]+"\n\n";
+                "Paga al m/q: "+i[11]+"\n\n"
+                "Stipendio mensile: "+QString::number(utente->stipendio())+"\n\n";
         info.setDetailedText(informazioni);
     }
     else if(utente->openRightView()=="docente"){
@@ -289,7 +291,8 @@ void PresideContent::showInfoSelection(){
                 "Username: "+i[8]+"\n\n"
                 "Password: "+i[9]+"\n\n"
                 "Plesso di afferenza: "+i[10]+"\n\n"
-                "Paga all'ora: "+i[11]+"\n\n";
+                "Paga all'ora: "+i[11]+"\n\n"
+                "Stipendio mensile: "+QString::number(utente->stipendio())+"\n\n";
         info.setDetailedText(informazioni);
     }
     else{//preside
@@ -310,7 +313,8 @@ void PresideContent::showInfoSelection(){
                 "Paga all'ora: "+i[11]+"\n\n"
                 "Paga all'ora di straordinari: "+i[12]+"\n\n"
                 "Ore di straordinari: "+i[13]+"\n\n"
-                "Numero di Telefono: "+i[14]+"\n\n";
+                "Numero di Telefono: "+i[14]+"\n\n"
+                "Stipendio mensile: "+QString::number(utente->stipendio())+"\n\n";
         info.setDetailedText(informazioni);
     }
     info.setStandardButtons(QMessageBox::Cancel);

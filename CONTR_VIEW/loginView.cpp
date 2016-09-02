@@ -47,13 +47,12 @@ LoginView::LoginView(lista<personale>* li, QWidget *parent) : QFrame(parent), pl
         button->setToolTipDuration(3000);
         layout->setAlignment(Qt::AlignCenter);
         setLayout(layout);
+        std::cout<<"arrivatiloginview"<<std::endl;
     }
 
     void LoginView::getLogin(){
         if(!tUser->text().isEmpty() && !tUser->text().isNull() && !tPass->text().isEmpty() && !tPass->text().isNull()){
 
-            lista<personale>::iteratore it=pli->begin();
-            std::cout<<(it->getNomeutente()).toStdString()<<std::endl;
             personale *current_user=pli->trova(tUser->text());
             if(current_user){
                 emit setPersonale(current_user);

@@ -26,11 +26,11 @@ public:
 
 signals:
     void disconnectUserView();
+    void quit();
 
 public slots:
 
 private slots:
-    void quit();
 
 private:
     QLabel* label;

@@ -4,8 +4,6 @@
 #include <QObject>
 
 #include"startview.h"
-#include"ata/c_AtaView.h"
-#include"docente/c_DocenteView.h"
 #include"preside/c_PresideView.h"
 
 class StartView;
@@ -19,8 +17,6 @@ public:
 signals:
 
 public slots:
-    void createC_AtaView();
-    void createC_DocenteView();
     void createC_PresideView();
 
 
@@ -40,8 +36,6 @@ private:
 
     StartView* view;
 
-    C_AtaView* c_ata;
-    C_DocenteView* c_docente;
     C_PresideView* c_preside;
 
 };

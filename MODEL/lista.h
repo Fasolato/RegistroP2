@@ -322,17 +322,32 @@ void lista<T>::Load(ListaPlessi* lp){
         {
             if(xmlReader.isEndElement() && xmlReader.name()=="personale"){//leggo </personale> //costruisco user
                     plesso* pl= lp->ricercaPlesso(scuola_afferenza);
+                    lista<T>::nodo* point=first;
+                    if(point){
+                        while(point->next!=0)
+                            point=point->next;
+                    }
                     if(tipo=="ata"){
                         ata* a= new ata(nome, cognome, lun, mar, mer, gio, ven, sab, nome_utente, password, pl, paga_mq);
-                        first= new nodo(a, first);
+                        if(first)
+                            point->next= new nodo(a, 0);
+                        else
+                            first= new nodo(a, 0);
+
                     }
                     else if(tipo=="docente"){
                         docente* d= new docente(nome, cognome, lun, mar, mer, gio, ven, sab, nome_utente, password, pl, paga_oraria);
-                        first= new nodo(d, first);
+                        if(first)
+                            point->next= new nodo(d, 0);
+                        else
+                            first= new nodo(d, 0);
                     }
                     else{ //tipo=="preside"
                         preside* p= new preside(nome, cognome, lun, mar, mer, gio, ven, sab, nome_utente, password, pl, paga_oraria, paga_straordinari, ore_straordinari, numero_telefono);
-                        first= new nodo(p, first);
+                        if(first)
+                            point->next= new nodo(p, 0);
+                        else
+                            first= new nodo(p, 0);
                     }
                     nome_utente="Unknown";
                     tipo="Unknown";

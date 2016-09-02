@@ -219,7 +219,14 @@ void ListaPlessi::Load(){
             if(xmlReader.isEndElement() && xmlReader.name()=="plesso"){ //leggo </utente> //costruisco utente
 
                 plesso* pl= new plesso(nome, sede, via, telefono, ata, mq);
-                first= new nodo(pl, first);
+                ListaPlessi::nodo* point=first;
+                if(point){
+                    while(point->next!=0)
+                        point=point->next;
+                    point->next= new nodo(pl, 0);
+                }
+                else
+                    first= new nodo(pl, 0);
 
                 nome="Unknown";
                 sede="Unknown";

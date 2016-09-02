@@ -18,6 +18,7 @@ void C_PresideContent::inserisciPlesso(const QString& nome, const QString &sede,
         lp.Close();
         view->buildTable();
         std::cout<<"Inserisco: "<<nome.toStdString()<<" "<<std::endl;
+        std::cout<<"arrivatiinsPlesso"<<std::endl;
     }
     else{
         QMessageBox warning;
