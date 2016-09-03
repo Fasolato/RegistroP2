@@ -9,6 +9,7 @@ PresideContent::PresideContent(lista<personale>* li, QWidget *parent, preside* m
     insAtaView=0;
     insDocenteView=0;
     insPresideView=0;
+    tablePlessi=0;
 
 
     table=new QTableWidget(this);

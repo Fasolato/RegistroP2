@@ -205,7 +205,7 @@ void lista<T>::Close(){
      file1.close();
      std::cout<<"arrivaticlose"<<std::endl;
 
-     std::cout<<std::endl<<"database written"<<std::endl;
+     std::cout<<std::endl<<"DB written"<<std::endl;
 }
 
 template <class T>

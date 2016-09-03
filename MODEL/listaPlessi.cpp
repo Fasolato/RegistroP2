@@ -161,7 +161,7 @@ void ListaPlessi::Close(){
 
      file2.close();
 
-     std::cout<<std::endl<<"database written"<<std::endl;
+     std::cout<<std::endl<<"plessoDB written"<<std::endl;
 }
 
 void ListaPlessi::Load(){
