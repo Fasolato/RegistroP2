@@ -34,7 +34,7 @@ insertPlesso::insertPlesso(QWidget *parent) : QFrame(parent)
 
     connect(insert,SIGNAL(clicked()),this,SLOT(insertUser()));
 
-    layout=new QGridLayout(this);
+    layout=new QGridLayout();
 
         layout->addWidget(title,0,0,1,2);
         layout->setRowMinimumHeight(1,10);
@@ -54,7 +54,7 @@ insertPlesso::insertPlesso(QWidget *parent) : QFrame(parent)
         layout->addWidget(insert,10,1);
 
     setLayout(layout);
-    setMaximumWidth(350);
+    setMaximumWidth(800);
 }
 
 void insertPlesso::insertUser(){

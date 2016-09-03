@@ -1,46 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <database>
     <plesso>
-        <nome>ftyj</nome>
-        <sede>ftyj</sede>
-        <via>cghk</via>
-        <telefono>34657356</telefono>
-        <pers_ata>4</pers_ata>
-        <metri_quadri>7</metri_quadri>
-    </plesso>
-    <plesso>
-        <nome>prova3</nome>
-        <sede>prova3</sede>
-        <via>prova3</via>
-        <telefono>4769395</telefono>
-        <pers_ata>2</pers_ata>
-        <metri_quadri>1</metri_quadri>
-    </plesso>
-    <plesso>
-        <nome>prova2</nome>
-        <sede>prova2</sede>
-        <via>prova2</via>
-        <telefono>9876543</telefono>
-        <pers_ata>2</pers_ata>
-        <metri_quadri>3</metri_quadri>
-    </plesso>
-    <plesso>
-        <nome>prova</nome>
-        <sede>sedeprova</sede>
-        <via>via prova</via>
-        <telefono>3456789</telefono>
-        <pers_ata>3</pers_ata>
-        <metri_quadri>2</metri_quadri>
-    </plesso>
-    <plesso>
-        <nome>hdjs,fafgv</nome>
-        <sede>gbdfzsgbzsd</sede>
-        <via>bfdzxbx</via>
-        <telefono>b fdzxb </telefono>
-        <pers_ata>3</pers_ata>
-        <metri_quadri>3</metri_quadri>
-    </plesso>
-    <plesso>
         <nome>N. Sauro</nome>
         <sede>Mestre</sede>
         <via>Sanzio 21</via>
