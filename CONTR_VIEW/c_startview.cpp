@@ -1,7 +1,7 @@
 #include"c_startview.h"
 
-C_StartView::C_StartView(lista<personale>* pli, StartView* pview, QObject *parent) :
-    QObject(parent), li(pli), view(pview)
+C_StartView::C_StartView(ListaPlessi* lp, lista<personale>* pli, StartView* pview, QObject *parent) :
+    QObject(parent), li(pli), p(lp), view(pview)
 {
     view->show();
 
@@ -17,7 +17,7 @@ C_StartView::C_StartView(lista<personale>* pli, StartView* pview, QObject *paren
 }
 
 void C_StartView::createC_PresideView(){
-    c_preside=new C_PresideView(li, pers_preside, this, view->getPresideView());
+    c_preside=new C_PresideView(p,li, pers_preside, this, view->getPresideView());
 }
 
 void C_StartView::createAtaModel(personale* pers){

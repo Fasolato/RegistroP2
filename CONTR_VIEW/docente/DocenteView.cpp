@@ -59,7 +59,7 @@ DocenteView::DocenteView(docente* user_docente, QWidget *parent) : QWidget(paren
 
         exit=new QPushButton("Esci",this);
 
-        connect(exit,SIGNAL(clicked()),qApp,SLOT(quit()));
+        connect(exit,SIGNAL(clicked()),this,SLOT(quit()));
 
         layout1=new QGridLayout();
         layout2=new QGridLayout();
@@ -124,6 +124,10 @@ DocenteView::DocenteView(docente* user_docente, QWidget *parent) : QWidget(paren
             std::cout<<"arrivatiCreazione"<<std::endl;
         setLayout(layoutFinal);
         setMaximumWidth(1200);
+}
+
+void DocenteView::quit(){
+    delete this;
 }
 
 DocenteView::~DocenteView(){

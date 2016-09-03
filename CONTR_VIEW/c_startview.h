@@ -12,7 +12,7 @@ class C_StartView : public QObject
 {
     Q_OBJECT
 public:
-    explicit C_StartView(lista<personale>* pli, StartView* pview =0, QObject *parent =0);
+    explicit C_StartView(ListaPlessi* lp, lista<personale>* pli, StartView* pview =0, QObject *parent =0);
 
 signals:
 
@@ -33,6 +33,7 @@ private:
     preside* pers_preside;
 
     lista<personale>* li;
+    ListaPlessi* p;
 
     StartView* view;
 

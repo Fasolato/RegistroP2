@@ -51,7 +51,7 @@ LoginView::LoginView(lista<personale>* li, QWidget *parent) : QFrame(parent), pl
     void LoginView::getLogin(){
         if(!tUser->text().isEmpty() && !tUser->text().isNull() && !tPass->text().isEmpty() && !tPass->text().isNull()){
 
-            personale *current_user=pli->trova(tUser->text());
+            personale *current_user=pli->auth(tUser->text(), tPass->text());
             if(current_user){
                 emit setPersonale(current_user);
                 if(current_user->openRightView()=="ata")
@@ -66,7 +66,7 @@ LoginView::LoginView(lista<personale>* li, QWidget *parent) : QFrame(parent), pl
         else{
             QMessageBox warning;
             warning.setIcon(QMessageBox::Information);
-            warning.setText("UserName non valido");
+            warning.setText("UserName o Password non validi");
             warning.exec();
         }
         setLogin();

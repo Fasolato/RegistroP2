@@ -138,17 +138,17 @@ void ListaPlessi::Close(){
 
      xmlWriter.writeStartElement("plesso");
 
-     xmlWriter.writeTextElement("nome", ((it.punt)->scuola->getNome()));
+     xmlWriter.writeTextElement("nome", (it->getNome()));
 
-     xmlWriter.writeTextElement("sede", ((it.punt)->scuola->getSede()));
+     xmlWriter.writeTextElement("sede", (it->getSede()));
 
-     xmlWriter.writeTextElement("via", ((it.punt)->scuola->getVia()));
+     xmlWriter.writeTextElement("via", (it->getVia()));
 
-     xmlWriter.writeTextElement("telefono", ((it.punt)->scuola->getTelefono()));
+     xmlWriter.writeTextElement("telefono", (it->getTelefono()));
 
-     xmlWriter.writeTextElement("pers_ata", QString::number(((it.punt)->scuola->getAta())));
+     xmlWriter.writeTextElement("pers_ata", QString::number((it->getAta())));
 
-     xmlWriter.writeTextElement("metri_quadri", QString::number(((it.punt)->scuola->getMq())));
+     xmlWriter.writeTextElement("metri_quadri", QString::number((it->getMq())));
 
 
      xmlWriter.writeEndElement();//plesso

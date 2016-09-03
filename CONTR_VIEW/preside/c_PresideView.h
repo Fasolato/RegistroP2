@@ -11,7 +11,7 @@ class C_PresideView : public QObject
 {
     Q_OBJECT
 public:
-    explicit C_PresideView(lista<personale>* lis, preside* user, QObject *parent = 0, PresideView* p_view =0);
+    explicit C_PresideView(ListaPlessi* lp, lista<personale>* lis, preside* user, QObject *parent = 0, PresideView* p_view =0);
     ~C_PresideView();
 
 signals:
@@ -24,6 +24,7 @@ private:
     PresideView* view;
 
     lista<personale>* li;
+    ListaPlessi* p;
     C_PresideContent* c_presidecontent;
 
 };

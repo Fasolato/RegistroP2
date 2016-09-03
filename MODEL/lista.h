@@ -59,6 +59,7 @@ public:
     void togliMembro(T*);
     T* ricercaMembro(T* p) const;
     T* trova(QString username) const;
+    T* auth(QString username, QString password) const;
 };
 
 template <class T>
@@ -150,6 +151,17 @@ T* lista<T>::trova(QString username) const{
 }
 
 template <class T>
+T* lista<T>::auth(QString username, QString password) const{
+    nodo* a= first;
+    while(a && !((a->dipendente->getNomeutente()==username && a->dipendente->getPassword()==password))){
+        a= a->next;
+    }
+    if(a)
+        return a->dipendente;
+    return 0;
+}
+
+template <class T>
 void lista<T>::Close(){
 
      QFile file1(filename1);
@@ -168,27 +180,27 @@ void lista<T>::Close(){
 
      xmlWriter.writeTextElement("username", ((it.punt)->dipendente->getNomeutente()));
 
-     ((it.punt)->dipendente)->writeTipo(xmlWriter);  //scrittura polimorfica del tipo;
+     (it->writeTipo(xmlWriter));  //scrittura polimorfica del tipo;
 
      xmlWriter.writeStartElement("profilo");
 
      xmlWriter.writeStartElement("info_generali");
-     xmlWriter.writeTextElement("nome", ((it.punt)->dipendente)->getNome());
-     xmlWriter.writeTextElement("cognome", ((it.punt)->dipendente)->getCognome());
+     xmlWriter.writeTextElement("nome", (it->getNome()));
+     xmlWriter.writeTextElement("cognome", (it->getCognome()));
      xmlWriter.writeStartElement("orario");
-     xmlWriter.writeTextElement("lun", QString::number((((it.punt)->dipendente)->getOre())[0]));
-     xmlWriter.writeTextElement("mar", QString::number((((it.punt)->dipendente)->getOre())[1]));
-     xmlWriter.writeTextElement("mer", QString::number((((it.punt)->dipendente)->getOre())[2]));
-     xmlWriter.writeTextElement("gio", QString::number((((it.punt)->dipendente)->getOre())[3]));
-     xmlWriter.writeTextElement("ven", QString::number((((it.punt)->dipendente)->getOre())[4]));
-     xmlWriter.writeTextElement("sab", QString::number((((it.punt)->dipendente)->getOre())[5]));
+     xmlWriter.writeTextElement("lun", QString::number(((it->getOre())[0])));
+     xmlWriter.writeTextElement("mar", QString::number(((it->getOre())[1])));
+     xmlWriter.writeTextElement("mer", QString::number(((it->getOre())[2])));
+     xmlWriter.writeTextElement("gio", QString::number(((it->getOre())[3])));
+     xmlWriter.writeTextElement("ven", QString::number(((it->getOre())[4])));
+     xmlWriter.writeTextElement("sab", QString::number(((it->getOre())[5])));
      xmlWriter.writeEndElement(); //orario
-     xmlWriter.writeTextElement("password", ((it.punt)->dipendente)->getPassword());
-     xmlWriter.writeTextElement("plesso",((it.punt)->dipendente)->getScuola().getNome());
+     xmlWriter.writeTextElement("password", (it->getPassword()));
+     xmlWriter.writeTextElement("plesso",(it->getScuola().getNome()));
      xmlWriter.writeEndElement(); //info_generali
 
      xmlWriter.writeStartElement("info_specifiche");
-     ((it.punt)->dipendente)->writeSpecifiche(xmlWriter);  //scrittura polimorfica delle specifiche
+     (it->writeSpecifiche(xmlWriter));  //scrittura polimorfica delle specifiche
      xmlWriter.writeEndElement();// info spec
 
      xmlWriter.writeEndElement();//profilo

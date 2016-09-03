@@ -6,7 +6,7 @@ insertAta::insertAta(QWidget *parent) : QFrame(parent)
     QSize sizeLine(150,18);
     showMaximized();
 
-    title=new QLabel("Inserisci Nuovo Utente",this);
+    title=new QLabel("Inserisci nuovo membro del personale ATA",this);
     title->setFont(QFont("Helvetica [Cronyx]", 14, QFont::Bold));
     title->setStyleSheet("font-variant: small-caps;");
     Orario=new QLabel("Orario Settimanale",this);

@@ -1,10 +1,10 @@
 #include"c_PresideView.h"
 
-C_PresideView::C_PresideView(lista<personale>* lis, preside* user, QObject *parent, PresideView* p_view) :
-    QObject(parent), model(user), view(p_view), li(lis)
+C_PresideView::C_PresideView(ListaPlessi* lp, lista<personale>* lis, preside* user, QObject *parent, PresideView* p_view) :
+    QObject(parent), model(user), view(p_view), li(lis), p(lp)
 {
     connect(view,SIGNAL(quit()),this,SLOT(quit()));
-    c_presidecontent=new C_PresideContent(model, li, this, view->getPresideContent());
+    c_presidecontent=new C_PresideContent(p, model, li, this, view->getPresideContent());
 }
 
 void C_PresideView::quit(){

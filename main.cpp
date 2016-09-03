@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     ListaPlessi lp;
     lista<personale> li(&lp);
     StartView view(&li);
-    C_StartView controller(&li,&view);
+    C_StartView controller(&lp,&li,&view);
 
     return a.exec();
 }

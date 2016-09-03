@@ -59,7 +59,7 @@ AtaView::AtaView(ata* user_ata, QWidget *parent) : QWidget(parent)
 
     exit=new QPushButton("Esci",this);
 
-    connect(exit,SIGNAL(clicked()),qApp,SLOT(quit()));
+    connect(exit,SIGNAL(clicked()),this,SLOT(quit()));
 
     layout1=new QGridLayout();
     layout2=new QGridLayout();
@@ -123,6 +123,10 @@ AtaView::AtaView(ata* user_ata, QWidget *parent) : QWidget(parent)
 
     setLayout(layoutFinal);
     setMaximumWidth(1200);
+}
+
+void AtaView::quit(){
+    delete this;
 }
 
 AtaView::~AtaView(){

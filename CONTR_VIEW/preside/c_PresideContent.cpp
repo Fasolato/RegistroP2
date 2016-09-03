@@ -1,7 +1,7 @@
 #include"c_PresideContent.h"
 
-C_PresideContent::C_PresideContent(preside* pres, lista<personale>* li, QObject *parent, PresideContent* view_) :
-    QObject(parent), model(pres), view(view_), list(li)
+C_PresideContent::C_PresideContent(ListaPlessi* lp, preside* pres, lista<personale>* li, QObject *parent, PresideContent* view_) :
+    QObject(parent), model(pres), view(view_), list(li), p(lp)
 {
     connect(view,SIGNAL(inserisciPlesso(QString, QString, QString, QString, int, double)),this,SLOT(inserisciPlesso(QString, QString, QString, QString, int, double)));
     connect(view,SIGNAL(inserisciAta(QString, QString, int, int, int, int, int, int, QString, QString, QString, double)),this,SLOT(inserisciAta(QString, QString, int, int, int, int, int, int, QString, QString, QString, double)));
@@ -11,11 +11,10 @@ C_PresideContent::C_PresideContent(preside* pres, lista<personale>* li, QObject 
 }
 
 void C_PresideContent::inserisciPlesso(const QString& nome, const QString &sede, const QString &via, const QString &telefono, int p_ata, double m_q){
-    ListaPlessi lp;
-    if(!lp.ricercaPlesso(nome)){
+    if(!(p->ricercaPlesso(nome))){
         plesso pl(nome, sede, via, telefono, p_ata, m_q);
-        lp.aggiungiMembro(&pl);
-        lp.Close();
+        p->aggiungiMembro(&pl);
+        p->Close();
         view->buildTable();
         std::cout<<"Inserisco: "<<nome.toStdString()<<" "<<std::endl;
         std::cout<<"arrivatiinsPlesso"<<std::endl;
@@ -33,9 +32,8 @@ void C_PresideContent::inserisciPlesso(const QString& nome, const QString &sede,
 }
 
 void C_PresideContent::inserisciAta(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_mq){
-    ListaPlessi lp;
     if(!(list->trova(n_u))){
-        plesso* pl=lp.ricercaPlesso(scuola);
+        plesso* pl=p->ricercaPlesso(scuola);
         if(pl){
             ata utente(nome, cognome, lun, mar, mer, gio, ven, sab, n_u, pass, pl, p_mq);
             list->aggiungiMembro(&utente);
@@ -69,9 +67,8 @@ void C_PresideContent::inserisciAta(const QString& nome, const QString& cognome,
 }
 
 void C_PresideContent::inserisciDocente(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_ora){
-    ListaPlessi lp;
     if(!(list->trova(n_u))){
-        plesso* pl=lp.ricercaPlesso(scuola);
+        plesso* pl=p->ricercaPlesso(scuola);
         if(pl){
             docente utente(nome, cognome, lun, mar, mer, gio, ven, sab, n_u, pass, pl, p_ora);
             list->aggiungiMembro(&utente);
@@ -105,9 +102,8 @@ void C_PresideContent::inserisciDocente(const QString& nome, const QString& cogn
 }
 
 void C_PresideContent::inserisciPreside(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_ora, double p_stra, int ore_s, const QString& num){
-    ListaPlessi lp;
     if(!(list->trova(n_u))){
-        plesso* pl=lp.ricercaPlesso(scuola);
+        plesso* pl=p->ricercaPlesso(scuola);
         if(pl){
             preside utente(nome, cognome, lun, mar, mer, gio, ven, sab, n_u, pass, pl, p_ora, p_stra, ore_s, num);
             list->aggiungiMembro(&utente);
