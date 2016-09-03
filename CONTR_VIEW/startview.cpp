@@ -9,7 +9,7 @@ StartView::StartView(lista<personale> *li, QGroupBox *parent)
 
     setStyleSheet("StartWindow{ background-color: red; border: 1px solid #FFF;}");
     setWhatsThis("StartView");
-    setWindowTitle("Project Registro");
+    setWindowTitle("Project REGISTRO");
 
 }
 
@@ -98,18 +98,6 @@ DocenteView* StartView::getDocenteView(){
 
 PresideView* StartView::getPresideView(){
     return preside_view;
-}
-
-void StartView::centerWidget(){
-    int width = frameGeometry().width();
-    int height = frameGeometry().height();
-
-    QDesktopWidget wid;
-
-    int screenWidth = wid.screen()->width();
-    int screenHeight = wid.screen()->height();
-
-    setGeometry((screenWidth/2)-(width/2),(screenHeight/2)-(height/2),width,height);
 }
 
 
