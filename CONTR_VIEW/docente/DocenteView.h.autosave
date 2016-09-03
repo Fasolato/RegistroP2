@@ -1,5 +1,5 @@
-#ifndef ATAVIEW_H
-#define ATAVIEW_H
+#ifndef DOCENTEVIEW_H
+#define DOCENTEVIEW_H
 
 #include <QWidget>
 #include<QTableWidget>
@@ -17,15 +17,15 @@
 #include<QHeaderView>
 #include<QApplication>
 
-#include"../../MODEL/ATA.h"
+#include"../../MODEL/docente.h"
 
-class AtaView : public QWidget
+class DocenteView : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit AtaView(ata* user_ata, QWidget *parent = 0);
-    ~AtaView();
+    explicit DocenteView(docente* user_docente, QWidget *parent = 0);
+    ~DocenteView();
 
 signals:
     void disconnectUserView();
@@ -60,8 +60,8 @@ private:
     QLabel* text_Pass;
     QLabel* scuola;
     QLabel* text_Scuola;
-    QLabel* p_mq;
-    QLabel* text_P_Mq;
+    QLabel* p_oraria;
+    QLabel* text_P_oraria;
     QLabel* stipendio;
     QLabel* text_Stip;
 
@@ -85,4 +85,4 @@ private:
     QVBoxLayout* layoutFinal;
 };
 
-#endif // ATAVIEW_H
+#endif // DOCENTEVIEW_H
