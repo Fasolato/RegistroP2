@@ -63,7 +63,7 @@ public:
 };
 
 template <class T>
-QString lista<T>::filename1="/Volumes/KINGS 32 GB/Registro_GitHub/RegistroP2/DATABASE/DB.xml";
+QString lista<T>::filename1="../../../../RegistroP2/DATABASE/DB.xml";
 
 // METODI DI LISTA <T>
 

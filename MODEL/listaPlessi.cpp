@@ -1,6 +1,6 @@
 #include"listaPlessi.h"
 
-QString ListaPlessi::filename2="/Volumes/KINGS 32 GB/Registro_GitHub/RegistroP2/DATABASE/plessoDB.xml";
+QString ListaPlessi::filename2="../../../../RegistroP2/DATABASE/plessoDB.xml";
 
 // METODI DI LISTAPLESSI
 
