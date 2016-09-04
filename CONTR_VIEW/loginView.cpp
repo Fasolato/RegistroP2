@@ -7,15 +7,13 @@ LoginView::LoginView(lista<personale>* li, QWidget *parent) : QFrame(parent), pl
         setFrameShadow(QFrame::Plain);
         setLineWidth(3);
 
-        QDesktopWidget *desktop = QApplication::desktop();
-
-        int screenWidth = desktop->width();
-        int screenHeight = desktop->height();
-        int x=(screenWidth - 500) / 2;
-        int y=(screenHeight - 250) / 2;
-        QRect rettangolo(x, y, 500, 250);
 
         setStyleSheet("LoginWindow{ background-color: red; border: 1px solid #F12;}");
+
+        exit= new QPushButton("Esci", this);
+        exit->setFixedSize(150,35);
+
+        connect(exit,SIGNAL(clicked()),qApp,SLOT(quit()));
 
         label=new QLabel("Inserisci i tuoi Dati: ",this);
         label->setStyleSheet("color: black; font: 22pt;");
@@ -37,16 +35,22 @@ LoginView::LoginView(lista<personale>* li, QWidget *parent) : QFrame(parent), pl
         connect(tUser,SIGNAL(returnPressed()),this,SLOT(getLogin()));
         connect(tPass,SIGNAL(returnPressed()),this,SLOT(getLogin()));
 
-        layout=new QVBoxLayout(this);
-        layout->addWidget(label);
-        layout->addWidget(tUser,0,Qt::AlignCenter);
-        layout->addWidget(tPass,0,Qt::AlignCenter);
-        layout->addWidget(button,0,Qt::AlignRight);
+        layout1=new QVBoxLayout();
+        layout1->addWidget(label);
+        layout1->addWidget(tUser,0,Qt::AlignCenter);
+        layout1->addWidget(tPass,0,Qt::AlignCenter);
+
+        layout2= new QHBoxLayout();
+        layout2->addWidget(button,0,Qt::AlignRight);
+        layout2->addWidget(exit,0,Qt::AlignRight);
 
         button->setToolTip(tr("Esegui il login"));
         button->setToolTipDuration(3000);
-        layout->setAlignment(Qt::AlignCenter);
-        setLayout(layout);
+        layoutFinal= new QVBoxLayout(this);
+        layoutFinal->addLayout(layout1);
+        layoutFinal->addLayout(layout2);
+        layoutFinal->setAlignment(Qt::AlignCenter);
+        setLayout(layoutFinal);
     }
 
     void LoginView::getLogin(){

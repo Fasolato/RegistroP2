@@ -43,7 +43,10 @@ private:
     QLineEdit* tUser;
     QLineEdit* tPass;
     QPushButton* button;
-    QVBoxLayout* layout;
+    QPushButton* exit;
+    QVBoxLayout* layout1;
+    QHBoxLayout* layout2;
+    QVBoxLayout* layoutFinal;
 };
 
 #endif // LOGINVIEW_H
