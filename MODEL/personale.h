@@ -32,7 +32,7 @@ class personale
         vector<int> getOre() const;
 		QString getNomeutente() const;
 		QString getPassword() const;
-        plesso getScuola() const;
+        plesso* getScuola() const;
         void setNome(QString n);
         void setCognome(QString c);
         void setOre(vector<int> v);

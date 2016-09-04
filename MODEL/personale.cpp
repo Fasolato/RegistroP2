@@ -11,7 +11,7 @@ QString personale::getCognome() const { return cognome; }
 vector<int> personale::getOre() const { return oreSettimana.getOrario(); }
 QString personale::getNomeutente() const { return nome_utente; }
 QString personale::getPassword() const { return password; }
-plesso personale::getScuola() const { return *scuola_afferenza; }
+plesso *personale::getScuola() const { return scuola_afferenza; }
 void personale::setNome(QString n) {nome=n;}
 void personale::setCognome(QString c) {cognome=c;}
 void personale::setOre(vector<int> v) {oreSettimana.modificaOrario(v);}

@@ -8,6 +8,7 @@ C_PresideContent::C_PresideContent(ListaPlessi* lp, preside* pres, lista<persona
     connect(view,SIGNAL(inserisciDocente(QString, QString, int, int, int, int, int, int, QString, QString, QString, double)),this,SLOT(inserisciDocente(QString, QString, int, int, int, int, int, int, QString, QString, QString, double)));
     connect(view,SIGNAL(inserisciPreside(QString, QString, int, int, int, int, int, int, QString, QString, QString, double, double, int, QString)),this,SLOT(inserisciPreside(QString, QString, int, int, int, int, int, int, QString, QString, QString, double, double, int, QString)));
     connect(view,SIGNAL(removeUserClicked(QString)),this,SLOT(removeUser(QString)));
+    connect(view,SIGNAL(removePlessoClicked(QString)),this,SLOT(removePlesso(QString)));
 }
 
 void C_PresideContent::inserisciPlesso(const QString& nome, const QString &sede, const QString &via, const QString &telefono, int p_ata, double m_q){
@@ -149,6 +150,25 @@ void C_PresideContent::removeUser(const QString &user){
         warning.setWindowTitle("Rimuovi utente");
         warning.setText("Impossibile eliminare l'utente");
         warning.setInformativeText("L'utente selezionato non esite.");
+        warning.setStandardButtons(QMessageBox::Ok);
+        warning.setDefaultButton(QMessageBox::Ok);
+        warning.exec();
+    }
+}
+
+void C_PresideContent::removePlesso(const QString &plex){
+    bool trovato=list->controllaAfferenze(plex) ;
+    if(!trovato){
+        p->togliMembro(plex);
+        p->Close();
+        view->buildPlessoTable();
+    }
+    else{
+        QMessageBox warning;
+        warning.setIcon(QMessageBox::Critical);
+        warning.setWindowTitle("Rimuovi plesso");
+        warning.setText("Impossibile eliminare il plesso");
+        warning.setInformativeText("Ci sono alcuni utenti che afferiscono al plesso che si sta cercando di eliminare. Per favore eliminare prima gli utenti che afferiscono al plesso");
         warning.setStandardButtons(QMessageBox::Ok);
         warning.setDefaultButton(QMessageBox::Ok);
         warning.exec();

@@ -40,11 +40,13 @@ signals:
    void inserisciDocente(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_ora);
    void inserisciPreside(const QString& nome, const QString& cognome, int lun, int mar, int mer, int gio, int ven, int sab, const QString& n_u, const QString& pass, const QString& scuola, double p_ora, double p_stra, int ore_s, const QString& num);
    void removeUserClicked(const QString& user);
+   void removePlessoClicked(const QString& plex);
+
+public slots:
+   void buildPlessoTable();
 
 private slots:
    void showInfoSelection();
-
-   void buildPlessoTable();
 
    void buildPlessoView();
    void buildAtaView();
@@ -52,15 +54,19 @@ private slots:
    void buildPresideView();
 
    void enableButtons();
+   void enableButtonP();
 
    void removeUser();
+   void removePlesso();
    void setSelectedUser(int r);
+   void setSelectedPlesso(int r);
 
 private:
 
    void removeInsWidget();
    void refreshTable();
    void disableButtons();
+   void disableButtonP();
    void updateLabel();
 
    lista<personale>* pli;
@@ -72,9 +78,11 @@ private:
    QTableWidget* tablePlessi;
 
    QString selected_user;
+   QString selected_plesso;
    QLabel* selected_text_label;
    QLabel* selected_user_label;
    QPushButton* remove_user;
+   QPushButton* remove_plesso;
 
    QPushButton* show_info;
    QPushButton* show_plessi;

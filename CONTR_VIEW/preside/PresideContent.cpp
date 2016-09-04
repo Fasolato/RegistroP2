@@ -4,6 +4,7 @@ PresideContent::PresideContent(lista<personale>* li, QWidget *parent, preside* m
     QWidget(parent), pli(li), model(model_)
 {
     selected_user="";
+    selected_plesso="";
 
     insPlessoView=0;
     insAtaView=0;
@@ -49,8 +50,12 @@ PresideContent::PresideContent(lista<personale>* li, QWidget *parent, preside* m
     remove_user->setMaximumWidth(350);
     show_info=new QPushButton("Dettagli Utente",this);
     show_info->setMaximumWidth(350);
+    remove_plesso=new QPushButton("Rimuovi Plesso",this);
+    remove_plesso->setMaximumWidth(350);
 
     connect(remove_user,SIGNAL(clicked()),this,SLOT(removeUser()));
+
+    connect(remove_plesso,SIGNAL(clicked()),this,SLOT(removePlesso()));
 
     connect(show_plessi,SIGNAL(clicked()),this,SLOT(buildPlessoTable()));
 
@@ -79,6 +84,8 @@ PresideContent::PresideContent(lista<personale>* li, QWidget *parent, preside* m
     layout_Buttons->addSpacing(5);
     layout_Buttons->addWidget(remove_user);
     layout_Buttons->addSpacing(5);
+    layout_Buttons->addWidget(remove_plesso);
+    layout_Buttons->addSpacing(5);
     layout_Buttons->addWidget(show_plessi);
     layout_Buttons->addSpacing(5);
     layout_Buttons->addWidget(i_plesso);
@@ -97,6 +104,7 @@ PresideContent::PresideContent(lista<personale>* li, QWidget *parent, preside* m
 
     buildTable();
     disableButtons();
+    disableButtonP();
 
     setLayout(layout);
 }
@@ -109,6 +117,14 @@ void PresideContent::disableButtons(){
 void PresideContent::enableButtons(){
     remove_user->setEnabled(true);
     show_info->setEnabled(true);
+}
+
+void PresideContent::enableButtonP(){
+    remove_plesso->setEnabled(true);
+}
+
+void PresideContent::disableButtonP(){
+    remove_plesso->setDisabled(true);
 }
 
 
@@ -127,6 +143,21 @@ void PresideContent::removeUser(){
     buildTable();
 }
 
+void PresideContent::removePlesso(){
+    QMessageBox warning;
+    warning.setIcon(QMessageBox::Question);
+    warning.setWindowTitle("Rimuovi plesso");
+    warning.setText("Hai selezionato il plesso: <b>"+selected_plesso+"</b>");
+    warning.setInformativeText("Vuoi veramente eliminare questo plesso?");
+    warning.setStandardButtons(QMessageBox::Yes | QMessageBox::Cancel);
+    warning.setDefaultButton(QMessageBox::Cancel);
+    int ret = warning.exec();
+    if(ret==QMessageBox::Yes) {
+        emit removePlessoClicked(selected_plesso);
+    }
+    buildPlessoTable();
+}
+
 void PresideContent::buildPlessoTable(){
     removeInsWidget();
     tablePlessi=new QTableWidget(this);
@@ -141,6 +172,8 @@ void PresideContent::buildPlessoTable(){
     for(int i=0; i<table->columnCount(); i++)
         tablePlessi->horizontalHeader()->setSectionResizeMode(i,QHeaderView::Stretch);
     tablePlessi->setMinimumWidth(419);
+    connect(tablePlessi,SIGNAL(cellClicked(int,int)),this,SLOT(setSelectedPlesso(int)));
+    connect(tablePlessi,SIGNAL(cellClicked(int,int)),this,SLOT(enableButtonP()));
     ListaPlessi* lp=new ListaPlessi();
     if(!(lp->Vuota())){
         int row=0;
@@ -218,6 +251,11 @@ void PresideContent::setSelectedUser(int r){
     selected_user=table->item(r,2)->text();
     enableButtons();
     updateLabel();
+}
+
+void PresideContent::setSelectedPlesso(int r){
+    selected_plesso=tablePlessi->item(r,0)->text();
+    enableButtonP();
 }
 
 void PresideContent::updateLabel(){

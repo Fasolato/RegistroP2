@@ -45,7 +45,7 @@ QVector<QString> preside::ottieniInfo(){
     info.append(QString::number(getOre()[5]));
     info.append(getNomeutente());
     info.append(getPassword());
-    info.append(getScuola().getNome());
+    info.append(getScuola()->getNome());
     info.append(QString::number(getPagaO()));
     info.append(QString::number(getPagaS()));
     info.append(QString::number(getOreS()));

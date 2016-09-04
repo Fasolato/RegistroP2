@@ -60,6 +60,7 @@ public:
     T* ricercaMembro(T* p) const;
     T* trova(QString username) const;
     T* auth(QString username, QString password) const;
+    bool controllaAfferenze(QString t);
 };
 
 template <class T>
@@ -114,6 +115,18 @@ void lista<T>::aggiungiMembro(T* p){
 }
 
 template <class T>
+bool lista<T>::controllaAfferenze(QString t){
+    lista<T>::nodo* temp=first;
+    bool trovato=false;
+    while(temp && !trovato){
+        if(temp->dipendente->getScuola()->getNome()==t)
+            trovato=true;
+        temp=temp->next;
+    }
+    return trovato;
+}
+
+template <class T>
 void lista<T>::togliMembro(T* p){
     nodo* a= first, *prec= 0;
     while(a && !(a->dipendente==p)){
@@ -125,6 +138,7 @@ void lista<T>::togliMembro(T* p){
             first=a->next;
         else
             prec->next=a->next;
+        a->next=0;
         delete a;
     }
 }
@@ -196,7 +210,7 @@ void lista<T>::Close(){
      xmlWriter.writeTextElement("sab", QString::number(((it->getOre())[5])));
      xmlWriter.writeEndElement(); //orario
      xmlWriter.writeTextElement("password", (it->getPassword()));
-     xmlWriter.writeTextElement("plesso",(it->getScuola().getNome()));
+     xmlWriter.writeTextElement("plesso",(it->getScuola()->getNome()));
      xmlWriter.writeEndElement(); //info_generali
 
      xmlWriter.writeStartElement("info_specifiche");

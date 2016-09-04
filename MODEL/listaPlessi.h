@@ -55,8 +55,8 @@ public:
         bool matchMembro(plesso* p);
         void modificaMembro(plesso*, plesso*);
         void aggiungiMembro(plesso*);
-        void togliMembro(plesso*);
-        plesso* ricercaPlesso(QString p);
+        void togliMembro(QString);
+        plesso* ricercaPlesso(QString);
 };
 
 #endif // LISTAPLESSI_H

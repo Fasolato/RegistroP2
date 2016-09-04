@@ -36,26 +36,26 @@ DocenteView::DocenteView(docente* user_docente, QWidget *parent) : QWidget(paren
         password=new QLabel("Password: ",this);
         text_Pass=new QLabel(user_docente->getPassword(),this);
         scuola=new QLabel("Scuola di appartenenza: ",this);
-        text_Scuola=new QLabel(user_docente->getScuola().getNome(),this);
+        text_Scuola=new QLabel(user_docente->getScuola()->getNome(),this);
         p_oraria=new QLabel("Paga all'ora: ",this);
         text_P_oraria=new QLabel(QString::number(user_docente->getPagaO()),this);
         stipendio=new QLabel("Stipendio mensile percepito: : ",this);
         text_Stip=new QLabel(QString::number(user_docente->stipendio()),this);
 
-        plesso pl=user_docente->getScuola();
+        plesso* pl=user_docente->getScuola();
 
         nomeS=new QLabel("Nome: ",this);
-        text_nomeS=new QLabel(pl.getNome(),this);
+        text_nomeS=new QLabel(pl->getNome(),this);
         sede=new QLabel("Sede: ",this);
-        text_Sede=new QLabel(pl.getSede(),this);
+        text_Sede=new QLabel(pl->getSede(),this);
         via=new QLabel("Via: ",this);
-        text_Via=new QLabel(pl.getVia(),this);
+        text_Via=new QLabel(pl->getVia(),this);
         tel=new QLabel("Numero di telefono: ",this);
-        text_Tel=new QLabel(pl.getTelefono(),this);
+        text_Tel=new QLabel(pl->getTelefono(),this);
         pers_ata=new QLabel("Personale ATA presente: ",this);
-        text_P_ata=new QLabel(QString::number(pl.getAta()),this);
+        text_P_ata=new QLabel(QString::number(pl->getAta()),this);
         m_q=new QLabel("Metri quadri: ",this);
-        text_Mq=new QLabel(QString::number(pl.getMq()),this);
+        text_Mq=new QLabel(QString::number(pl->getMq()),this);
 
         exit=new QPushButton("Esci",this);
 
