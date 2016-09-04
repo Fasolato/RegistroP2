@@ -204,7 +204,6 @@ void PresideContent::buildPlessoView(){
     removeInsWidget();
     insPlessoView= new insertPlesso(this);
     connect(insPlessoView,SIGNAL(inserisciPlesso(QString,QString,QString,QString,int,double)),this,SIGNAL(inserisciPlesso(QString,QString,QString,QString,int,double)));
-    std::cout<<"arrivatibuildPlesso"<<std::endl;
     layout_Table->addWidget(insPlessoView);
 }
 

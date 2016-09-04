@@ -40,7 +40,6 @@ void C_StartView::createPresideModel(personale* pers){
 
 
 void C_StartView::deleteControllers(){
-    std::cout<<"arrivatideletecontrollers"<<std::endl;
     c_preside=0;
 }
 
@@ -51,5 +50,4 @@ void C_StartView::deleteModel(){
     view->setAtaModel(0);
     view->setDocenteModel(0);
     view->setPresideModel(0);
-    std::cout<<"arrivatideletemodel"<<std::endl;
 }

@@ -229,7 +229,6 @@ void lista<T>::Close(){
      xmlWriter.writeEndDocument();
 
      file1.close();
-     std::cout<<"arrivaticlose"<<std::endl;
 
      std::cout<<std::endl<<"DB written"<<std::endl;
 }
@@ -340,7 +339,6 @@ void lista<T>::Load(ListaPlessi* lp){
                 numero_telefono=xmlReader.readElementText();
             }
             else{
-                std::cout<<"prob plesso";
                 std::cout<<"we got a problem "; //FLAG di allarme;
             }
         }

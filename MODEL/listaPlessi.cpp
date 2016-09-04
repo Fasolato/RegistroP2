@@ -48,7 +48,6 @@ void ListaPlessi::aggiungiMembro(plesso* p){
 void ListaPlessi::togliMembro(QString nome){
     plesso* p= ricercaPlesso(nome);
     if(p){
-        std::cout<<"plesso trovato"<<std::endl;
     nodo* a= first, *prec= 0;
     while(a && !(a->scuola==p)){
         prec= a;
@@ -63,8 +62,6 @@ void ListaPlessi::togliMembro(QString nome){
         delete a;
     }
     }
-    else
-        std::cout<<"non trovato"<<std::endl;
 }
 
 plesso* ListaPlessi::ricercaPlesso(QString p){

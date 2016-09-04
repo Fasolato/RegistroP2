@@ -8,7 +8,6 @@ C_PresideView::C_PresideView(ListaPlessi* lp, lista<personale>* lis, preside* us
 }
 
 void C_PresideView::quit(){
-    std::cout<<"arrivatiquitc_presideView"<<std::endl;
     delete this;
 }
 
@@ -17,5 +16,4 @@ C_PresideView::~C_PresideView(){
     view=0;
     delete c_presidecontent;
     c_presidecontent=0;
-    std::cout<<"arrivati~c_presideView"<<std::endl;
 }

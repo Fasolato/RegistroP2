@@ -121,7 +121,6 @@ DocenteView::DocenteView(docente* user_docente, QWidget *parent) : QWidget(paren
             layoutFinal->addLayout(layout);
             layoutFinal->addWidget(exit);
 
-            std::cout<<"arrivatiCreazione"<<std::endl;
         setLayout(layoutFinal);
         setMaximumWidth(1200);
 }

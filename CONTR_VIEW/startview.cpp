@@ -5,7 +5,7 @@ StartView::StartView(lista<personale> *li, QGroupBox *parent)
 {
     createLogin(); //schermata iniziale
     setFixedHeight(600);
-    setFixedWidth(900);
+    setFixedWidth(1100);
 
     setStyleSheet("StartWindow{ background-color: red; border: 1px solid #FFF;}");
     setWhatsThis("StartView");
@@ -45,7 +45,6 @@ void StartView::createPreside(personale* p){
 void StartView::createLogin(){
     lista<personale>*p2=pli;
     login_view=new LoginView(p2, this);
-    std::cout<<"arrivaticreatelogin"<<std::endl;
     connect(login_view,SIGNAL(setPersonale(personale*)),this,SLOT(setPersonale(personale*)));
     connect(login_view,SIGNAL(createAta(personale*)),this,SLOT(createAta(personale*)));
     connect(login_view,SIGNAL(createDocente(personale*)),this,SLOT(createDocente(personale*)));
@@ -59,9 +58,7 @@ void StartView::backInTime(){
     ata_view=0;
     docente_view=0;
     preside_view=0;
-    //delete login_view;
     login_view=0;
-    std::cout<<"arrivatiback"<<std::endl;
     createLogin();
 }
 

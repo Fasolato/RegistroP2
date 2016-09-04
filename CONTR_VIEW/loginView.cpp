@@ -18,15 +18,17 @@ LoginView::LoginView(lista<personale>* li, QWidget *parent) : QFrame(parent), pl
         setStyleSheet("LoginWindow{ background-color: red; border: 1px solid #F12;}");
 
         label=new QLabel("Inserisci i tuoi Dati: ",this);
-        label->setStyleSheet("color: black; font: 18pt;");
+        label->setStyleSheet("color: black; font: 22pt;");
+        label->setFixedSize(250,35);
         tUser=new QLineEdit(this);
         tUser->setPlaceholderText("inserisci qui lo username");
-        tUser->setFixedSize(180,30);
+        tUser->setFixedSize(300,35);
         tPass=new QLineEdit(this);
         tPass->setPlaceholderText("inserisci qui la password");
-        tPass->setFixedSize(180,30);
+        tPass->setFixedSize(300,35);
         tPass->setEchoMode(QLineEdit::Password);
         button=new QPushButton("Login",this);
+        button->setFixedSize(150,35);
         button->setDisabled(true);
 
         setLogin();
@@ -45,7 +47,6 @@ LoginView::LoginView(lista<personale>* li, QWidget *parent) : QFrame(parent), pl
         button->setToolTipDuration(3000);
         layout->setAlignment(Qt::AlignCenter);
         setLayout(layout);
-        std::cout<<"arrivatiloginview"<<std::endl;
     }
 
     void LoginView::getLogin(){

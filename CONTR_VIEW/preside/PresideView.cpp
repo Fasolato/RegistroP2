@@ -26,9 +26,7 @@ PresideView::~PresideView(){
     label=0;
     exit=0;
     layout=0;
-    //delete content;
     content=0;
-    std::cout<<"arrivati~presideView"<<std::endl;
 
     emit disconnectUserView();
 }
