@@ -12,8 +12,8 @@ C_PresideContent::C_PresideContent(ListaPlessi* lp, preside* pres, lista<persona
 
 void C_PresideContent::inserisciPlesso(const QString& nome, const QString &sede, const QString &via, const QString &telefono, int p_ata, double m_q){
     if(!(p->ricercaPlesso(nome))){
-        plesso pl(nome, sede, via, telefono, p_ata, m_q);
-        p->aggiungiMembro(&pl);
+        plesso* pl= new plesso(nome, sede, via, telefono, p_ata, m_q);
+        p->aggiungiMembro(pl);
         p->Close();
         view->buildTable();
         std::cout<<"Inserisco: "<<nome.toStdString()<<" "<<std::endl;
@@ -35,8 +35,8 @@ void C_PresideContent::inserisciAta(const QString& nome, const QString& cognome,
     if(!(list->trova(n_u))){
         plesso* pl=p->ricercaPlesso(scuola);
         if(pl){
-            ata utente(nome, cognome, lun, mar, mer, gio, ven, sab, n_u, pass, pl, p_mq);
-            list->aggiungiMembro(&utente);
+            ata* utente= new ata(nome, cognome, lun, mar, mer, gio, ven, sab, n_u, pass, pl, p_mq);
+            list->aggiungiMembro(utente);
             list->Close();
             view->buildTable();
             std::cout<<"Inserisco: "<<n_u.toStdString()<<" "<<std::endl;
@@ -70,8 +70,8 @@ void C_PresideContent::inserisciDocente(const QString& nome, const QString& cogn
     if(!(list->trova(n_u))){
         plesso* pl=p->ricercaPlesso(scuola);
         if(pl){
-            docente utente(nome, cognome, lun, mar, mer, gio, ven, sab, n_u, pass, pl, p_ora);
-            list->aggiungiMembro(&utente);
+            docente* utente= new docente(nome, cognome, lun, mar, mer, gio, ven, sab, n_u, pass, pl, p_ora);
+            list->aggiungiMembro(utente);
             list->Close();
             view->buildTable();
             std::cout<<"Inserisco: "<<n_u.toStdString()<<" "<<std::endl;
@@ -105,8 +105,8 @@ void C_PresideContent::inserisciPreside(const QString& nome, const QString& cogn
     if(!(list->trova(n_u))){
         plesso* pl=p->ricercaPlesso(scuola);
         if(pl){
-            preside utente(nome, cognome, lun, mar, mer, gio, ven, sab, n_u, pass, pl, p_ora, p_stra, ore_s, num);
-            list->aggiungiMembro(&utente);
+            preside* utente= new preside(nome, cognome, lun, mar, mer, gio, ven, sab, n_u, pass, pl, p_ora, p_stra, ore_s, num);
+            list->aggiungiMembro(utente);
             list->Close();
             view->buildTable();
             std::cout<<"Inserisco: "<<n_u.toStdString()<<" "<<std::endl;
