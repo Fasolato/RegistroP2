@@ -22,7 +22,7 @@ void preside::writeSpecifiche(QXmlStreamWriter& xmlWriter) const{
     xmlWriter.writeTextElement("numero_telefono", numero_telefono);
 }
 
-QString preside::openRightView(){
+QString preside::openRightView() const{
     return "preside";
 }
 

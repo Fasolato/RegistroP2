@@ -20,7 +20,7 @@ void ata::writeSpecifiche(QXmlStreamWriter& xmlWriter) const{
     xmlWriter.writeTextElement("paga_mq", QString::number(paga_mq));
 }
 
-QString ata::openRightView(){
+QString ata::openRightView() const{
     return "ata";
 }
 
