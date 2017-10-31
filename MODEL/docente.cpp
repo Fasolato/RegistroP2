@@ -7,7 +7,7 @@
 
 docente::docente(QString n, QString c, int lun, int mar, int mer, int gio, int ven, int sab, QString n_u, QString p, plesso* s, double paga): personale(n, c, lun, mar, mer, gio, ven, sab, n_u, p, s), paga_oraria(paga) {}
 
-double docente::stipendio() const {
+double docente::stipendio() const { //function that returns a docent pay
     double tot=0;
     vector<int> v=getOre();
     for(int i=0; i<6; ++i)
@@ -30,7 +30,7 @@ QString docente::openRightView() const{
 double docente::getPagaO() const {return paga_oraria;}
 void docente::setPagaO(double po) {paga_oraria=po;}
 
-QVector<QString> docente::ottieniInfo(){
+QVector<QString> docente::ottieniInfo(){//function that returns a docent info
     QVector<QString> info;
     info.append(getNome());
     info.append(getCognome());
