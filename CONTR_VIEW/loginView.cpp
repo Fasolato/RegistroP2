@@ -1,34 +1,32 @@
 #include"loginView.h"
 
-LoginView::LoginView(QWidget *parent) : QFrame(parent)
+LoginView::LoginView(lista<personale>* li, QWidget *parent) : QFrame(parent), pli(li)
 {
 
         setFrameStyle(QFrame::Panel | QFrame::Raised);
         setFrameShadow(QFrame::Plain);
         setLineWidth(3);
 
-        QDesktopWidget *desktop = QApplication::desktop();
-
-        int screenWidth = desktop->width();
-        int screenHeight = desktop->height();
-        int x=(screenWidth - 500) / 2;
-        int y=(screenHeight - 250) / 2;
-        QRect rettangolo(x, y, 500, 250);
-
-        setGeometry(rettangolo);
 
         setStyleSheet("LoginWindow{ background-color: red; border: 1px solid #F12;}");
 
+        exit= new QPushButton("Esci", this);
+        exit->setFixedSize(150,35);
+
+        connect(exit,SIGNAL(clicked()),qApp,SLOT(quit()));
+
         label=new QLabel("Inserisci i tuoi Dati: ",this);
-        label->setStyleSheet("color: black; font: 18pt;");
+        label->setStyleSheet("color: black; font: 22pt;");
+        label->setFixedSize(250,35);
         tUser=new QLineEdit(this);
         tUser->setPlaceholderText("inserisci qui lo username");
-        tUser->setFixedSize(180,30);
+        tUser->setFixedSize(300,35);
         tPass=new QLineEdit(this);
         tPass->setPlaceholderText("inserisci qui la password");
-        tPass->setFixedSize(180,30);
+        tPass->setFixedSize(300,35);
         tPass->setEchoMode(QLineEdit::Password);
         button=new QPushButton("Login",this);
+        button->setFixedSize(150,35);
         button->setDisabled(true);
 
         setLogin();
@@ -37,38 +35,43 @@ LoginView::LoginView(QWidget *parent) : QFrame(parent)
         connect(tUser,SIGNAL(returnPressed()),this,SLOT(getLogin()));
         connect(tPass,SIGNAL(returnPressed()),this,SLOT(getLogin()));
 
-        layout=new QVBoxLayout(this);
-        layout->addWidget(label);
-        layout->addWidget(tUser,0,Qt::AlignCenter);
-        layout->addWidget(tPass,0,Qt::AlignCenter);
-        layout->addWidget(button,0,Qt::AlignRight);
+        layout1=new QVBoxLayout();
+        layout1->addWidget(label);
+        layout1->addWidget(tUser,0,Qt::AlignCenter);
+        layout1->addWidget(tPass,0,Qt::AlignCenter);
+
+        layout2= new QHBoxLayout();
+        layout2->addWidget(button,0,Qt::AlignRight);
+        layout2->addWidget(exit,0,Qt::AlignRight);
 
         button->setToolTip(tr("Esegui il login"));
         button->setToolTipDuration(3000);
-        layout->setAlignment(Qt::AlignCenter);
-        setLayout(layout);
+        layoutFinal= new QVBoxLayout(this);
+        layoutFinal->addLayout(layout1);
+        layoutFinal->addLayout(layout2);
+        layoutFinal->setAlignment(Qt::AlignCenter);
+        setLayout(layoutFinal);
     }
 
     void LoginView::getLogin(){
         if(!tUser->text().isEmpty() && !tUser->text().isNull() && !tPass->text().isEmpty() && !tPass->text().isNull()){
 
-            ListaPlessi lp;
-            lista<personale> li(&lp);
-            personale *current_user=li.trova(tUser->text(), tPass->text());
+            personale *current_user=pli->auth(tUser->text(), tPass->text());
             if(current_user){
                 emit setPersonale(current_user);
                 if(current_user->openRightView()=="ata")
                     emit createAta(current_user);
                 else if(current_user->openRightView()=="docente")
                     emit createDocente(current_user);
-                else
+                else{
                     emit createPreside(current_user);
+                }
             }
 
         else{
             QMessageBox warning;
             warning.setIcon(QMessageBox::Information);
-            warning.setText("UserName non valido");
+            warning.setText("UserName o Password non validi");
             warning.exec();
         }
         setLogin();
@@ -91,23 +94,4 @@ LoginView::LoginView(QWidget *parent) : QFrame(parent)
         tPass->clear();
         tPass->setStyleSheet("color: #808080;");
         connect(tPass,SIGNAL(cursorPositionChanged(int,int)),this,SLOT(selectText()));
-    }
-
-    void LoginView::centerWidget(){
-        std::cout<<"arrivati"<<std::endl;
-        //position center;
-            int WIDTH = 250;
-            int HEIGHT = 250;
-
-            QDesktopWidget *desktop = QApplication::desktop();
-
-            int screenWidth = desktop->width();
-            int screenHeight = desktop->height();
-            int x=(screenWidth - WIDTH) / 2;
-            int y=(screenHeight - HEIGHT) / 2;
-
-            resize(WIDTH, HEIGHT);
-            move( x, y );
-
-            adjustSize();
     }

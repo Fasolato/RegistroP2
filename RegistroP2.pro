@@ -14,8 +14,6 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     CONTR_VIEW/ata/AtaView.cpp \
-    CONTR_VIEW/ata/c_AtaView.cpp \
-    CONTR_VIEW/docente/c_DocenteView.cpp \
     CONTR_VIEW/docente/DocenteView.cpp \
     CONTR_VIEW/preside/c_PresideView.cpp \
     CONTR_VIEW/preside/PresideView.cpp \
@@ -28,12 +26,16 @@ SOURCES += main.cpp \
     MODEL/orarioSettimanale.cpp \
     MODEL/personale.cpp \
     MODEL/plesso.cpp \
-    MODEL/preside.cpp
+    MODEL/preside.cpp \
+    CONTR_VIEW/preside/c_PresideContent.cpp \
+    CONTR_VIEW/preside/PresideContent.cpp \
+    CONTR_VIEW/preside/inserisci_ata/insertAta.cpp \
+    CONTR_VIEW/preside/inserisci_docente/insertDocente.cpp \
+    CONTR_VIEW/preside/inserisci_preside/insertPreside.cpp \
+    CONTR_VIEW/preside/inserisci_plesso/insertPlesso.cpp
 
 HEADERS  += \
     CONTR_VIEW/ata/AtaView.h \
-    CONTR_VIEW/ata/c_AtaView.h \
-    CONTR_VIEW/docente/c_DocenteView.h \
     CONTR_VIEW/docente/DocenteView.h \
     CONTR_VIEW/preside/c_PresideView.h \
     CONTR_VIEW/preside/PresideView.h \
@@ -47,7 +49,13 @@ HEADERS  += \
     MODEL/orarioSettimanale.h \
     MODEL/personale.h \
     MODEL/plesso.h \
-    MODEL/preside.h
+    MODEL/preside.h \
+    CONTR_VIEW/preside/c_PresideContent.h \
+    CONTR_VIEW/preside/PresideContent.h \
+    CONTR_VIEW/preside/inserisci_ata/insertAta.h \
+    CONTR_VIEW/preside/inserisci_docente/insertDocente.h \
+    CONTR_VIEW/preside/inserisci_preside/insertPreside.h \
+    CONTR_VIEW/preside/inserisci_plesso/insertPlesso.h
 
 DISTFILES += \
     DATABASE/DB.xml \

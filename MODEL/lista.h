@@ -1,6 +1,8 @@
 #ifndef LISTAH
 #define LISTAH
 
+#include<iostream>
+
 #include"ATA.h"
 #include"preside.h"
 #include"listaPlessi.h"
@@ -35,6 +37,7 @@ public:
         bool operator!=(iteratore) const;
         iteratore& operator++(); // operator++ prefisso
         iteratore operator++(int); // operator++ postfisso
+        T* operator->() const;
     };
 
     iteratore begin() const;
@@ -55,11 +58,13 @@ public:
     void aggiungiMembro(T*);
     void togliMembro(T*);
     T* ricercaMembro(T* p) const;
-    T* trova(QString username, QString password) const;
+    T* trova(QString username) const;
+    T* auth(QString username, QString password) const;
+    bool controllaAfferenze(QString t);
 };
 
 template <class T>
-QString lista<T>::filename1="/Volumes/KINGS 32 GB/Registro_GitHub/RegistroP2/DATABASE/DB.xml";
+QString lista<T>::filename1="../../../../RegistroP2/DATABASE/DB.xml";
 
 // METODI DI LISTA <T>
 
@@ -110,6 +115,18 @@ void lista<T>::aggiungiMembro(T* p){
 }
 
 template <class T>
+bool lista<T>::controllaAfferenze(QString t){
+    lista<T>::nodo* temp=first;
+    bool trovato=false;
+    while(temp && !trovato){
+        if(temp->dipendente->getScuola()->getNome()==t)
+            trovato=true;
+        temp=temp->next;
+    }
+    return trovato;
+}
+
+template <class T>
 void lista<T>::togliMembro(T* p){
     nodo* a= first, *prec= 0;
     while(a && !(a->dipendente==p)){
@@ -121,6 +138,7 @@ void lista<T>::togliMembro(T* p){
             first=a->next;
         else
             prec->next=a->next;
+        a->next=0;
         delete a;
     }
 }
@@ -136,9 +154,20 @@ T* lista<T>::ricercaMembro(T* p) const{
 }
 
 template <class T>
-T* lista<T>::trova(QString username, QString password) const{
+T* lista<T>::trova(QString username) const{
     nodo* a= first;
-    while(a && !((a->dipendente->getNomeutente()==username) && (a->dipendente->getPassword()==password))){
+    while(a && !((a->dipendente->getNomeutente()==username))){
+        a= a->next;
+    }
+    if(a)
+        return a->dipendente;
+    return 0;
+}
+
+template <class T>
+T* lista<T>::auth(QString username, QString password) const{
+    nodo* a= first;
+    while(a && !((a->dipendente->getNomeutente()==username && a->dipendente->getPassword()==password))){
         a= a->next;
     }
     if(a)
@@ -165,27 +194,27 @@ void lista<T>::Close(){
 
      xmlWriter.writeTextElement("username", ((it.punt)->dipendente->getNomeutente()));
 
-     ((it.punt)->dipendente)->writeTipo(xmlWriter);  //scrittura polimorfica del tipo;
+     (it->writeTipo(xmlWriter));  //scrittura polimorfica del tipo;
 
      xmlWriter.writeStartElement("profilo");
 
      xmlWriter.writeStartElement("info_generali");
-     xmlWriter.writeTextElement("nome", ((it.punt)->dipendente)->getNome());
-     xmlWriter.writeTextElement("cognome", ((it.punt)->dipendente)->getCognome());
+     xmlWriter.writeTextElement("nome", (it->getNome()));
+     xmlWriter.writeTextElement("cognome", (it->getCognome()));
      xmlWriter.writeStartElement("orario");
-     xmlWriter.writeTextElement("lun", QString::number((((it.punt)->dipendente)->getOre())[0]));
-     xmlWriter.writeTextElement("mar", QString::number((((it.punt)->dipendente)->getOre())[1]));
-     xmlWriter.writeTextElement("mer", QString::number((((it.punt)->dipendente)->getOre())[2]));
-     xmlWriter.writeTextElement("gio", QString::number((((it.punt)->dipendente)->getOre())[3]));
-     xmlWriter.writeTextElement("ven", QString::number((((it.punt)->dipendente)->getOre())[4]));
-     xmlWriter.writeTextElement("sab", QString::number((((it.punt)->dipendente)->getOre())[5]));
+     xmlWriter.writeTextElement("lun", QString::number(((it->getOre())[0])));
+     xmlWriter.writeTextElement("mar", QString::number(((it->getOre())[1])));
+     xmlWriter.writeTextElement("mer", QString::number(((it->getOre())[2])));
+     xmlWriter.writeTextElement("gio", QString::number(((it->getOre())[3])));
+     xmlWriter.writeTextElement("ven", QString::number(((it->getOre())[4])));
+     xmlWriter.writeTextElement("sab", QString::number(((it->getOre())[5])));
      xmlWriter.writeEndElement(); //orario
-     xmlWriter.writeTextElement("password", ((it.punt)->dipendente)->getPassword());
-     xmlWriter.writeTextElement("plesso",((it.punt)->dipendente)->getScuola().getNome());
+     xmlWriter.writeTextElement("password", (it->getPassword()));
+     xmlWriter.writeTextElement("plesso",(it->getScuola()->getNome()));
      xmlWriter.writeEndElement(); //info_generali
 
      xmlWriter.writeStartElement("info_specifiche");
-     ((it.punt)->dipendente)->writeSpecifiche(xmlWriter);  //scrittura polimorfica delle specifiche
+     (it->writeSpecifiche(xmlWriter));  //scrittura polimorfica delle specifiche
      xmlWriter.writeEndElement();// info spec
 
      xmlWriter.writeEndElement();//profilo
@@ -201,7 +230,7 @@ void lista<T>::Close(){
 
      file1.close();
 
-     std::cout<<std::endl<<"database written"<<std::endl;
+     std::cout<<std::endl<<"DB written"<<std::endl;
 }
 
 template <class T>
@@ -310,7 +339,6 @@ void lista<T>::Load(ListaPlessi* lp){
                 numero_telefono=xmlReader.readElementText();
             }
             else{
-                std::cout<<"prob plesso";
                 std::cout<<"we got a problem "; //FLAG di allarme;
             }
         }
@@ -318,17 +346,32 @@ void lista<T>::Load(ListaPlessi* lp){
         {
             if(xmlReader.isEndElement() && xmlReader.name()=="personale"){//leggo </personale> //costruisco user
                     plesso* pl= lp->ricercaPlesso(scuola_afferenza);
+                    lista<T>::nodo* point=first;
+                    if(point){
+                        while(point->next!=0)
+                            point=point->next;
+                    }
                     if(tipo=="ata"){
                         ata* a= new ata(nome, cognome, lun, mar, mer, gio, ven, sab, nome_utente, password, pl, paga_mq);
-                        first= new nodo(a, first);
+                        if(first)
+                            point->next= new nodo(a, 0);
+                        else
+                            first= new nodo(a, 0);
+
                     }
                     else if(tipo=="docente"){
                         docente* d= new docente(nome, cognome, lun, mar, mer, gio, ven, sab, nome_utente, password, pl, paga_oraria);
-                        first= new nodo(d, first);
+                        if(first)
+                            point->next= new nodo(d, 0);
+                        else
+                            first= new nodo(d, 0);
                     }
                     else{ //tipo=="preside"
                         preside* p= new preside(nome, cognome, lun, mar, mer, gio, ven, sab, nome_utente, password, pl, paga_oraria, paga_straordinari, ore_straordinari, numero_telefono);
-                        first= new nodo(p, first);
+                        if(first)
+                            point->next= new nodo(p, 0);
+                        else
+                            first= new nodo(p, 0);
                     }
                     nome_utente="Unknown";
                     tipo="Unknown";
@@ -419,6 +462,10 @@ T& lista<T>::operator[](lista<T>::iteratore it) const {
     return *((it.punt)->dipendente);
 }
 
+template <class T>
+T* lista<T>::iteratore::operator->() const{
+    return punt->dipendente;
+}
 
 
 #endif // LISTAH

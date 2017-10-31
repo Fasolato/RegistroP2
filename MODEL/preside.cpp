@@ -22,7 +22,7 @@ void preside::writeSpecifiche(QXmlStreamWriter& xmlWriter) const{
     xmlWriter.writeTextElement("numero_telefono", numero_telefono);
 }
 
-QString preside::openRightView(){
+QString preside::openRightView() const{
     return "preside";
 }
 
@@ -32,6 +32,26 @@ QString preside::getTel() const {return numero_telefono;}
 void preside::setPagaS(double p) {paga_straordinari=p;}
 void preside::setOreS(int o) {ore_straordinari=o;}
 void preside::setTel(QString t) {numero_telefono=t;}
+
+QVector<QString> preside::ottieniInfo(){
+    QVector<QString> info;
+    info.append(getNome());
+    info.append(getCognome());
+    info.append(QString::number(getOre()[0]));
+    info.append(QString::number(getOre()[1]));
+    info.append(QString::number(getOre()[2]));
+    info.append(QString::number(getOre()[3]));
+    info.append(QString::number(getOre()[4]));
+    info.append(QString::number(getOre()[5]));
+    info.append(getNomeutente());
+    info.append(getPassword());
+    info.append(getScuola()->getNome());
+    info.append(QString::number(getPagaO()));
+    info.append(QString::number(getPagaS()));
+    info.append(QString::number(getOreS()));
+    info.append(getTel());
+    return info;
+}
 
 
 #endif // PRESIDE

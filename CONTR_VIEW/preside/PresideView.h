@@ -12,24 +12,34 @@
 #include<QApplication>
 
 #include"../../MODEL/preside.h"
+#include"PresideContent.h"
 
 class PresideView : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit PresideView(preside* user_preside, QWidget *parent = 0);
+    explicit PresideView(lista<personale>* li, preside* user_preside, QWidget *parent = 0);
     ~PresideView();
+
+    PresideContent* getPresideContent();
 
 signals:
     void disconnectUserView();
+    void quit();
 
 public slots:
+
+private slots:
 
 private:
     QLabel* label;
     QPushButton* exit;
     QVBoxLayout* layout;
+
+    lista<personale>* pli;
+
+    PresideContent* content;
 };
 
 #endif // PRESIDEVIEW_H

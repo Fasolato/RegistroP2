@@ -15,7 +15,7 @@ class StartView : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit StartView(QGroupBox *parent = 0);
+    explicit StartView(lista<personale>* li, QGroupBox *parent = 0);
 
     AtaView* getAtaView();
     DocenteView* getDocenteView();
@@ -31,8 +31,6 @@ signals:
     void createAtaModel(personale*);
     void createDocenteModel(personale*);
     void createPresideModel(personale*);
-    void createC_AtaView();
-    void createC_DocenteView();
     void createC_PresideView();
 
     void deleteControllers();
@@ -53,6 +51,7 @@ private:
     void centerWidget();
     void createLogin();
 
+    lista<personale>* pli;
     LoginView* login_view;
     AtaView* ata_view;
     DocenteView* docente_view;

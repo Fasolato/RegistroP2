@@ -8,8 +8,8 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     ListaPlessi lp;
     lista<personale> li(&lp);
-    StartView view;
-    C_StartView controller(&li,&view);
+    StartView view(&li);
+    C_StartView controller(&lp,&li,&view);
 
     return a.exec();
 }

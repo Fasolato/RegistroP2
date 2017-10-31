@@ -1,19 +1,36 @@
 #include "PresideView.h"
 
-PresideView::PresideView(preside* user_preside, QWidget *parent) : QWidget(parent)
+PresideView::PresideView(lista<personale>* li, preside* user_preside, QWidget *parent) : QWidget(parent), pli(li)
 {
-    label=new QLabel(user_preside->getCognome(),this);
+    content= new PresideContent(pli, this, user_preside);
+    label=new QLabel("Benvenuto "+user_preside->getNomeutente(),this);
     exit=new QPushButton("Esci",this);
 
-    connect(exit,SIGNAL(clicked()),qApp,SLOT(quit()));
+    showMaximized();
+    connect(exit,SIGNAL(clicked()),this,SIGNAL(quit()));
 
     layout=new QVBoxLayout(this);
     layout->addWidget(label);
+    layout->addWidget(content);
     layout->addWidget(exit);
 
     setLayout(layout);
 }
 
 PresideView::~PresideView(){
+
+    delete label;
+    delete exit;
+    delete layout;
+
+    label=0;
+    exit=0;
+    layout=0;
+    content=0;
+
     emit disconnectUserView();
+}
+
+PresideContent* PresideView::getPresideContent(){
+    return content;
 }

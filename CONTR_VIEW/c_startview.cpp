@@ -1,16 +1,12 @@
 #include"c_startview.h"
 
-C_StartView::C_StartView(lista<personale>* pli, StartView* pview, QObject *parent) :
-    QObject(parent), li(pli), view(pview)
+C_StartView::C_StartView(ListaPlessi* lp, lista<personale>* pli, StartView* pview, QObject *parent) :
+    QObject(parent), li(pli), p(lp), view(pview)
 {
     view->show();
 
-    c_ata=0;
-    c_docente=0;
     c_preside=0;
 
-    connect(view,SIGNAL(createC_AtaView()),this, SLOT(createC_AtaView()));
-    connect(view,SIGNAL(createC_DocenteView()),this, SLOT(createC_DocenteView()));
     connect(view,SIGNAL(createC_PresideView()),this, SLOT(createC_PresideView()));
     connect(view,SIGNAL(deleteControllers()),this,SLOT(deleteControllers()));
     connect(view,SIGNAL(deleteModel()),this,SLOT(deleteModel()));
@@ -20,16 +16,8 @@ C_StartView::C_StartView(lista<personale>* pli, StartView* pview, QObject *paren
     connect(view,SIGNAL(createPresideModel(personale*)),this,SLOT(createPresideModel(personale*)));
 }
 
-void C_StartView::createC_AtaView(){
-    c_ata=new C_AtaView(this,pers_ata,view->getAtaView());
-}
-
-void C_StartView::createC_DocenteView(){
-    c_docente=new C_DocenteView(this,pers_docente,view->getDocenteView());
-}
-
 void C_StartView::createC_PresideView(){
-    c_preside=new C_PresideView(this,pers_preside,view->getPresideView());
+    c_preside=new C_PresideView(p,li, pers_preside, this, view->getPresideView());
 }
 
 void C_StartView::createAtaModel(personale* pers){
@@ -52,11 +40,6 @@ void C_StartView::createPresideModel(personale* pers){
 
 
 void C_StartView::deleteControllers(){
-    delete c_ata;
-    delete c_docente;
-    delete c_preside;
-    c_ata=0;
-    c_docente=0;
     c_preside=0;
 }
 

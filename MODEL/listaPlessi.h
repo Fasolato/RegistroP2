@@ -36,6 +36,7 @@ public:
             bool operator!=(iteratorePlessi) const;
             iteratorePlessi& operator++(); // operator++ prefisso
             iteratorePlessi operator++(int); // operator++ postfisso
+            plesso* operator->() const;
         };
 
         iteratorePlessi begin() const;
@@ -54,10 +55,8 @@ public:
         bool matchMembro(plesso* p);
         void modificaMembro(plesso*, plesso*);
         void aggiungiMembro(plesso*);
-        void togliMembro(plesso*);
-        plesso* ricercaPlesso(QString p);
-        //PROVA
-        void stampaPlesso() const;
+        void togliMembro(QString);
+        plesso* ricercaPlesso(QString);
 };
 
 #endif // LISTAPLESSI_H

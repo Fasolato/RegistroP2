@@ -23,11 +23,28 @@ void docente::writeSpecifiche(QXmlStreamWriter& xmlWriter) const{
     xmlWriter.writeTextElement("paga_oraria", QString::number(paga_oraria));
 }
 
-QString docente::openRightView(){
+QString docente::openRightView() const{
     return "docente";
 }
 
 double docente::getPagaO() const {return paga_oraria;}
 void docente::setPagaO(double po) {paga_oraria=po;}
+
+QVector<QString> docente::ottieniInfo(){
+    QVector<QString> info;
+    info.append(getNome());
+    info.append(getCognome());
+    info.append(QString::number(getOre()[0]));
+    info.append(QString::number(getOre()[1]));
+    info.append(QString::number(getOre()[2]));
+    info.append(QString::number(getOre()[3]));
+    info.append(QString::number(getOre()[4]));
+    info.append(QString::number(getOre()[5]));
+    info.append(getNomeutente());
+    info.append(getPassword());
+    info.append(getScuola()->getNome());
+    info.append(QString::number(getPagaO()));
+    return info;
+}
 
 #endif // DOCENTE

@@ -1,6 +1,6 @@
 #include"listaPlessi.h"
 
-QString ListaPlessi::filename2="/Volumes/KINGS 32 GB/Registro_GitHub/RegistroP2/DATABASE/plessoDB.xml";
+QString ListaPlessi::filename2="../../../../RegistroP2/DATABASE/plessoDB.xml";
 
 // METODI DI LISTAPLESSI
 
@@ -45,7 +45,9 @@ void ListaPlessi::aggiungiMembro(plesso* p){
     }
 }
 
-void ListaPlessi::togliMembro(plesso* p){
+void ListaPlessi::togliMembro(QString nome){
+    plesso* p= ricercaPlesso(nome);
+    if(p){
     nodo* a= first, *prec= 0;
     while(a && !(a->scuola==p)){
         prec= a;
@@ -56,7 +58,9 @@ void ListaPlessi::togliMembro(plesso* p){
             first=a->next;
         else
             prec->next=a->next;
+        a->next=0;
         delete a;
+    }
     }
 }
 
@@ -118,6 +122,11 @@ ListaPlessi::iteratorePlessi ListaPlessi::iteratorePlessi::operator++(int) {
     return x;
 }
 
+plesso* ListaPlessi::iteratorePlessi::operator->() const{
+    return punt->scuola;
+}
+
+
 void ListaPlessi::Close(){
 
      QFile file2(filename2);
@@ -133,17 +142,17 @@ void ListaPlessi::Close(){
 
      xmlWriter.writeStartElement("plesso");
 
-     xmlWriter.writeTextElement("nome", ((it.punt)->scuola->getNome()));
+     xmlWriter.writeTextElement("nome", (it->getNome()));
 
-     xmlWriter.writeTextElement("sede", ((it.punt)->scuola->getSede()));
+     xmlWriter.writeTextElement("sede", (it->getSede()));
 
-     xmlWriter.writeTextElement("via", ((it.punt)->scuola->getVia()));
+     xmlWriter.writeTextElement("via", (it->getVia()));
 
-     xmlWriter.writeTextElement("telefono", ((it.punt)->scuola->getTelefono()));
+     xmlWriter.writeTextElement("telefono", (it->getTelefono()));
 
-     xmlWriter.writeTextElement("pers_ata", QString::number(((it.punt)->scuola->getAta())));
+     xmlWriter.writeTextElement("pers_ata", QString::number((it->getAta())));
 
-     xmlWriter.writeTextElement("metri_quadri", QString::number(((it.punt)->scuola->getMq())));
+     xmlWriter.writeTextElement("metri_quadri", QString::number((it->getMq())));
 
 
      xmlWriter.writeEndElement();//plesso
@@ -156,7 +165,7 @@ void ListaPlessi::Close(){
 
      file2.close();
 
-     std::cout<<std::endl<<"database written"<<std::endl;
+     std::cout<<std::endl<<"plessoDB written"<<std::endl;
 }
 
 void ListaPlessi::Load(){
@@ -214,7 +223,14 @@ void ListaPlessi::Load(){
             if(xmlReader.isEndElement() && xmlReader.name()=="plesso"){ //leggo </utente> //costruisco utente
 
                 plesso* pl= new plesso(nome, sede, via, telefono, ata, mq);
-                first= new nodo(pl, first);
+                ListaPlessi::nodo* point=first;
+                if(point){
+                    while(point->next!=0)
+                        point=point->next;
+                    point->next= new nodo(pl, 0);
+                }
+                else
+                    first= new nodo(pl, 0);
 
                 nome="Unknown";
                 sede="Unknown";
